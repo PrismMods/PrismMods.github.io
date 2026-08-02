@@ -26,6 +26,7 @@
 
   --measure: 68rem;
   --pad: clamp(1.25rem, 5vw, 3.5rem);
+  --bar-h: 4.85rem;           /* 1.35rem padding each side + the 34px toggle */
 
   --sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Mono", monospace;
@@ -270,13 +271,17 @@ a {
 
 /* ---------- hero ---------- */
 
+/* A fresh visit shows the hero and the spectrum rule, nothing more. The rule
+   sits just inside the bottom edge as the cue that there is more below.
+   Bottom padding exceeds top, which lifts the centred content off the middle. */
 .hero {
   display: grid;
   gap: 2.5rem;
   align-items: center;
+  min-height: calc(100svh - var(--bar-h) - 1.75rem);
   max-width: var(--measure);
   margin-inline: auto;
-  padding: clamp(3.5rem, 11vh, 7rem) var(--pad) clamp(2.5rem, 7vh, 4rem);
+  padding: clamp(1.5rem, 4vh, 3rem) var(--pad) clamp(4rem, 10vh, 6.5rem);
   /* Short enough to track the cursor, long enough to glide back to rest. */
   transition: --tilt 160ms linear, --tilt-y 160ms linear;
 }
