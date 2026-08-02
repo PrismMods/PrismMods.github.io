@@ -1,0 +1,680 @@
+/* PrismMods — landing page.
+   One idea: white light in, spectrum out. The spectrum appears exactly twice —
+   as the rule under the hero, and as one edge per mod card. Everything else is
+   graphite on paper. */
+
+/* ---------- tokens ---------- */
+
+:root {
+  --is-dark: 0;
+  /* read by the theme toggle; single source of truth */
+
+  --paper: #fbfbfd;
+  --raise: #ffffff;
+  --ink: #101114;
+  --muted: #64686f;
+  --line: #e3e5ea;
+  --ring: #3a6ff0;
+  --beam: #2a2d33;
+  --glass-hi: rgba(16, 17, 20, 0.12);
+  --glass-lo: rgba(16, 17, 20, 0.02);
+  --blend: multiply;
+  --ray-blend: normal;
+
+  --fringe-a: rgba(0, 166, 255, 0.62);
+  --fringe-b: rgba(255, 40, 126, 0.58);
+
+  --measure: 68rem;
+  --pad: clamp(1.25rem, 5vw, 3.5rem);
+
+  --sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Mono", monospace;
+
+  --out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Registered so the headline's dispersion can interpolate rather than flip
+   halfway. Unsupported browsers get one jump, which is survivable. */
+@property --spread {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+/* Cursor position, normalised to -1..1 on each axis. Registered so they can
+   ease back to rest instead of snapping when the pointer leaves. */
+@property --tilt {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --tilt-y {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --is-dark: 1;
+    --paper: #0b0c0e;
+    --raise: #121317;
+    --ink: #f1f2f5;
+    --muted: #8d929b;
+    --line: #22252b;
+    --ring: #6f9bff;
+    --beam: #ffffff;
+    --glass-hi: rgba(255, 255, 255, 0.19);
+    --glass-lo: rgba(255, 255, 255, 0.02);
+    --blend: screen;
+    --ray-blend: plus-lighter;
+    --fringe-a: rgba(0, 208, 255, 0.58);
+    --fringe-b: rgba(255, 66, 148, 0.54);
+  }
+}
+
+/* Explicit choice beats the system preference, in both directions. */
+:root[data-theme="light"] {
+  --is-dark: 0;
+  --paper: #fbfbfd;
+  --raise: #ffffff;
+  --ink: #101114;
+  --muted: #64686f;
+  --line: #e3e5ea;
+  --ring: #3a6ff0;
+  --beam: #2a2d33;
+  --glass-hi: rgba(16, 17, 20, 0.12);
+  --glass-lo: rgba(16, 17, 20, 0.02);
+  --blend: multiply;
+  --ray-blend: normal;
+  --fringe-a: rgba(0, 166, 255, 0.62);
+  --fringe-b: rgba(255, 40, 126, 0.58);
+}
+
+:root[data-theme="dark"] {
+  --is-dark: 1;
+  --paper: #0b0c0e;
+  --raise: #121317;
+  --ink: #f1f2f5;
+  --muted: #8d929b;
+  --line: #22252b;
+  --ring: #6f9bff;
+  --beam: #ffffff;
+  --glass-hi: rgba(255, 255, 255, 0.19);
+  --glass-lo: rgba(255, 255, 255, 0.02);
+  --blend: screen;
+  --ray-blend: plus-lighter;
+  --fringe-a: rgba(0, 208, 255, 0.58);
+  --fringe-b: rgba(255, 66, 148, 0.54);
+}
+
+/* ---------- base ---------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  line-height: 1.6;
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+}
+
+.skip:focus {
+  left: var(--pad);
+  top: 0.75rem;
+  z-index: 10;
+  padding: 0.5rem 0.9rem;
+  background: var(--raise);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* ---------- top bar ---------- */
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.35rem var(--pad);
+}
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.mark span {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.mark-glyph {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+
+.bar-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.bar-nav a {
+  font-size: 0.9rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.bar-nav a:hover {
+  color: var(--ink);
+}
+
+#theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  color: var(--muted);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+#theme-toggle:hover {
+  color: var(--ink);
+  border-color: var(--muted);
+}
+
+#theme-toggle svg {
+  grid-area: 1 / 1;
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  transition: transform 350ms var(--out);
+}
+
+#theme-toggle:hover svg {
+  transform: rotate(35deg);
+}
+
+/* The button shows where you're going, not where you are. */
+.icon-sun {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon-sun {
+    display: block;
+  }
+
+  .icon-moon {
+    display: none;
+  }
+}
+
+:root[data-theme="light"] .icon-moon,
+:root[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
+:root[data-theme="light"] .icon-sun,
+:root[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(3.5rem, 11vh, 7rem) var(--pad) clamp(2.5rem, 7vh, 4rem);
+  /* Short enough to track the cursor, long enough to glide back to rest. */
+  transition: --tilt 160ms linear, --tilt-y 160ms linear;
+}
+
+@media (min-width: 62rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* ---------- the prism ---------- */
+
+/* A beam enters, the glass bends it, and what leaves is the same five stops as
+   the rule below the hero. Light adds on a dark ground and subtracts on a pale
+   one, so the whole scene blends accordingly. */
+.stage {
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  justify-self: center;
+  pointer-events: none;
+  mix-blend-mode: var(--blend);
+  animation: rise 900ms var(--out) 300ms both;
+}
+
+/* Two idles at different periods — the composition breathes on one clock, the
+   glass turns on another, so the pair never visibly repeats. */
+.scene {
+  animation: float 11s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  from {
+    transform: translateY(-5px);
+  }
+
+  to {
+    transform: translateY(5px);
+  }
+}
+
+/* Faces of the projected solid. The camera-facing ones read as surface; the
+   rest show through the glass. */
+.pane {
+  opacity: 1;
+}
+
+.pane-far {
+  opacity: 0.4;
+}
+
+/* The beam inside the glass, as a volume. Faces stack additively, so the slab
+   is brightest where you are looking through the most of it. */
+/* fill is set as an attribute in the script, not here: a fragment URL in an
+   external stylesheet resolves against styles.css, so url(#interior) would
+   dangle and the shape would render with no paint at all. */
+.slab {
+  opacity: 0.3;
+  mix-blend-mode: var(--ray-blend);
+}
+
+/* The thread down the middle. Near full strength so the interior reads as one
+   continuous beam with the two outside it, rather than a dim patch between. */
+.slab-core {
+  opacity: 0.78;
+  mix-blend-mode: var(--ray-blend);
+}
+
+/* Light adds; it does not cover. The passes stack additively on a dark ground,
+   which is what turns three translucent shapes into one glowing beam. */
+.ray {
+  mix-blend-mode: var(--ray-blend);
+}
+
+/* Tilting the glass steers what leaves it, so the cursor moves the exit beam
+   and the prism together, and drives how hard everything glows. */
+.ray-out {
+  transform-origin: 358px 202px;
+  transform: rotate(calc(var(--tilt-y) * -3.5deg));
+}
+
+.glow {
+  opacity: clamp(0.35, calc(0.62 + var(--tilt) * 0.22 - var(--tilt-y) * 0.16), 1);
+}
+
+.spark {
+  opacity: clamp(0.25, calc(0.52 + var(--tilt) * 0.2), 0.8);
+}
+
+.edge {
+  fill: none;
+  stroke: color-mix(in oklab, var(--ink) 55%, transparent);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+}
+
+/* Far geometry, read through the glass rather than across its surface. */
+.far-edge {
+  fill: none;
+  stroke: color-mix(in oklab, var(--ink) 20%, transparent);
+  stroke-width: 1;
+  stroke-linejoin: round;
+}
+
+/* var() does not resolve inside SVG presentation attributes, so the
+   theme-dependent fills live here instead. */
+.s-beam {
+  stop-color: var(--beam);
+}
+
+.s-hi {
+  stop-color: var(--glass-hi);
+}
+
+.s-lo {
+  stop-color: var(--glass-lo);
+}
+
+.eyebrow {
+  margin: 0 0 1.75rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: rise 600ms var(--out) both;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.75rem, 1.5rem + 6vw, 6rem);
+  font-weight: 600;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+/* The signature: a lens fringe on the headline. It starts wide, converges on
+   load, and afterwards tracks the cursor — turning a prism changes how far it
+   spreads the light, so the headline does the same. */
+.split {
+  --fx: calc(0.015em + var(--spread) + var(--tilt) * 0.028em);
+  --fy: calc(var(--tilt-y) * 0.009em);
+  text-shadow:
+    calc(var(--fx) * -1) calc(var(--fy) * -1) 0 var(--fringe-a),
+    var(--fx) var(--fy) 0 var(--fringe-b);
+  animation: converge 1200ms var(--out) 60ms both;
+}
+
+.split .line {
+  display: block;
+  animation: rise 750ms var(--out) both;
+}
+
+.split .line:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+@keyframes converge {
+  from {
+    --spread: 0.13em;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes beam {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+}
+
+.lede {
+  max-width: 46ch;
+  margin: 1.75rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
+  animation: rise 700ms var(--out) 240ms both;
+}
+
+/* The one full spectrum on the page. Card edges are drawn from it. */
+.spectrum {
+  height: 2px;
+  max-width: var(--measure);
+  margin-inline: auto;
+  background: linear-gradient(90deg,
+      #8b5cf6 0%, #3a6ff0 26%, #12b5a0 50%, #e0b33c 72%, #e4699a 100%);
+  opacity: 0.9;
+  transform-origin: left center;
+  animation: beam 950ms var(--out) 340ms both;
+}
+
+/* ---------- mods ---------- */
+
+.mods {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(2.5rem, 7vh, 4.5rem) var(--pad) clamp(3rem, 9vh, 5.5rem);
+}
+
+.section-label {
+  margin: 0 0 2rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: opacity 520ms var(--out), transform 520ms var(--out);
+}
+
+/* Scroll reveal, gated on .js so a scriptless visitor never sees a blank grid.
+   The stagger index comes from JS as --i. */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Four mods, so two columns — auto-fit would leave an orphan cell at three. */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 46rem) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Column layout so the link row settles on the baseline of the tallest card
+   instead of leaving a ragged gap under short blurbs. */
+.mod {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 1.9rem 1.9rem;
+  background: var(--raise);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  /* Reveal is staggered; hover is not, so the delays are per-property. */
+  transition:
+    opacity 520ms var(--out) calc(var(--i, 0) * 60ms),
+    transform 520ms var(--out) calc(var(--i, 0) * 60ms),
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.mod:hover,
+.mod:focus-within {
+  border-color: color-mix(in oklab, var(--gem) 40%, var(--line));
+  background: color-mix(in oklab, var(--gem) 5%, var(--raise));
+}
+
+.mod::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 5px;
+  background: var(--gem);
+  transition: width 0.18s ease;
+}
+
+.mod:hover::before,
+.mod:focus-within::before {
+  width: 8px;
+}
+
+/* Bismuth really is iridescent — it gets the only gradient edge. */
+.bismuth::before {
+  background: linear-gradient(180deg, #12b5a0, #e0b33c 55%, #c05fd1);
+}
+
+.meta {
+  margin: 0 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Chemical formulae are case-sensitive: Bi is bismuth, BI is boron iodide. */
+.formula {
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.meta sub {
+  font-size: 0.75em;
+}
+
+.mod h3 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.badge {
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--gem);
+  border-radius: 999px;
+  color: var(--gem);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.blurb {
+  max-width: 38ch;
+  margin: 0.75rem 0 1.75rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin: auto 0 0;
+  font-size: 0.9rem;
+}
+
+.links a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+  transition: border-color 0.15s;
+}
+
+.links a:hover {
+  border-bottom-color: var(--gem);
+}
+
+.pending {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.soon h3,
+.soon .blurb {
+  opacity: 0.85;
+}
+
+/* ---------- footer ---------- */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.75rem var(--pad) 3rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.foot p {
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Animations are off, so the reveal would otherwise strand these at zero. */
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

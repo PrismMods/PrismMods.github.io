@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PrismMods — Mods for A Dance of Fire and Ice</title>
+  <meta name="description"
+    content="Quartz, Sapphire, Bismuth and Amethyst: free, open-source mods for A Dance of Fire and Ice.">
+  <meta name="color-scheme" content="light dark">
+
+  <meta property="og:title" content="PrismMods">
+  <meta property="og:description" content="Free, open-source mods for A Dance of Fire and Ice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prismmods.github.io/">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 30 28H2Z' fill='none' stroke='%23101114' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M16 3v25' stroke='%238B5CF6' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <script>
+    // Set before paint so the page never flashes the wrong theme.
+    // The js class gates the scroll reveal, so no-script visitors keep their content.
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.dataset.theme = t;
+    } catch (e) { }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#mods">Skip to the mods</a>
+
+  <header class="bar">
+    <a class="mark" href="./">
+      <svg class="mark-glyph" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3 30 28H2Z" />
+      </svg>
+      Prism<span>Mods</span>
+    </a>
+    <nav class="bar-nav">
+      <a href="https://github.com/PrismMods">GitHub</a>
+      <button id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" />
+          <path
+            d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.2 2.2M16.9 16.9l2.2 2.2M19.1 4.9l-2.2 2.2M7.1 16.9l-2.2 2.2" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">A Dance of Fire and Ice</p>
+        <h1 class="split">Prism&nbsp;Mods</h1>
+        <p class="lede">
+          Gameplay, level editing, and online play — one mod each, all free and
+          open source.
+        </p>
+      </div>
+
+      <svg class="stage" viewBox="0 0 640 420" aria-hidden="true" focusable="false">
+        <defs>
+          <!-- Bands run perpendicular to the beam, in user space so the wide,
+               short bounding box cannot skew the angle. -->
+          <linearGradient id="dispersed" gradientUnits="userSpaceOnUse"
+                          x1="500" y1="108" x2="526" y2="176">
+            <stop offset="2%" stop-color="#ff8fb8"/>
+            <stop offset="26%" stop-color="#ffd166"/>
+            <stop offset="50%" stop-color="#4fe3cd"/>
+            <stop offset="74%" stop-color="#6d9bff"/>
+            <stop offset="98%" stop-color="#b48bff"/>
+          </linearGradient>
+
+          <!-- Colours only separate with distance. At the exit face the beam is
+               still white, which is what makes it read as light. -->
+          <linearGradient id="hotspot" gradientUnits="userSpaceOnUse"
+                          x1="356" y1="202" x2="560" y2="123">
+            <stop class="s-beam" offset="0%" stop-opacity="1"/>
+            <stop class="s-beam" offset="30%" stop-opacity="0.28"/>
+            <stop class="s-beam" offset="100%" stop-opacity="0"/>
+          </linearGradient>
+
+          <linearGradient id="interior" gradientUnits="userSpaceOnUse"
+                          x1="220" y1="235" x2="363" y2="202">
+            <stop class="s-beam" offset="0%" stop-opacity="0.5"/>
+            <stop class="s-beam" offset="65%" stop-opacity="0.85"/>
+            <stop class="s-beam" offset="100%" stop-opacity="1"/>
+          </linearGradient>
+
+          <!-- Full brightness at the entry face (88% along), then tapering over
+               the last stretch so the rect dissolves into the interior slab
+               instead of ending on a visible edge. -->
+          <linearGradient id="incoming" x1="0" y1="0" x2="1" y2="0">
+            <stop class="s-beam" offset="0%" stop-opacity="0"/>
+            <stop class="s-beam" offset="40%" stop-opacity="0.85"/>
+            <stop class="s-beam" offset="88%" stop-opacity="1"/>
+            <stop class="s-beam" offset="100%" stop-opacity="0.45"/>
+          </linearGradient>
+
+          <radialGradient id="spark">
+            <stop class="s-beam" offset="0%" stop-opacity="1"/>
+            <stop class="s-beam" offset="45%" stop-opacity="0.35"/>
+            <stop class="s-beam" offset="100%" stop-opacity="0"/>
+          </radialGradient>
+
+          <linearGradient id="glass-front" x1="0" y1="0" x2="0.55" y2="1">
+            <stop class="s-hi" offset="0%"/>
+            <stop class="s-lo" offset="100%"/>
+          </linearGradient>
+
+          <!-- The receding face catches more light than the one facing us. -->
+          <linearGradient id="glass-side" x1="0" y1="0" x2="0.25" y2="1">
+            <stop class="s-hi" offset="0%"/>
+            <stop class="s-hi" offset="55%" stop-opacity="0.6"/>
+            <stop class="s-lo" offset="100%"/>
+          </linearGradient>
+
+          <filter id="bloom" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="22"/>
+          </filter>
+          <filter id="haze" x="-40%" y="-40%" width="180%" height="180%">
+            <feGaussianBlur stdDeviation="7"/>
+          </filter>
+          <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2"/>
+          </filter>
+        </defs>
+
+        <g class="scene">
+          <!-- Dispersed beam: bloom, body, then the white core near the exit.
+               Runs past the viewBox so steering it never reveals an end. -->
+          <g class="ray ray-out">
+            <g class="track-out">
+              <polygon class="glow" points="352,184 352,220 700,140 700,10" fill="url(#dispersed)" filter="url(#bloom)"/>
+              <polygon points="354,190 354,214 700,134 700,32" fill="url(#dispersed)" filter="url(#haze)" opacity="0.95"/>
+              <polygon points="356,193 356,211 700,128 700,50" fill="url(#hotspot)" filter="url(#soft)"/>
+              <circle class="spark" cx="360" cy="203" r="25" fill="url(#spark)"/>
+            </g>
+          </g>
+
+          <!-- Incoming beam: bloom, body, hot core -->
+          <g class="ray">
+            <g class="track-in">
+              <rect class="glow" x="0" y="220" width="250" height="32" fill="url(#incoming)" filter="url(#bloom)"/>
+              <rect x="0" y="230" width="250" height="12" fill="url(#incoming)" filter="url(#haze)" opacity="0.85"/>
+              <rect x="0" y="234" width="250" height="4" fill="url(#incoming)" filter="url(#soft)"/>
+              <circle class="spark" cx="222" cy="236" r="19" fill="url(#spark)"/>
+            </g>
+          </g>
+
+          <!-- Static fallback. With script, this is replaced by the same solid
+               projected each frame, so turning it actually changes the shape. -->
+          <g class="glass">
+            <path class="far-edge" d="M358 52 234 296 482 296Z M176 322 234 296"/>
+
+            <polygon points="300,78 424,322 482,296 358,52" fill="url(#glass-side)"/>
+            <polygon points="300,78 176,322 424,322" fill="url(#glass-front)"/>
+
+            <path class="edge" d="M300 78 176 322 424 322Z"/>
+            <path class="edge" d="M300 78 358 52 482 296 424 322"/>
+
+          </g>
+        </g>
+      </svg>
+    </section>
+
+    <div class="spectrum" aria-hidden="true"></div>
+
+    <section id="mods" class="mods" aria-labelledby="mods-heading">
+      <h2 id="mods-heading" class="section-label reveal">The mod collection</h2>
+      <ul class="grid">
+
+        <li class="mod reveal" style="--gem:#e4699a">
+          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · Gameplay</p>
+          <h3>Quartz <span class="badge">Beta</span></h3>
+          <p class="blurb">The all-in-one mod, and the place to start.</p>
+          <p class="links">
+            <a href="https://quartzz.xyz/">Website</a>
+            <a href="https://quartzz.xyz/docs/">Docs</a>
+            <a href="https://github.com/PrismMods/Quartz">Source</a>
+          </p>
+        </li>
+
+        <li class="mod reveal" style="--gem:#3a6ff0">
+          <p class="meta"><span class="formula">Al<sub>2</sub>O<sub>3</sub></span> · Editor</p>
+          <h3>Sapphire <span class="badge">Alpha</span></h3>
+          <p class="blurb">A suite of tools for the level editor, for charters and VFXers.</p>
+          <p class="links">
+            <a href="https://github.com/PrismMods/Sapphire">Source</a>
+          </p>
+        </li>
+
+        <li class="mod reveal bismuth" style="--gem:#12b5a0">
+          <p class="meta"><span class="formula">Bi</span> · Gameplay, lite</p>
+          <h3>Bismuth <span class="badge">Stable</span></h3>
+          <p class="blurb">Quartz stripped down, for those who only want the overlays and basics.</p>
+          <p class="links">
+            <a href="https://github.com/PrismMods/Bismuth">Source</a>
+          </p>
+        </li>
+
+        <li class="mod reveal soon" style="--gem:#8b5cf6">
+          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · Multiplayer</p>
+          <h3>Amethyst <span class="badge">In development</span></h3>
+          <p class="blurb">Online multiplayer, currently in development.</p>
+          <p class="links"><span class="pending">No public repo yet</span></p>
+        </li>
+
+      </ul>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p><a href="https://github.com/PrismMods">github.com/PrismMods</a></p>
+    <p>Community mods. Not affiliated with 7th Beat Games.</p>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const btn = document.getElementById('theme-toggle');
+    const label = () => {
+      const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
+      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    };
+    btn.addEventListener('click', () => {
+      const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) { }
+      label();
+    });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+    label();
+
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Cards settle in as they arrive, once each.
+    const seen = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add('in');
+        seen.unobserve(entry.target);
+      }
+    }, { rootMargin: '0px 0px -12% 0px' });
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.setProperty('--i', i);
+      seen.observe(el);
+    });
+
+    // The prism is a real solid, projected every frame. A flat SVG group under
+    // rotateY only skews the drawing; projecting it means the receding face
+    // genuinely widens and narrows as the shape turns on its base.
+    (() => {
+      const glass = document.querySelector('.glass');
+      if (!glass) return;
+
+      const HX = 124, HY = 122, HZ = 78;  // half width, height, depth
+      const CX = 300, CY = 200;           // where the model origin lands on screen
+      const FOCAL = 1600;
+      const PITCH = 0.2;                  // camera sits a little above the base
+
+      // 0-2 front apex/left/right, 3-5 the same at the back
+      const V = [
+        [0, -HY, -HZ], [-HX, HY, -HZ], [HX, HY, -HZ],
+        [0, -HY, HZ], [-HX, HY, HZ], [HX, HY, HZ],
+      ];
+      const FACES = [[0, 1, 2], [3, 5, 4], [0, 3, 4, 1], [0, 2, 5, 3], [1, 4, 5, 2]];
+      const EDGES = [[0, 1], [1, 2], [2, 0], [3, 4], [4, 5], [5, 3], [0, 3], [1, 4], [2, 5]];
+      const EDGE_FACES = EDGES.map(([a, b]) =>
+        FACES.map((f, i) => i).filter((i) => FACES[i].includes(a) && FACES[i].includes(b)));
+
+      // A point at height y on one slope, from the apex down to the base corner.
+      const onSlope = (y, side) => side * HX * (y + HY) / (2 * HY);
+
+      // The beam inside the glass is a volume, not an overlay: a slab cut off by
+      // the two slope faces, projected with everything else so it turns too.
+      const ENTRY_Y = 36, EXIT_Y = 2, BEAM_HALF = 6, BEAM_DEPTH = 46;
+      const SECTION = [
+        [onSlope(ENTRY_Y - BEAM_HALF, -1), ENTRY_Y - BEAM_HALF],
+        [onSlope(ENTRY_Y + BEAM_HALF, -1), ENTRY_Y + BEAM_HALF],
+        [onSlope(EXIT_Y + BEAM_HALF, 1), EXIT_Y + BEAM_HALF],
+        [onSlope(EXIT_Y - BEAM_HALF, 1), EXIT_Y - BEAM_HALF],
+      ];
+      const SLAB = [
+        ...SECTION.map(([x, y]) => [x, y, -BEAM_DEPTH]),
+        ...SECTION.map(([x, y]) => [x, y, BEAM_DEPTH]),
+      ];
+      // Every face of the slab, drawn additively — where the volume is thicker
+      // the passes stack up, which is how a lit volume behaves.
+      const SLAB_FACES = [
+        [0, 1, 2, 3], [4, 5, 6, 7],   // near and far
+        [0, 3, 7, 4], [1, 5, 6, 2],   // top and bottom
+        [0, 4, 5, 1], [3, 2, 6, 7],   // the two ends, against the slope faces
+      ];
+      // A thin bright thread down the middle of the volume. The slab alone tops
+      // out well below the exterior beams, so it needs a core to match them.
+      const CORE_HALF = 2;
+      const CORE = [
+        [onSlope(ENTRY_Y - CORE_HALF, -1), ENTRY_Y - CORE_HALF, 0],
+        [onSlope(ENTRY_Y + CORE_HALF, -1), ENTRY_Y + CORE_HALF, 0],
+        [onSlope(EXIT_Y + CORE_HALF, 1), EXIT_Y + CORE_HALF, 0],
+        [onSlope(EXIT_Y - CORE_HALF, 1), EXIT_Y - CORE_HALF, 0],
+      ];
+
+      // Where the beam meets each slope, at mid-depth. The external light path is
+      // pinned to these, so it travels with the glass instead of hanging in space.
+      const IN_FACE = [onSlope(ENTRY_Y, -1), ENTRY_Y, 0];
+      const OUT_FACE = [onSlope(EXIT_Y, 1), EXIT_Y, 0];
+
+      const NS = 'http://www.w3.org/2000/svg';
+      const el = (tag) => document.createElementNS(NS, tag);
+
+      const panes = FACES.map((_, i) => {
+        const p = el('polygon');
+        p.setAttribute('fill', i === 0 ? 'url(#glass-front)' : 'url(#glass-side)');
+        return p;
+      });
+      const bars = EDGES.map(() => el('line'));
+      const slabs = SLAB_FACES.map(() => {
+        const p = el('polygon');
+        p.setAttribute('class', 'slab');
+        p.setAttribute('fill', 'url(#interior)');
+        p.setAttribute('filter', 'url(#soft)');
+        return p;
+      });
+      const thread = el('polygon');
+      thread.setAttribute('class', 'slab-core');
+      thread.setAttribute('fill', 'url(#interior)');
+      thread.setAttribute('filter', 'url(#soft)');
+      glass.replaceChildren(...panes, ...slabs, thread, ...bars);
+
+      const cam = [];
+
+      const xform = ([vx, vy, vz], yaw, lift) => {
+        const cy = Math.cos(yaw), sy = Math.sin(yaw);
+        const cp = Math.cos(PITCH), sp = Math.sin(PITCH);
+        const x = vx * cy + vz * sy;
+        let z = vz * cy - vx * sy;
+        const y = vy * cp - z * sp;
+        z = vy * sp + z * cp;
+        const s = FOCAL / (FOCAL + z);
+        return { x: CX + x * s, y: CY + lift + y * s, z };
+      };
+
+      const project = (yaw, lift) => {
+        for (let i = 0; i < V.length; i++) cam[i] = xform(V[i], yaw, lift);
+      };
+
+      const trackIn = document.querySelector('.track-in');
+      const trackOut = document.querySelector('.track-out');
+      const IN_REST = xform(IN_FACE, 0, 0);
+      const OUT_REST = xform(OUT_FACE, 0, 0);
+
+      const trackLight = (yaw, lift) => {
+        const a = xform(IN_FACE, yaw, lift);
+        const b = xform(OUT_FACE, yaw, lift);
+        trackIn.setAttribute('transform',
+          `translate(${(a.x - IN_REST.x).toFixed(2)} ${(a.y - IN_REST.y).toFixed(2)})`);
+        trackOut.setAttribute('transform',
+          `translate(${(b.x - OUT_REST.x).toFixed(2)} ${(b.y - OUT_REST.y).toFixed(2)}) `
+          + `rotate(${(yaw * 14).toFixed(2)} ${OUT_REST.x.toFixed(2)} ${OUT_REST.y.toFixed(2)})`);
+      };
+
+      // Signed screen area tells us which way a face points. Its sign depends on
+      // winding conventions, so calibrate against the front face head-on.
+      const area = (f) => {
+        let a = 0;
+        for (let i = 0; i < f.length; i++) {
+          const p = cam[f[i]], q = cam[f[(i + 1) % f.length]];
+          a += p.x * q.y - q.x * p.y;
+        }
+        return a;
+      };
+
+      project(0, 0);
+      const FRONT_SIGN = Math.sign(area(FACES[0]));
+
+      const draw = (yaw, lift) => {
+        project(yaw, lift);
+        trackLight(yaw, lift);
+
+        const facing = FACES.map((f) => Math.sign(area(f)) === FRONT_SIGN);
+        const order = FACES.map((f, i) => i)
+          .sort((a, b) => depth(FACES[b]) - depth(FACES[a]));
+
+        const lit = SLAB.map((v) => xform(v, yaw, lift));
+        const litDepth = lit.reduce((sum, p) => sum + p.z, 0) / lit.length;
+        const paintSlab = () => {
+          SLAB_FACES.forEach((f, i) => {
+            slabs[i].setAttribute('points', f.map((v) => lit[v].x + ',' + lit[v].y).join(' '));
+            glass.appendChild(slabs[i]);
+          });
+          thread.setAttribute('points', CORE
+            .map((v) => xform(v, yaw, lift))
+            .map((p) => p.x + ',' + p.y).join(' '));
+          glass.appendChild(thread);
+        };
+
+        let slabPainted = false;
+        for (const i of order) {
+          // The beam sits inside, so near faces of the glass paint over it.
+          if (!slabPainted && depth(FACES[i]) < litDepth) { paintSlab(); slabPainted = true; }
+          const p = panes[i];
+          p.setAttribute('points', FACES[i].map((v) => cam[v].x + ',' + cam[v].y).join(' '));
+          p.setAttribute('class', facing[i] ? 'pane' : 'pane pane-far');
+          glass.appendChild(p);
+        }
+        if (!slabPainted) paintSlab();
+
+        EDGES.forEach(([a, b], i) => {
+          const l = bars[i];
+          l.setAttribute('x1', cam[a].x); l.setAttribute('y1', cam[a].y);
+          l.setAttribute('x2', cam[b].x); l.setAttribute('y2', cam[b].y);
+          l.setAttribute('class', EDGE_FACES[i].some((f) => facing[f]) ? 'edge' : 'edge far-edge');
+          glass.appendChild(l);
+        });
+      };
+
+      const depth = (f) => f.reduce((sum, v) => sum + cam[v].z, 0) / f.length;
+
+      const YAW = 0.16;      // ±9°
+      const TURN = 15000;    // ms per sweep
+      const BOB = 4;
+      const RISE = 9000;
+
+      if (still) {
+        draw(-0.18, 0);
+        return;
+      }
+
+      let raf = 0;
+      const tick = (t) => {
+        draw(Math.sin((t / TURN) * 2 * Math.PI) * YAW,
+             Math.sin((t / RISE) * 2 * Math.PI) * BOB);
+        raf = requestAnimationFrame(tick);
+      };
+
+      // Only run while the hero is actually on screen.
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting && !raf) raf = requestAnimationFrame(tick);
+        else if (!e.isIntersecting && raf) { cancelAnimationFrame(raf); raf = 0; }
+      }).observe(document.querySelector('.stage'));
+    })();
+
+    // Turning a prism changes how far it spreads the light. Cursor position
+    // across the hero drives the headline's fringe the same way.
+    if (!still) {
+      const hero = document.querySelector('.hero');
+      hero.addEventListener('pointermove', (e) => {
+        const box = hero.getBoundingClientRect();
+        const x = (e.clientX - box.left) / box.width - 0.5;
+        const y = (e.clientY - box.top) / box.height - 0.5;
+        hero.style.setProperty('--tilt', (x * 2).toFixed(3));
+        hero.style.setProperty('--tilt-y', (y * 2).toFixed(3));
+      });
+      hero.addEventListener('pointerleave', () => {
+        hero.style.setProperty('--tilt', '0');
+        hero.style.setProperty('--tilt-y', '0');
+      });
+    }
+  </script>
+</body>
+
+</html>
