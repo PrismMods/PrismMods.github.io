@@ -28,7 +28,7 @@
   --pad: clamp(1.25rem, 5vw, 3.5rem);
   --bar-h: 4.85rem;           /* 1.35rem padding each side + the 34px toggle */
 
-  --sans: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --sans: "Geist", "Pretendard Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --mono: "Geist Mono", ui-monospace, "SF Mono", "Cascadia Mono", monospace;
 
   --out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -208,6 +208,39 @@ a {
 
 .bar-nav a:hover {
   color: var(--ink);
+}
+
+#lang-toggle {
+  padding: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.9rem;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+#lang-toggle:hover {
+  color: var(--ink);
+}
+
+/* Korean set at Latin tracking reads loose, and Hangul must break on word
+   boundaries rather than mid-word the way CJK normally does. */
+:root[lang="ko-KR"] .eyebrow,
+:root[lang="ko-KR"] .section-label,
+:root[lang="ko-KR"] .meta {
+  letter-spacing: 0.06em;
+}
+
+:root[lang="ko-KR"] .badge {
+  letter-spacing: 0.04em;
+}
+
+:root[lang="ko-KR"] .lede,
+:root[lang="ko-KR"] .blurb,
+:root[lang="ko-KR"] .foot {
+  word-break: keep-all;
 }
 
 #theme-toggle {

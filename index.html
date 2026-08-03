@@ -29,12 +29,15 @@
     try {
       var t = localStorage.getItem('theme');
       if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem('lang');
+      document.documentElement.lang =
+        l || ((navigator.language || '').toLowerCase().startsWith('ko') ? 'ko-KR' : 'en-US');
     } catch (e) { }
   </script>
 </head>
 
 <body>
-  <a class="skip" href="#mods">Skip to the mods</a>
+  <a class="skip" href="#mods" data-i18n="SKIP_TO_MODS">Skip to the mods</a>
 
   <header class="bar">
     <a class="mark" href="./">
@@ -45,6 +48,7 @@
     </a>
     <nav class="bar-nav">
       <a href="https://github.com/PrismMods">GitHub</a>
+      <button id="lang-toggle" type="button" lang="ko">한국어</button>
       <button id="theme-toggle" type="button" aria-label="Switch to dark theme">
         <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="4.2" />
@@ -61,9 +65,9 @@
   <main>
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">A Dance of Fire and Ice</p>
+        <p class="eyebrow" data-i18n="GAME_TITLE">A Dance of Fire and Ice</p>
         <h1 class="split">Prism&nbsp;Mods</h1>
-        <p class="lede">
+        <p class="lede" data-i18n="LEDE">
           Gameplay, level editing, and online play — one mod each, all free and
           open source.
         </p>
@@ -73,67 +77,64 @@
         <defs>
           <!-- Bands run perpendicular to the beam, in user space so the wide,
                short bounding box cannot skew the angle. -->
-          <linearGradient id="dispersed" gradientUnits="userSpaceOnUse"
-                          x1="500" y1="108" x2="526" y2="176">
-            <stop offset="2%" stop-color="#ff8fb8"/>
-            <stop offset="26%" stop-color="#ffd166"/>
-            <stop offset="50%" stop-color="#4fe3cd"/>
-            <stop offset="74%" stop-color="#6d9bff"/>
-            <stop offset="98%" stop-color="#b48bff"/>
+          <linearGradient id="dispersed" gradientUnits="userSpaceOnUse" x1="500" y1="108" x2="526" y2="176">
+            <stop offset="2%" stop-color="#ff8fb8" />
+            <stop offset="26%" stop-color="#ffd166" />
+            <stop offset="50%" stop-color="#4fe3cd" />
+            <stop offset="74%" stop-color="#6d9bff" />
+            <stop offset="98%" stop-color="#b48bff" />
           </linearGradient>
 
           <!-- Colours only separate with distance. At the exit face the beam is
                still white, which is what makes it read as light. -->
-          <linearGradient id="hotspot" gradientUnits="userSpaceOnUse"
-                          x1="356" y1="202" x2="560" y2="123">
-            <stop class="s-beam" offset="0%" stop-opacity="1"/>
-            <stop class="s-beam" offset="30%" stop-opacity="0.28"/>
-            <stop class="s-beam" offset="100%" stop-opacity="0"/>
+          <linearGradient id="hotspot" gradientUnits="userSpaceOnUse" x1="356" y1="202" x2="560" y2="123">
+            <stop class="s-beam" offset="0%" stop-opacity="1" />
+            <stop class="s-beam" offset="30%" stop-opacity="0.28" />
+            <stop class="s-beam" offset="100%" stop-opacity="0" />
           </linearGradient>
 
-          <linearGradient id="interior" gradientUnits="userSpaceOnUse"
-                          x1="220" y1="235" x2="363" y2="202">
-            <stop class="s-beam" offset="0%" stop-opacity="0.5"/>
-            <stop class="s-beam" offset="65%" stop-opacity="0.85"/>
-            <stop class="s-beam" offset="100%" stop-opacity="1"/>
+          <linearGradient id="interior" gradientUnits="userSpaceOnUse" x1="220" y1="235" x2="363" y2="202">
+            <stop class="s-beam" offset="0%" stop-opacity="0.5" />
+            <stop class="s-beam" offset="65%" stop-opacity="0.85" />
+            <stop class="s-beam" offset="100%" stop-opacity="1" />
           </linearGradient>
 
           <!-- Full brightness at the entry face (88% along), then tapering over
                the last stretch so the rect dissolves into the interior slab
                instead of ending on a visible edge. -->
           <linearGradient id="incoming" x1="0" y1="0" x2="1" y2="0">
-            <stop class="s-beam" offset="0%" stop-opacity="0"/>
-            <stop class="s-beam" offset="40%" stop-opacity="0.85"/>
-            <stop class="s-beam" offset="88%" stop-opacity="1"/>
-            <stop class="s-beam" offset="100%" stop-opacity="0.45"/>
+            <stop class="s-beam" offset="0%" stop-opacity="0" />
+            <stop class="s-beam" offset="40%" stop-opacity="0.85" />
+            <stop class="s-beam" offset="88%" stop-opacity="1" />
+            <stop class="s-beam" offset="100%" stop-opacity="0.45" />
           </linearGradient>
 
           <radialGradient id="spark">
-            <stop class="s-beam" offset="0%" stop-opacity="1"/>
-            <stop class="s-beam" offset="45%" stop-opacity="0.35"/>
-            <stop class="s-beam" offset="100%" stop-opacity="0"/>
+            <stop class="s-beam" offset="0%" stop-opacity="1" />
+            <stop class="s-beam" offset="45%" stop-opacity="0.35" />
+            <stop class="s-beam" offset="100%" stop-opacity="0" />
           </radialGradient>
 
           <linearGradient id="glass-front" x1="0" y1="0" x2="0.55" y2="1">
-            <stop class="s-hi" offset="0%"/>
-            <stop class="s-lo" offset="100%"/>
+            <stop class="s-hi" offset="0%" />
+            <stop class="s-lo" offset="100%" />
           </linearGradient>
 
           <!-- The receding face catches more light than the one facing us. -->
           <linearGradient id="glass-side" x1="0" y1="0" x2="0.25" y2="1">
-            <stop class="s-hi" offset="0%"/>
-            <stop class="s-hi" offset="55%" stop-opacity="0.6"/>
-            <stop class="s-lo" offset="100%"/>
+            <stop class="s-hi" offset="0%" />
+            <stop class="s-hi" offset="55%" stop-opacity="0.6" />
+            <stop class="s-lo" offset="100%" />
           </linearGradient>
 
           <filter id="bloom" x="-60%" y="-60%" width="220%" height="220%">
-            <feGaussianBlur stdDeviation="22"/>
+            <feGaussianBlur stdDeviation="22" />
           </filter>
           <filter id="haze" x="-40%" y="-40%" width="180%" height="180%">
-            <feGaussianBlur stdDeviation="7"/>
+            <feGaussianBlur stdDeviation="7" />
           </filter>
           <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2"/>
+            <feGaussianBlur stdDeviation="2" />
           </filter>
         </defs>
 
@@ -142,33 +143,35 @@
                Runs past the viewBox so steering it never reveals an end. -->
           <g class="ray ray-out">
             <g class="track-out">
-              <polygon class="glow" points="352,184 352,220 700,140 700,10" fill="url(#dispersed)" filter="url(#bloom)"/>
-              <polygon points="354,190 354,214 700,134 700,32" fill="url(#dispersed)" filter="url(#haze)" opacity="0.95"/>
-              <polygon points="356,193 356,211 700,128 700,50" fill="url(#hotspot)" filter="url(#soft)"/>
-              <circle class="spark" cx="360" cy="203" r="25" fill="url(#spark)"/>
+              <polygon class="glow" points="352,184 352,220 700,140 700,10" fill="url(#dispersed)"
+                filter="url(#bloom)" />
+              <polygon points="354,190 354,214 700,134 700,32" fill="url(#dispersed)" filter="url(#haze)"
+                opacity="0.95" />
+              <polygon points="356,193 356,211 700,128 700,50" fill="url(#hotspot)" filter="url(#soft)" />
+              <circle class="spark" cx="360" cy="203" r="25" fill="url(#spark)" />
             </g>
           </g>
 
           <!-- Incoming beam: bloom, body, hot core -->
           <g class="ray">
             <g class="track-in">
-              <rect class="glow" x="0" y="220" width="250" height="32" fill="url(#incoming)" filter="url(#bloom)"/>
-              <rect x="0" y="230" width="250" height="12" fill="url(#incoming)" filter="url(#haze)" opacity="0.85"/>
-              <rect x="0" y="234" width="250" height="4" fill="url(#incoming)" filter="url(#soft)"/>
-              <circle class="spark" cx="222" cy="236" r="19" fill="url(#spark)"/>
+              <rect class="glow" x="0" y="220" width="250" height="32" fill="url(#incoming)" filter="url(#bloom)" />
+              <rect x="0" y="230" width="250" height="12" fill="url(#incoming)" filter="url(#haze)" opacity="0.85" />
+              <rect x="0" y="234" width="250" height="4" fill="url(#incoming)" filter="url(#soft)" />
+              <circle class="spark" cx="222" cy="236" r="19" fill="url(#spark)" />
             </g>
           </g>
 
           <!-- Static fallback. With script, this is replaced by the same solid
                projected each frame, so turning it actually changes the shape. -->
           <g class="glass">
-            <path class="far-edge" d="M358 52 234 296 482 296Z M176 322 234 296"/>
+            <path class="far-edge" d="M358 52 234 296 482 296Z M176 322 234 296" />
 
-            <polygon points="300,78 424,322 482,296 358,52" fill="url(#glass-side)"/>
-            <polygon points="300,78 176,322 424,322" fill="url(#glass-front)"/>
+            <polygon points="300,78 424,322 482,296 358,52" fill="url(#glass-side)" />
+            <polygon points="300,78 176,322 424,322" fill="url(#glass-front)" />
 
-            <path class="edge" d="M300 78 176 322 424 322Z"/>
-            <path class="edge" d="M300 78 358 52 482 296 424 322"/>
+            <path class="edge" d="M300 78 176 322 424 322Z" />
+            <path class="edge" d="M300 78 358 52 482 296 424 322" />
 
           </g>
         </g>
@@ -178,43 +181,49 @@
     <div class="spectrum" aria-hidden="true"></div>
 
     <section id="mods" class="mods" aria-labelledby="mods-heading">
-      <h2 id="mods-heading" class="section-label reveal">The mod collection</h2>
+      <h2 id="mods-heading" class="section-label reveal" data-i18n="MODS_HEADING">The mod collection</h2>
       <ul class="grid">
 
         <li class="mod reveal" style="--gem:#e4699a">
-          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · Gameplay</p>
-          <h3>Quartz <span class="badge">Beta</span></h3>
-          <p class="blurb">The all-in-one mod, and the place to start.</p>
+          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · <span data-i18n="CAT_GAMEPLAY">Gameplay</span>
+          </p>
+          <h3>Quartz <span class="badge" data-i18n="STAGE_BETA">Beta</span></h3>
+          <p class="blurb" data-i18n="QUARTZ_BLURB">The all-in-one mod, and the place to start.</p>
           <p class="links">
-            <a href="https://quartzz.xyz/">Website</a>
-            <a href="https://quartzz.xyz/docs/">Docs</a>
-            <a href="https://github.com/PrismMods/Quartz">Source</a>
+            <a href="https://quartzz.xyz/" data-i18n="LINK_SITE">Website</a>
+            <a href="https://quartzz.xyz/docs/" data-i18n="LINK_DOCS">Docs</a>
+            <a href="https://github.com/PrismMods/Quartz" data-i18n="LINK_SOURCE">Source</a>
           </p>
         </li>
 
         <li class="mod reveal" style="--gem:#3a6ff0">
-          <p class="meta"><span class="formula">Al<sub>2</sub>O<sub>3</sub></span> · Editor</p>
-          <h3>Sapphire <span class="badge">Alpha</span></h3>
-          <p class="blurb">A suite of tools for the level editor, for charters and VFXers.</p>
+          <p class="meta"><span class="formula">Al<sub>2</sub>O<sub>3</sub></span> · <span
+              data-i18n="CAT_EDITOR">Editor</span></p>
+          <h3>Sapphire <span class="badge" data-i18n="STAGE_ALPHA">Alpha</span></h3>
+          <p class="blurb" data-i18n="SAPPHIRE_BLURB">A suite of tools for the level editor, for charters and VFXers.
+          </p>
           <p class="links">
-            <a href="https://github.com/PrismMods/Sapphire">Source</a>
+            <a href="https://github.com/PrismMods/Sapphire" data-i18n="LINK_SOURCE">Source</a>
           </p>
         </li>
 
         <li class="mod reveal bismuth" style="--gem:#12b5a0">
-          <p class="meta"><span class="formula">Bi</span> · Gameplay, lite</p>
-          <h3>Bismuth <span class="badge">Stable</span></h3>
-          <p class="blurb">Quartz stripped down, for those who only want the overlays and basics.</p>
+          <p class="meta"><span class="formula">Bi</span> · <span data-i18n="CAT_GAMEPLAY_LITE">Gameplay, lite</span>
+          </p>
+          <h3>Bismuth <span class="badge" data-i18n="STAGE_STABLE">Stable</span></h3>
+          <p class="blurb" data-i18n="BISMUTH_BLURB">Quartz stripped down, for those who only want the overlays and
+            basics.</p>
           <p class="links">
-            <a href="https://github.com/PrismMods/Bismuth">Source</a>
+            <a href="https://github.com/PrismMods/Bismuth" data-i18n="LINK_SOURCE">Source</a>
           </p>
         </li>
 
         <li class="mod reveal soon" style="--gem:#8b5cf6">
-          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · Multiplayer</p>
-          <h3>Amethyst <span class="badge">In development</span></h3>
-          <p class="blurb">Online multiplayer, currently in development.</p>
-          <p class="links"><span class="pending">No public repo yet</span></p>
+          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · <span
+              data-i18n="CAT_MULTIPLAYER">Multiplayer</span></p>
+          <h3>Amethyst <span class="badge" data-i18n="STAGE_DEV">In development</span></h3>
+          <p class="blurb" data-i18n="AMETHYST_BLURB">Online multiplayer, currently in development.</p>
+          <p class="links"><span class="pending" data-i18n="NO_REPO">No public repo yet</span></p>
         </li>
 
       </ul>
@@ -223,7 +232,7 @@
 
   <footer class="foot">
     <p><a href="https://github.com/PrismMods">github.com/PrismMods</a></p>
-    <p>Community mods. Not affiliated with 7th Beat Games.</p>
+    <p data-i18n="FOOTER_NOTE">Community mods. Not affiliated with 7th Beat Games.</p>
   </footer>
 
   <script>
@@ -231,7 +240,8 @@
     const btn = document.getElementById('theme-toggle');
     const label = () => {
       const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
-      btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+      const dict = STRINGS[lang];
+      btn.setAttribute('aria-label', dark ? dict.THEME_TO_LIGHT : dict.THEME_TO_DARK);
     };
     btn.addEventListener('click', () => {
       const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
@@ -240,7 +250,108 @@
       label();
     });
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
-    label();
+
+    // Locale codes and key style follow PrismMods/Quartz-i18n. Product names stay
+    // in Latin script there, so they stay in Latin here too.
+    const STRINGS = {
+      'en-US': {
+        LANG_NAME: '한국어',
+        LANG_SWITCH: 'Switch to Korean',
+        PAGE_TITLE: 'PrismMods — Mods for A Dance of Fire and Ice',
+        PAGE_DESC: 'Quartz, Sapphire, Bismuth and Amethyst: free, open-source mods for A Dance of Fire and Ice.',
+        SKIP_TO_MODS: 'Skip to the mods',
+        GAME_TITLE: 'A Dance of Fire and Ice',
+        LEDE: 'Gameplay, level editing, and online play — one mod each, all free and open source.',
+        MODS_HEADING: 'The mod collection',
+        CAT_GAMEPLAY: 'Gameplay',
+        CAT_GAMEPLAY_LITE: 'Gameplay, lite',
+        CAT_EDITOR: 'Editor',
+        CAT_MULTIPLAYER: 'Multiplayer',
+        STAGE_BETA: 'Beta',
+        STAGE_ALPHA: 'Alpha',
+        STAGE_STABLE: 'Stable',
+        STAGE_DEV: 'In development',
+        QUARTZ_BLURB: 'The all-in-one mod, and the place to start.',
+        SAPPHIRE_BLURB: 'A suite of tools for the level editor, for charters and VFXers.',
+        BISMUTH_BLURB: 'Quartz stripped down, for those who only want the overlays and basics.',
+        AMETHYST_BLURB: 'Online multiplayer, currently in development.',
+        LINK_SITE: 'Website',
+        LINK_DOCS: 'Docs',
+        LINK_SOURCE: 'Source',
+        NO_REPO: 'No public repo yet',
+        FOOTER_NOTE: 'Community mods. Not affiliated with 7th Beat Games.',
+        THEME_TO_DARK: 'Switch to dark theme',
+        THEME_TO_LIGHT: 'Switch to light theme',
+      },
+      'ko-KR': {
+        LANG_NAME: 'English',
+        LANG_SWITCH: '영어로 전환',
+        PAGE_TITLE: 'PrismMods — 얼음과 불의 춤 모드',
+        PAGE_DESC: 'Quartz, Sapphire, Bismuth, Amethyst — 얼음과 불의 춤을 위한 무료 오픈 소스 모드.',
+        SKIP_TO_MODS: '모드 목록으로 건너뛰기',
+        GAME_TITLE: '불과 얼음의 춤',
+        LEDE: '게임플레이, 레벨 에디터, 온라인 플레이 — 각각 하나의 모드로, 모두 무료 오픈 소스입니다.',
+        MODS_HEADING: '모드 목록',
+        CAT_GAMEPLAY: '게임플레이',
+        CAT_GAMEPLAY_LITE: '게임플레이, 라이트',
+        CAT_EDITOR: '에디터',
+        CAT_MULTIPLAYER: '멀티플레이어',
+        STAGE_BETA: '베타',
+        STAGE_ALPHA: '알파',
+        STAGE_STABLE: '정식 버전',
+        STAGE_DEV: '개발 중',
+        QUARTZ_BLURB: '올인원 (all-in-one) 모드입니다. 이곳에서 시작하세요.',
+        SAPPHIRE_BLURB: '레벨 에디터를 위한 도구 모음입니다. 채보와 VFX 제작자를 위해 만들어졌습니다.',
+        BISMUTH_BLURB: '오버레이와 기본 기능만 필요한 분들을 위한 Quartz의 경량 버전입니다.',
+        AMETHYST_BLURB: '온라인 멀티플레이어입니다. 현재 개발 중입니다.',
+        LINK_SITE: '웹사이트',
+        LINK_DOCS: '문서',
+        LINK_SOURCE: '소스',
+        NO_REPO: '아직 공개된 저장소가 없습니다',
+        FOOTER_NOTE: 'Prism Mods는 커뮤니티 프로젝트이며, 7th Beat Games에 소속 및 제휴되지 않았음을 알립니다.',
+        THEME_TO_DARK: '다크 테마로 전환',
+        THEME_TO_LIGHT: '라이트 테마로 전환',
+      },
+    };
+
+    const langBtn = document.getElementById('lang-toggle');
+    const description = document.querySelector('meta[name="description"]');
+    let lang = STRINGS[root.lang] ? root.lang : 'en-US';
+
+    // Pretendard covers Hangul; Geist stays ahead of it in the stack so Latin
+    // keeps its own face. 53KB of CSS, so it only loads once Korean is asked for.
+    let korFont = false;
+    const loadKorean = () => {
+      if (korFont) return;
+      korFont = true;
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9'
+        + '/dist/web/variable/pretendardvariable-dynamic-subset.min.css';
+      document.head.append(link);
+    };
+
+    const applyLang = (next) => {
+      lang = STRINGS[next] ? next : 'en-US';
+      const dict = STRINGS[lang];
+      root.lang = lang;
+      document.title = dict.PAGE_TITLE;
+      if (description) description.content = dict.PAGE_DESC;
+      for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = dict[el.dataset.i18n];
+      langBtn.textContent = dict.LANG_NAME;
+      langBtn.setAttribute('lang', lang === 'en-US' ? 'ko' : 'en');
+      langBtn.setAttribute('aria-label', dict.LANG_SWITCH);
+      label();
+      if (lang === 'ko-KR') loadKorean();
+    };
+
+    langBtn.addEventListener('click', () => {
+      applyLang(lang === 'ko-KR' ? 'en-US' : 'ko-KR');
+      try { localStorage.setItem('lang', lang); } catch (e) { }
+    });
+
+    applyLang(lang);
+
 
     const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -442,7 +553,7 @@
       let raf = 0;
       const tick = (t) => {
         draw(Math.sin((t / TURN) * 2 * Math.PI) * YAW,
-             Math.sin((t / RISE) * 2 * Math.PI) * BOB);
+          Math.sin((t / RISE) * 2 * Math.PI) * BOB);
         raf = requestAnimationFrame(tick);
       };
 

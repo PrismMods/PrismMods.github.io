@@ -234,14 +234,20 @@ class El {
 const nodes = new Map();
 const named = (sel) => nodes.get(sel) ?? nodes.set(sel, new El()).get(sel);
 
+// Every key the markup asks for, so the swap runs against the real key set.
+const usedKeys = [...page.matchAll(/data-i18n="([A-Z0-9_]+)"/g)].map((m) => m[1]);
+const i18nNodes = usedKeys.map((k) => Object.assign(new El(), { dataset: { i18n: k } }));
+
 let frames = 0;
 const sandbox = {
   document: {
     documentElement: new El(),
     getElementById: named,
     querySelector: named,
-    querySelectorAll: () => [],
+    querySelectorAll: (sel) => (sel === '[data-i18n]' ? i18nNodes : []),
+    createElement: () => new El(),
     createElementNS: () => new El(),
+    head: { append() {} },
   },
   getComputedStyle: () => ({ getPropertyValue: () => '' }),
   matchMedia: () => ({ matches: false, addEventListener() {} }),
@@ -282,3 +288,35 @@ for (const n of [...byClass('slab'), ...byClass('slab-core')]) {
 }
 
 console.log('page script ok');
+
+// ---------------------------------------------------------------------------
+// Localisation. A key present in the markup but missing from a dictionary is
+// silent in the browser — the element just goes blank — so check it here.
+// ---------------------------------------------------------------------------
+const dicts = sandbox.STRINGS ?? new vm.Script('STRINGS').runInContext(sandbox);
+const locales = Object.keys(dicts);
+
+assert.deepEqual(locales, ['en-US', 'ko-KR'], 'expected the two Quartz-i18n locale codes');
+
+const base = Object.keys(dicts['en-US']).sort();
+for (const loc of locales) {
+  assert.deepEqual(Object.keys(dicts[loc]).sort(), base, `${loc} key set differs from en-US`);
+  for (const [k, v] of Object.entries(dicts[loc])) {
+    assert.ok(typeof v === 'string' && v.trim(), `${loc}.${k} is empty`);
+  }
+}
+
+for (const key of new Set(usedKeys)) {
+  assert.ok(base.includes(key), `markup uses data-i18n="${key}" with no entry in the dictionaries`);
+}
+
+// Korean must actually differ, or a key was copied across untranslated.
+const shared = base.filter((k) => dicts['en-US'][k] === dicts['ko-KR'][k]);
+assert.deepEqual(shared, [], `untranslated in ko-KR: ${shared.join(', ')}`);
+
+// The swap ran over the real markup keys and left no element blank.
+for (const node of i18nNodes) {
+  assert.ok(node.textContent, `applyLang left ${node.dataset.i18n} empty`);
+}
+
+console.log(`i18n ok (${locales.join(', ')}, ${base.length} keys)`);
