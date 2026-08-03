@@ -225,10 +225,37 @@ a {
   color: var(--ink);
 }
 
+/* The mono stack carries no Hangul, so Korean labels were dropping to a generic
+   system monospace that sets small and thin. Give them the sans face instead —
+   uppercase does nothing to Hangul anyway, so the label reads from tracking,
+   size and colour, all of which survive the switch. */
+:root[lang="ko-KR"] .eyebrow,
+:root[lang="ko-KR"] .section-label,
+:root[lang="ko-KR"] .credit-label,
+:root[lang="ko-KR"] .meta,
+:root[lang="ko-KR"] .badge {
+  font-family: var(--sans);
+}
+
+:root[lang="ko-KR"] .eyebrow,
+:root[lang="ko-KR"] .credit-label,
+:root[lang="ko-KR"] .meta {
+  font-size: 0.78rem;
+}
+
+:root[lang="ko-KR"] .section-label {
+  font-size: 0.88rem;
+}
+
+:root[lang="ko-KR"] .badge {
+  font-size: 0.66rem;
+}
+
 /* Korean set at Latin tracking reads loose, and Hangul must break on word
    boundaries rather than mid-word the way CJK normally does. */
 :root[lang="ko-KR"] .eyebrow,
 :root[lang="ko-KR"] .section-label,
+:root[lang="ko-KR"] .credit-label,
 :root[lang="ko-KR"] .meta {
   letter-spacing: 0.06em;
 }
@@ -524,7 +551,7 @@ h1 {
 .section-label {
   margin: 0 0 2rem;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -615,6 +642,7 @@ h1 {
 
 /* Chemical formulae are case-sensitive: Bi is bismuth, BI is boron iodide. */
 .formula {
+  font-family: var(--mono);
   text-transform: none;
   letter-spacing: 0.02em;
 }
@@ -681,6 +709,69 @@ h1 {
 .soon h3,
 .soon .blurb {
   opacity: 0.85;
+}
+
+/* ---------- credits ---------- */
+
+.credits {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 0 var(--pad) clamp(3rem, 9vh, 5.5rem);
+}
+
+.credit-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 46rem) {
+  .credit-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+.credit-group {
+  transition: opacity 520ms var(--out) calc(var(--i, 0) * 60ms),
+    transform 520ms var(--out) calc(var(--i, 0) * 60ms);
+}
+
+.credit-label {
+  margin: 0 0 0.9rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.95rem;
+}
+
+.names a {
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 1px;
+  transition: border-color 0.15s;
+}
+
+.names a:hover {
+  border-bottom-color: var(--ink);
+}
+
+/* The catch-all thanks is a sentence, not a name — let it hold its own line. */
+.names-rest {
+  flex-basis: 100%;
+  color: var(--muted);
 }
 
 /* ---------- footer ---------- */
