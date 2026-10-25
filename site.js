@@ -380,7 +380,6 @@ const unit = (a) => { const l = Math.hypot(...a) || 1; return [a[0] / l, a[1] / 
 const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 const mean = (ps) => ps.reduce((m, p) => [m[0] + p[0] / ps.length, m[1] + p[1] / ps.length, m[2] + p[2] / ps.length], [0, 0, 0]);
 const lerp = (a, b, t) => a + (b - a) * t;
-const mix = (a, b, t) => [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)];
 const scale = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
 
 // The same numbers on every visit, so a generated crystal keeps its shape.
@@ -437,9 +436,8 @@ const bouquet = (part, toward, out, lean) => {
 // Quartz's habit: a six-sided prism under a point whose faces alternate large
 // and small (the r and z rhombohedra), which is the top ring stepping up and
 // down. `foot` points the bottom the same way, out of step; with none the base
-// is flat. The prism faces carry fine horizontal striations, as real quartz
-// does. Tint runs from 0 at the foot to 1 at the tip.
-const quartzPoint = (rnd, { r, length, tip, foot = 0, step = 0.2, lines = 6 }, alpha = 1) => {
+// is flat. Tint runs from 0 at the foot to 1 at the tip.
+const quartzPoint = ({ r, length, tip, foot = 0, step = 0.2 }, alpha = 1) => {
   const lift = (i) => (i % 2 ? step * r : 0);
   const lo = ring(6, r, 0).map(([x, , z], i) => [x, foot ? -lift(i + 1) : 0, z]);
   const hi = ring(6, r, length).map(([x, , z], i) => [x, length + lift(i), z]);
@@ -456,17 +454,7 @@ const quartzPoint = (rnd, { r, length, tip, foot = 0, step = 0.2, lines = 6 }, a
     f.push([0, 1, 2, 3, 4, 5]);
   }
   const top = v[12][1], bottom = foot ? v[13][1] : 0;
-  const part = solid({ v, f, tint: v.map(([, y]) => (y - bottom) / (top - bottom)) }, alpha);
-  for (let i = 0; i < 6; i++) {
-    const j = (i + 1) % 6, n = unit([lo[i][0] + lo[j][0], 0, lo[i][2] + lo[j][2]]);
-    const y0 = step * r * 1.2, y1 = length - step * r * 0.2;
-    for (let k = 0; k < lines; k++) {
-      const y = lerp(y0, y1, (k + rnd()) / lines), inset = 0.08 + rnd() * 0.2;
-      const a = mix(lo[i], lo[j], inset), b = mix(lo[i], lo[j], 1 - inset * rnd());
-      part.lines.push({ a: [a[0], y, a[2]], b: [b[0], y, b[2]], n, w: 0.28 });
-    }
-  }
-  return part;
+  return solid({ v, f, tint: v.map(([, y]) => (y - bottom) / (top - bottom)) }, alpha);
 };
 
 // Bismuth grows as hopper crystals: boxes whose faces sink in rectangular
@@ -562,25 +550,24 @@ const bismuthCluster = () => {
 // `glow` makes it a deep saturated colour with light edges on a dark page.
 // `fade` dissolves a crystal's foot into the page over that height, measured
 // up from its lowest point.
-const quartzRnd = jitter(3), sapphireRnd = jitter(4), amethystRnd = jitter(9);
 const CRYSTALS = {
   // Rose quartz: a doubly terminated point, pale and milky.
   quartz: {
     pitch: 0.28, pale: 0.5, milk: 1, parts: [
-      place(quartzPoint(quartzRnd, { r: 0.95, length: 2.1, tip: 1, foot: 1, lines: 9 }), 0, 0, [0, -1.05, 0]),
+      place(quartzPoint({ r: 0.95, length: 2.1, tip: 1, foot: 1 }), 0, 0, [0, -1.05, 0]),
     ],
   },
   // Sapphire crystals are steep six-sided bipyramids; here a cluster of them,
   // fading out below.
   sapphire: {
     pitch: 0.22, glow: 1, fade: 0.55, parts: [
-      bouquet(quartzPoint(sapphireRnd, { r: 0.5, length: 0.5, tip: 1.25, step: 0, lines: 0 }), 0, 0, 0.05),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.38, length: 0.45, tip: 0.8, step: 0, lines: 0 }), 20, 0.45, 0.38),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.32, length: 0.3, tip: 0.65, step: 0, lines: 0 }), 85, 0.4, 0.32),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.36, length: 0.4, tip: 0.7, step: 0, lines: 0 }), 150, 0.45, 0.4),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.3, length: 0.3, tip: 0.6, step: 0, lines: 0 }), 210, 0.42, 0.35),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.26, length: 0.25, tip: 0.5, step: 0, lines: 0 }), 270, 0.4, 0.42),
-      bouquet(quartzPoint(sapphireRnd, { r: 0.3, length: 0.35, tip: 0.6, step: 0, lines: 0 }), 330, 0.45, 0.3),
+      bouquet(quartzPoint({ r: 0.5, length: 0.5, tip: 1.25, step: 0 }), 0, 0, 0.05),
+      bouquet(quartzPoint({ r: 0.38, length: 0.45, tip: 0.8, step: 0 }), 20, 0.45, 0.38),
+      bouquet(quartzPoint({ r: 0.32, length: 0.3, tip: 0.65, step: 0 }), 85, 0.4, 0.32),
+      bouquet(quartzPoint({ r: 0.36, length: 0.4, tip: 0.7, step: 0 }), 150, 0.45, 0.4),
+      bouquet(quartzPoint({ r: 0.3, length: 0.3, tip: 0.6, step: 0 }), 210, 0.42, 0.35),
+      bouquet(quartzPoint({ r: 0.26, length: 0.25, tip: 0.5, step: 0 }), 270, 0.4, 0.42),
+      bouquet(quartzPoint({ r: 0.3, length: 0.35, tip: 0.6, step: 0 }), 330, 0.45, 0.3),
     ],
   },
   // Long and thin, so it sways rather than spins: turned end-on, the chain
@@ -590,12 +577,12 @@ const CRYSTALS = {
   // purple at the tips.
   amethyst: {
     pitch: 0.18, pale: 0.35, fade: 0.5, parts: [
-      bouquet(quartzPoint(amethystRnd, { r: 0.3, length: 1.8, tip: 0.55, step: 0.3, lines: 8 }), 200, 0.05, 0.1),
-      bouquet(quartzPoint(amethystRnd, { r: 0.22, length: 1.4, tip: 0.42, step: 0.3, lines: 6 }), 40, 0.32, 0.22),
-      bouquet(quartzPoint(amethystRnd, { r: 0.18, length: 1, tip: 0.34, step: 0.3, lines: 5 }), 140, 0.3, 0.3),
-      bouquet(quartzPoint(amethystRnd, { r: 0.15, length: 0.7, tip: 0.28, step: 0.3, lines: 4 }), 290, 0.32, 0.34),
-      bouquet(quartzPoint(amethystRnd, { r: 0.13, length: 0.5, tip: 0.22, step: 0.3, lines: 3 }), 230, 0.38, 0.4),
-      bouquet(quartzPoint(amethystRnd, { r: 0.12, length: 0.45, tip: 0.2, step: 0.3, lines: 0 }), 340, 0.36, 0.38),
+      bouquet(quartzPoint({ r: 0.3, length: 1.8, tip: 0.55, step: 0.3 }), 200, 0.05, 0.1),
+      bouquet(quartzPoint({ r: 0.22, length: 1.4, tip: 0.42, step: 0.3 }), 40, 0.32, 0.22),
+      bouquet(quartzPoint({ r: 0.18, length: 1, tip: 0.34, step: 0.3 }), 140, 0.3, 0.3),
+      bouquet(quartzPoint({ r: 0.15, length: 0.7, tip: 0.28, step: 0.3 }), 290, 0.32, 0.34),
+      bouquet(quartzPoint({ r: 0.13, length: 0.5, tip: 0.22, step: 0.3 }), 230, 0.38, 0.4),
+      bouquet(quartzPoint({ r: 0.12, length: 0.45, tip: 0.2, step: 0.3 }), 340, 0.36, 0.38),
     ],
   },
 };

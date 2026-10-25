@@ -1188,24 +1188,29 @@ h1 {
 
 .side {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: calc(10 * var(--u));
-  padding: calc(8 * var(--u));
+  padding: calc(7 * var(--u));
   background: var(--scr-2);
   border-right: 1px solid var(--scr-line);
 }
 
+/* Sized so all three tabs fit once Shapes docks; the column can't grow to
+   make room, so nothing spills past the sidebar. */
 .side-tabs {
   display: flex;
   gap: calc(3 * var(--u));
   margin: 0;
   padding: calc(2 * var(--u));
-  font-size: calc(8.5 * var(--u));
+  overflow: hidden;
+  font-size: calc(8 * var(--u));
+  white-space: nowrap;
   border-radius: calc(4 * var(--u));
 }
 
 .side-tabs span {
-  padding: calc(2 * var(--u)) calc(5 * var(--u));
+  padding: calc(2 * var(--u)) calc(4 * var(--u));
   color: var(--scr-dim);
   border-radius: calc(3 * var(--u));
 }
@@ -2263,13 +2268,13 @@ h1 {
   }
 
   70% {
-    transform: translate(calc(-178 * var(--u)), calc(-56 * var(--u))) scale(0.45);
+    transform: translate(calc(-190 * var(--u)), calc(-22 * var(--u))) scale(0.4);
     opacity: 1;
   }
 
   80%,
   to {
-    transform: translate(calc(-178 * var(--u)), calc(-56 * var(--u))) scale(0.45);
+    transform: translate(calc(-190 * var(--u)), calc(-22 * var(--u))) scale(0.4);
     opacity: 0;
   }
 }
