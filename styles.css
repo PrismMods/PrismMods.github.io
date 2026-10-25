@@ -915,13 +915,23 @@ h1 {
   background: var(--paper);
 }
 
+/* Each step is taller than the screen and its text sticks partway down, so
+   the text holds still while its scene plays, then moves on. On phones it
+   holds in the space below the pinned stage. The sticky box itself has no
+   height and the text is centred on it, overflowing evenly, so the text
+   pins and lets go on the same line whatever its length. */
 .step {
+  min-height: 130svh;
+  transition: opacity 400ms var(--out);
+}
+
+.step-copy {
+  position: sticky;
+  top: 66%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 72svh;
-  padding-block: 2rem;
-  transition: opacity 400ms var(--out);
+  height: 0;
 }
 
 /* Gated on .js like the reveal: without script nothing marks a step active,
@@ -967,13 +977,21 @@ h1 {
     background: none;
   }
 
+  /* The stage centres its picture in a screen-tall box, so the steps start
+     half a screen down and end half a screen early: the first rises level
+     with the picture and pins with it, and the last lets go with it. */
   .steps {
     grid-row: 1;
     grid-column: 1;
+    padding-block: 50svh;
   }
 
   .step {
-    min-height: 100svh;
+    min-height: 150svh;
+  }
+
+  .step-copy {
+    top: 50%;
   }
 }
 
