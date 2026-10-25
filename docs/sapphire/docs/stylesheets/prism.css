@@ -1,0 +1,60 @@
+/* PrismMods docs theme. Graphite on paper like prismmods.github.io, with the
+   mod's own colour as the only accent. Bismuth's copy differs in --gem only. */
+
+:root {
+  --gem: #3a6ff0;
+  --md-primary-fg-color: var(--gem);
+  --md-primary-fg-color--light: color-mix(in oklab, var(--gem) 70%, #fff);
+  --md-primary-fg-color--dark: color-mix(in oklab, var(--gem) 75%, #000);
+  --md-accent-fg-color: var(--gem);
+  --md-accent-fg-color--transparent: color-mix(in oklab, var(--gem) 10%, transparent);
+}
+
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #fbfbfd;
+  --md-default-fg-color: #101114;
+  --md-default-fg-color--light: #64686f;
+  --md-default-fg-color--lighter: #a3a7ae;
+  --md-default-fg-color--lightest: #e3e5ea;
+  --md-typeset-a-color: color-mix(in oklab, var(--gem) 80%, #000);
+  --md-code-bg-color: #f1f2f5;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #0b0c0e;
+  --md-default-fg-color--lightest: #22252b;
+  --md-code-bg-color: #121317;
+  --md-typeset-a-color: color-mix(in oklab, var(--gem) 70%, #fff);
+}
+
+/* The header is paper, not a slab of accent; the accent stays for links,
+   buttons and the active nav item. */
+.md-header,
+.md-tabs {
+  color: var(--md-default-fg-color);
+  background: var(--md-default-bg-color);
+  box-shadow: 0 1px 0 var(--md-default-fg-color--lightest);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+
+.md-typeset {
+  line-height: 1.7;
+}
+
+.md-typeset .md-button--primary {
+  color: #fff;
+  background: color-mix(in oklab, var(--gem) 72%, #000);
+  border-color: color-mix(in oklab, var(--gem) 72%, #000);
+}

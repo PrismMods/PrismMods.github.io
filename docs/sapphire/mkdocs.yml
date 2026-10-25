@@ -1,0 +1,88 @@
+site_name: Sapphire Docs
+site_url: https://prismmods.github.io/sapphire/docs/
+site_description: Documentation for Sapphire, an editor suite for A Dance of Fire and Ice.
+
+repo_url: https://github.com/PrismMods/Sapphire
+repo_name: PrismMods/Sapphire
+edit_uri: https://github.com/PrismMods/PrismMods.github.io/edit/main/docs/sapphire/docs/
+
+theme:
+  name: material
+  font:
+    text: Geist
+    code: Geist Mono
+  icon:
+    logo: material/diamond-stone
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - stylesheets/prism.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+
+extra:
+  generator: false
+  homepage: https://prismmods.github.io/sapphire/
+
+nav:
+  - Overview: index.md
+  - Getting started:
+      - Install: install.md
+      - First steps: first-steps.md
+      - Keybindings: keybindings.md
+  - Charting:
+      - Toolbar: toolbar.md
+      - Quick chart and angle pad: quick-chart.md
+      - Hz tool: hz-tool.md
+      - Shape library: shape-library.md
+  - Timeline and audio:
+      - Event timeline: timeline.md
+      - Audio window: audio.md
+  - Level editing:
+      - Level settings and sidebars: level-settings.md
+      - Events: events.md
+      - Decorations: decorations.md
+      - Level variables: variables.md
+      - Script: script.md
+      - Number fields: fields.md
+  - Interface:
+      - Skin and panels: interface.md
+      - Edit and Play mode: playback.md
+  - Experimental tools: experimental.md
+  - Credits: credits.md

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="SAPPHIRE_TITLE">Sapphire — PrismMods</title>
+  <meta name="description" data-i18n="SAPPHIRE_DESC"
+    content="Sapphire is an editor suite for A Dance of Fire and Ice: a toolbar, an event timeline, keyboard charting and audio analysis on top of the level editor.">
+  <meta name="color-scheme" content="light dark">
+
+  <meta property="og:title" content="Sapphire — PrismMods">
+  <meta property="og:description" content="An editor suite for A Dance of Fire and Ice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prismmods.github.io/sapphire/">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 30 28H2Z' fill='none' stroke='%23101114' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M16 3v25' stroke='%238B5CF6' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Same pre-paint step as the home page: theme and language before first paint.
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem('lang');
+      document.documentElement.lang =
+        l || ((navigator.language || '').toLowerCase().startsWith('ko') ? 'ko-KR' : 'en-US');
+    } catch (e) { }
+  </script>
+</head>
+
+<body class="modpage" style="--gem:#3a6ff0">
+  <a class="skip" href="#main" data-i18n="SKIP_TO_CONTENT">Skip to content</a>
+
+  <header class="bar">
+    <a class="mark" href="../">
+      <svg class="mark-glyph" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3 30 28H2Z" />
+      </svg>
+      Prism<span>Mods</span>
+    </a>
+    <nav class="bar-nav">
+      <a href="https://github.com/PrismMods">GitHub</a>
+      <button id="lang-toggle" type="button" lang="ko">한국어</button>
+      <button id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" />
+          <path
+            d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.2 2.2M16.9 16.9l2.2 2.2M19.1 4.9l-2.2 2.2M7.1 16.9l-2.2 2.2" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="intro" aria-labelledby="mod-name">
+      <div class="intro-copy">
+        <p class="intro-formula formula">Al<sub>2</sub>O<sub>3</sub></p>
+        <h1 id="mod-name" class="intro-name">Sapphire</h1>
+        <p class="intro-tag" data-i18n="SAPPHIRE_TAG">An editor suite for the A Dance of Fire and Ice level editor.</p>
+        <p class="intro-meta">
+          <span class="badge" data-i18n="STAGE_ALPHA">Alpha</span>
+          <span data-i18n="CAT_EDITOR">Editor</span>
+        </p>
+      </div>
+      <canvas class="gem" data-crystal="sapphire" aria-hidden="true"></canvas>
+    </section>
+
+    <section class="statement">
+      <p><span data-i18n="SAPPHIRE_STATEMENT">Sapphire adds a toolbar, an event timeline, keyboard charting, audio analysis and other tools to the level editor. Levels made with it play in the unmodded game.</span></p>
+    </section>
+
+    <section class="scene">
+      <div class="scene-stage" aria-hidden="true">
+        <div class="screen editor">
+
+          <!-- Docking: the shape library is dragged onto the sidebar's tab rail,
+               which lights while it hovers, and becomes a tab there. -->
+          <div class="pane on" data-step="0">
+            <svg class="track" viewBox="0 0 480 300">
+              <path class="tiles" d="M160,170 L310,170 L310,110 L400,110" />
+              <path class="cuts" d="M160,170 L310,170 L310,110 L400,110" />
+            </svg>
+            <div class="toolbar" style="--x:0;--y:0;--w:480"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="side" style="--x:0;--y:22;--w:118;--h:278">
+              <p class="side-tabs scrub"><span class="on">Events</span><span>Level</span><span
+                  class="new-tab scrub">Shapes</span></p>
+              <div class="lines"><i></i><i class="short"></i><i></i><i></i><i class="short"></i><i></i><i
+                  class="short"></i><i></i></div>
+            </div>
+            <div class="strip" style="--x:118;--y:230;--w:362;--h:70"><i style="--at:6%;--len:28%"></i><i
+                style="--at:30%;--len:20%"></i><i style="--at:54%;--len:38%"></i></div>
+            <div class="ui-card float-win scrub" style="--x:262;--y:52;--w:172">
+              <p class="ui-title">Shape library</p>
+              <svg viewBox="0 0 150 56">
+                <path class="mini" d="M14,46 L14,12 L48,12 L48,46 Z" />
+                <path class="mini" d="M65,46 L85,46 L95,29 L85,12 L65,12 L55,29 Z" />
+                <path class="mini" d="M106,46 L140,46 L123,14 Z" />
+              </svg>
+              <i class="cursor"></i>
+            </div>
+          </div>
+
+          <!-- Quick chart: the angle pad types itself while its ghost run draws
+               ahead of the selected tile, then the run turns solid on Place. -->
+          <div class="pane" data-step="1">
+            <svg class="track" viewBox="0 0 480 300">
+              <path class="tiles" d="M40,250 L160,250" />
+              <path class="cuts" d="M40,250 L160,250" />
+              <path class="ghost scrub run" pathLength="1" d="M160,250 L160,220 L160,190 L190,190 L220,190 L220,160 L220,130 L250,130 L280,130 L280,100 L280,70 L310,70 L340,70" />
+              <g class="placed scrub">
+                <path class="tiles" d="M160,250 L160,220 L160,190 L190,190 L220,190 L220,160 L220,130 L250,130 L280,130 L280,100 L280,70 L310,70 L340,70" />
+                <path class="cuts" d="M160,250 L160,220 L160,190 L190,190 L220,190 L220,160 L220,130 L250,130 L280,130 L280,100 L280,70 L310,70 L340,70" />
+              </g>
+              <circle class="anchor" cx="160" cy="250" r="12" />
+            </svg>
+            <div class="ui-card hints" style="--x:14;--y:14;--w:128">
+              <p class="ui-title">Quick chart</p>
+              <p><kbd>I</kbd>Twirl</p>
+              <p><kbd>O</kbd>Set speed</p>
+              <p><kbd>[</kbd><kbd>]</kbd>Halve, double</p>
+              <p><kbd>⇧G</kbd>Angle pad</p>
+            </div>
+            <div class="ui-card pad" style="--x:300;--y:196;--w:164">
+              <p class="ui-title">Angle pad</p>
+              <p class="pad-field"><code class="typed scrub" style="--n:18">(90 180 270 180)*3</code></p>
+              <p class="pad-foot"><span class="ui-chip">× 1</span><span class="ui-btn press scrub">Place</span></p>
+            </div>
+          </div>
+
+          <!-- Cam mode: a value graph over Position, Rotation and Zoom lanes,
+               with the playhead running through the tweens. -->
+          <div class="pane" data-step="2">
+            <svg class="track" viewBox="0 0 480 300">
+              <path class="graph-grid" d="M90 44H466M90 84H466M90 124H466M90 164H466" />
+              <path class="curve scrub draw" pathLength="1"
+                d="M90,150 C140,150 150,60 200,60 C240,60 250,110 280,110 C310,110 330,100 360,100 C400,100 420,52 466,52" />
+              <path class="kf" d="M90 144l6 6-6 6-6-6zM200 54l6 6-6 6-6-6zM280 104l6 6-6 6-6-6zM360 94l6 6-6 6-6-6zM466 46l6 6-6 6-6-6z" />
+              <path class="lane" d="M90 188H466M90 218H466M90 248H466M90 278H466" />
+              <rect class="tween" x="90" y="194" width="110" height="18" rx="3" />
+              <rect class="tween" x="280" y="194" width="80" height="18" rx="3" />
+              <rect class="tween" x="200" y="224" width="80" height="18" rx="3" />
+              <rect class="tween" x="360" y="254" width="106" height="18" rx="3" />
+              <path class="kf" d="M90 197l6 6-6 6-6-6zM280 197l6 6-6 6-6-6zM200 227l6 6-6 6-6-6zM360 257l6 6-6 6-6-6z" />
+              <path class="playhead scrub" d="M90 36V284" />
+            </svg>
+            <p class="modes" style="--x:14;--y:12"><span>Normal</span><span class="on">Cam</span><span>Deco</span><span>Filter</span></p>
+            <p class="lane-labels" style="--x:14;--y:188"><span>Position</span><span>Rotation</span><span>Zoom</span></p>
+          </div>
+
+          <!-- Variables feed a formula field; the script writes itself, then
+               compiles. -->
+          <div class="pane" data-step="3">
+            <div class="ui-card" style="--x:14;--y:16;--w:182">
+              <p class="ui-title">Variables</p>
+              <p class="code"><b>bpm</b> = <em>180</em></p>
+              <p class="code"><b>beat</b> = <em>60</em>/$bpm</p>
+              <p class="code"><b>step</b> = $beat/<em>2</em></p>
+            </div>
+            <div class="ui-card" style="--x:14;--y:122;--w:182">
+              <p class="ui-title">Move Camera · Duration</p>
+              <p class="pad-field formula-field"><span>$beat*2</span><span class="peek">0.667</span></p>
+            </div>
+            <div class="ui-card" style="--x:210;--y:16;--w:256">
+              <p class="ui-title">Script</p>
+              <pre class="code code-lines scrub" style="--lines:9"><b>flag</b> lights
+<b>counter</b> hits <em>0..3</em> <b>wrap</b>
+<b>on key</b> Up <b>nohit</b>:
+    <b>toggle</b> lights
+    hits += <em>1</em>
+    <b>if</b> hits == <em>3</em>:
+        <b>run</b> flash
+<b>when</b> lights:
+    <b>run</b> grey</pre>
+              <p class="pad-foot"><span class="ui-chip appear scrub">Compiled</span><span
+                  class="ui-btn press scrub">Compile</span></p>
+            </div>
+          </div>
+
+          <!-- Shape library: previews draw in turn, one is picked, Insert.
+               Swirl markers turn blue where a tile's angle reaches 180°. -->
+          <div class="pane" data-step="4">
+            <div class="ui-card" style="--x:24;--y:16;--w:432;--h:268">
+              <p class="ui-title">Shape library</p>
+              <div class="shape-body">
+                <ul class="menu-side">
+                  <li class="on">Built-in</li>
+                  <li>My shapes</li>
+                  <li>From Angle Pad</li>
+                </ul>
+                <div class="shape-grid">
+                  <figure class="shape-card"><svg viewBox="0 0 120 70">
+                      <path class="mini scrub draw" pathLength="1" style="--r:cover 26% cover 36%"
+                        d="M40,55 L40,15 L80,15 L80,55 Z" />
+                      <circle class="fire" cx="40" cy="55" r="4" />
+                    </svg>
+                    <figcaption>90°</figcaption>
+                  </figure>
+                  <figure class="shape-card picked scrub"><svg viewBox="0 0 120 70">
+                      <path class="mini scrub draw" pathLength="1" style="--r:cover 32% cover 42%"
+                        d="M49,54 L71,54 L82,35 L71,16 L49,16 L38,35 Z" />
+                      <circle class="fire" cx="49" cy="54" r="4" />
+                    </svg>
+                    <figcaption>120°</figcaption>
+                  </figure>
+                  <figure class="shape-card"><svg viewBox="0 0 120 70">
+                      <path class="mini scrub draw" pathLength="1" style="--r:cover 38% cover 48%"
+                        d="M71,54 L49,54 L38,35 L49,16 L71,16 L82,35 Z" />
+                      <circle class="ice" cx="71" cy="54" r="4" />
+                    </svg>
+                    <figcaption>240°</figcaption>
+                  </figure>
+                  <figure class="shape-card"><svg viewBox="0 0 120 70">
+                      <path class="mini scrub draw" pathLength="1" style="--r:cover 44% cover 54%"
+                        d="M80,55 L80,15 L40,15 L40,55 Z" />
+                      <circle class="ice" cx="80" cy="55" r="4" />
+                    </svg>
+                    <figcaption>270°</figcaption>
+                  </figure>
+                </div>
+              </div>
+              <p class="pad-foot"><span class="ui-chip">2-key · n = 6</span><span class="ui-btn press scrub">Insert</span></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step on" data-step="0">
+          <h2 data-i18n="SAPPHIRE_S1_TITLE">Docking</h2>
+          <p data-i18n="SAPPHIRE_S1_BODY">Windows dock into the sidebars as tabs and can be pulled back out. The layout can be kept between sessions.</p>
+        </div>
+        <div class="step" data-step="1">
+          <h2 data-i18n="SAPPHIRE_S2_TITLE">Quick charting</h2>
+          <p data-i18n="SAPPHIRE_S2_BODY">Twirls, speed changes, pauses and holds are bound to single keys. The angle pad places runs of tiles from relative angles, with a preview.</p>
+        </div>
+        <div class="step" data-step="2">
+          <h2 data-i18n="SAPPHIRE_S3_TITLE">Event timeline</h2>
+          <p data-i18n="SAPPHIRE_S3_BODY">Events are shown on the song's time axis. Cam mode adds position, rotation and zoom lanes, eases, bezier curves and a graph editor for MoveCamera.</p>
+        </div>
+        <div class="step" data-step="3">
+          <h2 data-i18n="SAPPHIRE_S4_TITLE">Variables and Script</h2>
+          <p data-i18n="SAPPHIRE_S4_BODY">Number fields accept formulas like $beat*2 that update with the variables. Scripts compile into regular events.</p>
+        </div>
+        <div class="step" data-step="4">
+          <h2 data-i18n="SAPPHIRE_S5_TITLE">Shape library</h2>
+          <p data-i18n="SAPPHIRE_S5_BODY">Reusable shapes in a dockable palette, with a preview for each key count. Shapes can be saved from the angle pad or from selected tiles.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading" data-i18n="MORE_HEADING">Other features</h2>
+      <ul class="more-list">
+        <li><a href="docs/hz-tool/"><span class="more-name" data-i18n="SAPPHIRE_F_HZ">Hz tool</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_HZ_LINE">Charting by frequency. Calculates the angle, BPM and SetSpeed for a pitch.</span></a></li>
+        <li><a href="docs/audio/"><span class="more-name" data-i18n="SAPPHIRE_F_AUDIO">Audio window</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_AUDIO_LINE">Tempo curve, offset suggestions and a metronome on the level's grid.</span></a></li>
+        <li><a href="docs/toolbar/"><span class="more-name" data-i18n="SAPPHIRE_F_TOOLBAR">Toolbar</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_TOOLBAR_LINE">Circular path, free angle, pseudo, zip, VFX preview and an event eyedropper.</span></a></li>
+        <li><a href="docs/events/#event-tray"><span class="more-name" data-i18n="SAPPHIRE_F_TRAY">Event tray</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_TRAY_LINE">A visible clipboard for events. Drag events in and out.</span></a></li>
+        <li><a href="docs/toolbar/#other-tools"><span class="more-name" data-i18n="SAPPHIRE_F_FILTERS">Filter browser</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_FILTERS_LINE">Searchable list of SetFilterAdvanced filters, by category.</span></a></li>
+        <li><a href="docs/decorations/"><span class="more-name" data-i18n="SAPPHIRE_F_DECO">Decorations</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_DECO_LINE">Decoration list by tag or thumbnail. Full editing for particles and objects.</span></a></li>
+        <li><a href="docs/playback/"><span class="more-name" data-i18n="SAPPHIRE_F_MODES">Edit and Play mode</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_MODES_LINE">Switches between a charting view and a playtest view.</span></a></li>
+        <li><a href="docs/fields/"><span class="more-name" data-i18n="SAPPHIRE_F_FIELDS">Number fields</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_FIELDS_LINE">Arithmetic in fields, drag-to-scrub labels and ranked search.</span></a></li>
+        <li><a href="docs/level-settings/#colour-wheel"><span class="more-name" data-i18n="SAPPHIRE_F_COLOUR">Colour wheel</span>
+            <span class="more-line" data-i18n="SAPPHIRE_F_COLOUR_LINE">HSV colour picker for all colour values.</span></a></li>
+      </ul>
+    </section>
+
+    <section class="get" aria-labelledby="get-heading">
+      <h2 id="get-heading" data-i18n="GET_HEADING">Install</h2>
+      <p class="get-note" data-i18n="SAPPHIRE_GET_NOTE">Alpha. Runs on UnityModManager, or on MelonLoader with UMMCompat.</p>
+      <p class="get-links">
+        <a class="btn btn-gem" href="https://github.com/PrismMods/Sapphire/releases" data-i18n="BTN_DOWNLOAD">Download</a>
+        <a class="btn" href="docs/" data-i18n="BTN_DOCS">Docs</a>
+        <a class="btn" href="https://github.com/PrismMods/Sapphire" data-i18n="BTN_SOURCE">Source</a>
+      </p>
+    </section>
+
+    <nav class="pager" aria-label="Mods" data-i18n-label="PAGER_LABEL">
+      <ul>
+        <li style="--gem:#e8a3b4"><a href="../quartz/"><span class="formula">SiO<sub>2</sub></span>Quartz</a></li>
+        <li style="--gem:#3a6ff0"><a href="../sapphire/" aria-current="page"><span
+              class="formula">Al<sub>2</sub>O<sub>3</sub></span>Sapphire</a></li>
+        <li class="bismuth" style="--gem:#12b5a0"><a href="../bismuth/"><span class="formula">Bi</span>Bismuth</a></li>
+        <li style="--gem:#8b5cf6"><a href="../amethyst/"><span class="formula">SiO<sub>2</sub></span>Amethyst</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer class="foot">
+    <p><a href="https://github.com/PrismMods">github.com/PrismMods</a></p>
+    <p data-i18n="FOOTER_NOTE">Community mods. Not affiliated with 7th Beat Games.</p>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+
+</html>

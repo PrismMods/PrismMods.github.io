@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title data-i18n="QUARTZ_TITLE">Quartz — PrismMods</title>
+  <meta name="description" data-i18n="QUARTZ_DESC"
+    content="Quartz is the all-in-one mod for A Dance of Fire and Ice: overlays, input tools, calibration and community levels in one in-game menu.">
+  <meta name="color-scheme" content="light dark">
+
+  <meta property="og:title" content="Quartz — PrismMods">
+  <meta property="og:description" content="The all-in-one mod for A Dance of Fire and Ice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://prismmods.github.io/quartz/">
+
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 3 30 28H2Z' fill='none' stroke='%23101114' stroke-width='2.5' stroke-linejoin='round'/%3E%3Cpath d='M16 3v25' stroke='%238B5CF6' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Geist:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script>
+    // Same pre-paint step as the home page: theme and language before first paint.
+    document.documentElement.classList.add('js');
+    try {
+      var t = localStorage.getItem('theme');
+      if (t) document.documentElement.dataset.theme = t;
+      var l = localStorage.getItem('lang');
+      document.documentElement.lang =
+        l || ((navigator.language || '').toLowerCase().startsWith('ko') ? 'ko-KR' : 'en-US');
+    } catch (e) { }
+  </script>
+</head>
+
+<body class="modpage" style="--gem:#e8a3b4">
+  <a class="skip" href="#main" data-i18n="SKIP_TO_CONTENT">Skip to content</a>
+
+  <header class="bar">
+    <a class="mark" href="../">
+      <svg class="mark-glyph" viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16 3 30 28H2Z" />
+      </svg>
+      Prism<span>Mods</span>
+    </a>
+    <nav class="bar-nav">
+      <a href="https://github.com/PrismMods">GitHub</a>
+      <button id="lang-toggle" type="button" lang="ko">한국어</button>
+      <button id="theme-toggle" type="button" aria-label="Switch to dark theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" />
+          <path
+            d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.2 2.2M16.9 16.9l2.2 2.2M19.1 4.9l-2.2 2.2M7.1 16.9l-2.2 2.2" />
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" />
+        </svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="intro" aria-labelledby="mod-name">
+      <div class="intro-copy">
+        <p class="intro-formula formula">SiO<sub>2</sub></p>
+        <h1 id="mod-name" class="intro-name">Quartz</h1>
+        <p class="intro-tag" data-i18n="QUARTZ_TAG">An all-in-one mod for A Dance of Fire and Ice.</p>
+        <p class="intro-meta">
+          <span class="badge" data-i18n="STAGE_STABLE">Stable</span>
+          <span data-i18n="CAT_GAMEPLAY">Gameplay</span>
+        </p>
+      </div>
+      <canvas class="gem" data-crystal="quartz" aria-hidden="true"></canvas>
+    </section>
+
+    <section class="statement">
+      <p><span data-i18n="QUARTZ_STATEMENT">Quartz adds overlays, input tools, calibration, a TUF level browser and Discord to the game. Each feature is a separate module that can be installed or removed.</span></p>
+    </section>
+
+    <section class="scene">
+      <div class="scene-stage" aria-hidden="true">
+        <div class="screen game">
+
+          <!-- Modules tab: features switch on one by one, the last still
+               installing. -->
+          <div class="pane on" data-step="0">
+            <div class="menu" style="--x:36;--y:26;--w:408;--h:248">
+              <ul class="menu-side">
+                <li class="on">Modules</li>
+                <li>Overlay</li>
+                <li>Gameplay</li>
+                <li>Editor</li>
+                <li>TUF</li>
+                <li>Discord</li>
+              </ul>
+              <div class="menu-body">
+                <p class="menu-title">Modules</p>
+                <p class="mod-row"><span>Key Viewer</span><i class="switch scrub"
+                    style="--r:cover 26% cover 30%"></i></p>
+                <p class="mod-row"><span>Combo</span><i class="switch scrub" style="--r:cover 32% cover 36%"></i></p>
+                <p class="mod-row"><span>Progress Bar</span><i class="switch scrub"
+                    style="--r:cover 38% cover 42%"></i></p>
+                <p class="mod-row"><span>Calibration</span><i class="switch scrub"
+                    style="--r:cover 44% cover 48%"></i></p>
+                <p class="mod-row"><span>TUF</span><span class="meter"><i class="fill scrub"
+                      style="--r:cover 48% cover 66%"></i></span></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reorganize: the settings window is gone and every overlay is a
+               draggable box until Exit Reorganize. -->
+          <div class="pane" data-step="1">
+            <svg class="track" viewBox="0 0 480 300">
+              <path class="lane-tiles" d="M96,168 L384,168" />
+              <circle class="planet fire" cx="240" cy="168" r="9" />
+              <circle class="planet ice" cx="270" cy="168" r="9" />
+            </svg>
+            <span class="edge-progress" style="--x:0;--y:0;--w:480"><i></i></span>
+            <span class="drag combo-box scrub" style="--x:190;--y:28;--w:100"><small>Combo</small>128</span>
+            <span class="drag keys-box scrub" style="--x:20;--y:232;--w:120"><i></i><i></i><i></i><i></i></span>
+            <span class="ui-btn exit" style="--x:350;--y:264;--w:114">Exit Reorganize</span>
+          </div>
+
+          <!-- TUF browser: downloads fill in, one row at a time. -->
+          <div class="pane" data-step="2">
+            <div class="menu" style="--x:36;--y:26;--w:408;--h:248">
+              <ul class="menu-side">
+                <li>Modules</li>
+                <li>Overlay</li>
+                <li>Gameplay</li>
+                <li>Editor</li>
+                <li class="on">TUF</li>
+                <li>Discord</li>
+              </ul>
+              <div class="menu-body">
+                <p class="menu-title">TUF</p>
+                <p class="level-row"><span class="thumb" style="--hue:330"></span><span class="lines"><i></i><i
+                      class="short"></i></span><span class="meter"><i class="fill scrub"
+                      style="--r:cover 26% cover 40%"></i></span></p>
+                <p class="level-row"><span class="thumb" style="--hue:210"></span><span class="lines"><i></i><i
+                      class="short"></i></span><span class="meter"><i class="fill scrub"
+                      style="--r:cover 36% cover 52%"></i></span></p>
+                <p class="level-row"><span class="thumb" style="--hue:160"></span><span class="lines"><i></i><i
+                      class="short"></i></span><span class="meter"><i class="fill scrub"
+                      style="--r:cover 46% cover 64%"></i></span></p>
+                <p class="level-row"><span class="thumb" style="--hue:40"></span><span class="lines"><i></i><i
+                      class="short"></i></span><span class="meter"><i class="fill scrub"
+                      style="--r:cover 56% cover 70%"></i></span></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step on" data-step="0">
+          <h2 data-i18n="QUARTZ_S1_TITLE">Modules</h2>
+          <p data-i18n="QUARTZ_S1_BODY">Features are installed, updated, turned off or removed from the Modules tab in-game.</p>
+        </div>
+        <div class="step" data-step="1">
+          <h2 data-i18n="QUARTZ_S2_TITLE">Overlays</h2>
+          <p data-i18n="QUARTZ_S2_BODY">Key viewer, combo, judgements, progress bar and custom stat panels. Reorganize mode moves them by dragging.</p>
+        </div>
+        <div class="step" data-step="2">
+          <h2 data-i18n="QUARTZ_S3_TITLE">TUF levels</h2>
+          <p data-i18n="QUARTZ_S3_BODY">Browse, download and play TUF levels and packs inside the game.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="more" aria-labelledby="more-heading">
+      <h2 id="more-heading" data-i18n="MORE_HEADING">Other features</h2>
+      <ul class="more-list">
+        <li><a href="https://quartzz.xyz/docs/features/calibration/"><span class="more-name"
+              data-i18n="QUARTZ_F_CALIBRATION">Calibration</span>
+            <span class="more-line" data-i18n="QUARTZ_F_CALIBRATION_LINE">Sets the input offset from play, with timing history per map.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/accuracy/"><span class="more-name"
+              data-i18n="QUARTZ_F_ACCURACY">Too Much Accuracy</span>
+            <span class="more-line" data-i18n="QUARTZ_F_ACCURACY_LINE">Per-hit accuracy with a custom curve, death markers and an exportable run log.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/practice/"><span class="more-name"
+              data-i18n="QUARTZ_F_PRACTICE">Practice difficulty</span>
+            <span class="more-line" data-i18n="QUARTZ_F_PRACTICE_LINE">Keys that switch difficulty and pitch mid-level.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/key-limiter/"><span class="more-name"
+              data-i18n="QUARTZ_F_INPUT">Key limiter</span>
+            <span class="more-line" data-i18n="QUARTZ_F_INPUT_LINE">Limits input to chosen keys and filters key chatter.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/profiles/"><span class="more-name"
+              data-i18n="QUARTZ_F_PROFILES">Profiles</span>
+            <span class="more-line" data-i18n="QUARTZ_F_PROFILES_LINE">Separate settings profiles, shareable as files.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/discord/"><span class="more-name"
+              data-i18n="QUARTZ_F_DISCORD">Discord</span>
+            <span class="more-line" data-i18n="QUARTZ_F_DISCORD_LINE">Messages and voice chat in-game.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/effect-remover/"><span class="more-name"
+              data-i18n="QUARTZ_F_EFFECTS">Effect remover</span>
+            <span class="more-line" data-i18n="QUARTZ_F_EFFECTS_LINE">Removes level effects, in Simple or Enhanced mode.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/addons/"><span class="more-name"
+              data-i18n="QUARTZ_F_ADDONS">Addons</span>
+            <span class="more-line" data-i18n="QUARTZ_F_ADDONS_LINE">Community addons with their own settings, panels and text tags.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/optimizer/"><span class="more-name"
+              data-i18n="QUARTZ_F_OPTIMIZER">Optimizer</span>
+            <span class="more-line" data-i18n="QUARTZ_F_OPTIMIZER_LINE">GC timing, process priority, bloom and other performance options.</span></a></li>
+      </ul>
+    </section>
+
+    <section class="get" aria-labelledby="get-heading">
+      <h2 id="get-heading" data-i18n="GET_HEADING">Install</h2>
+      <p class="get-note" data-i18n="QUARTZ_GET_NOTE">Quartz has its own site and docs at quartzz.xyz. It runs on MelonLoader (recommended) or UnityModManager.</p>
+      <p class="get-links">
+        <a class="btn btn-gem" href="https://quartzz.xyz/docs/install/" data-i18n="BTN_INSTALL">Install guide</a>
+        <a class="btn" href="https://quartzz.xyz/docs/" data-i18n="BTN_DOCS">Docs</a>
+        <a class="btn" href="https://quartzz.xyz/" data-i18n="BTN_SITE">quartzz.xyz</a>
+        <a class="btn" href="https://github.com/PrismMods/Quartz" data-i18n="BTN_SOURCE">Source</a>
+      </p>
+    </section>
+
+    <nav class="pager" aria-label="Mods" data-i18n-label="PAGER_LABEL">
+      <ul>
+        <li style="--gem:#e8a3b4"><a href="../quartz/" aria-current="page"><span
+              class="formula">SiO<sub>2</sub></span>Quartz</a></li>
+        <li style="--gem:#3a6ff0"><a href="../sapphire/"><span
+              class="formula">Al<sub>2</sub>O<sub>3</sub></span>Sapphire</a></li>
+        <li class="bismuth" style="--gem:#12b5a0"><a href="../bismuth/"><span class="formula">Bi</span>Bismuth</a></li>
+        <li style="--gem:#8b5cf6"><a href="../amethyst/"><span class="formula">SiO<sub>2</sub></span>Amethyst</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer class="foot">
+    <p><a href="https://github.com/PrismMods">github.com/PrismMods</a></p>
+    <p data-i18n="FOOTER_NOTE">Community mods. Not affiliated with 7th Beat Games.</p>
+  </footer>
+
+  <script src="../site.js"></script>
+</body>
+
+</html>

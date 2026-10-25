@@ -210,6 +210,11 @@ console.log('prism projection ok');
 import vm from 'node:vm';
 
 const script = [...page.matchAll(/<script>([\s\S]*?)<\/script>/g)][1][1];
+// Theme, language and every page's strings live in site.js, which the page
+// loads first; the mod pages share it but carry no script of their own.
+const siteScript = readFileSync(new URL('./site.js', import.meta.url), 'utf8');
+const pages = ['index.html', 'quartz/index.html', 'sapphire/index.html', 'bismuth/index.html', 'amethyst/index.html']
+  .map((f) => readFileSync(new URL(`./${f}`, import.meta.url), 'utf8'));
 
 class El {
   constructor() {
@@ -234,8 +239,10 @@ class El {
 const nodes = new Map();
 const named = (sel) => nodes.get(sel) ?? nodes.set(sel, new El()).get(sel);
 
-// Every key the markup asks for, so the swap runs against the real key set.
-const usedKeys = [...page.matchAll(/data-i18n="([A-Z0-9_]+)"/g)].map((m) => m[1]);
+// Every key the markup asks for, on every page, so the swap runs against the
+// real key set.
+const usedKeys = pages.flatMap((html) =>
+  [...html.matchAll(/data-i18n(?:-label)?="([A-Z0-9_]+)"/g)].map((m) => m[1]));
 const i18nNodes = usedKeys.map((k) => Object.assign(new El(), { dataset: { i18n: k } }));
 
 let frames = 0;
@@ -264,6 +271,7 @@ const sandbox = {
 
 vm.createContext(sandbox);
 // Throws on any runtime error in the page script, which is the whole point.
+new vm.Script(siteScript).runInContext(sandbox);
 new vm.Script(script).runInContext(sandbox);
 
 const drawn = named('.glass').children;
@@ -311,7 +319,11 @@ for (const key of new Set(usedKeys)) {
 }
 
 // Korean must actually differ, or a key was copied across untranslated.
-const shared = base.filter((k) => dicts['en-US'][k] === dicts['ko-KR'][k]);
+// Product names stay in Latin script, so a string that is only a name is the
+// one thing allowed to match.
+const NAMES = ['QUARTZ_TITLE', 'SAPPHIRE_TITLE', 'BISMUTH_TITLE', 'AMETHYST_TITLE',
+  'QUARTZ_F_ACCURACY', 'QUARTZ_F_DISCORD', 'BTN_FOLLOW', 'BTN_SITE'];
+const shared = base.filter((k) => !NAMES.includes(k) && dicts['en-US'][k] === dicts['ko-KR'][k]);
 assert.deepEqual(shared, [], `untranslated in ko-KR: ${shared.join(', ')}`);
 
 // The swap ran over the real markup keys and left no element blank.
@@ -320,3 +332,58 @@ for (const node of i18nNodes) {
 }
 
 console.log(`i18n ok (${locales.join(', ')}, ${base.length} keys)`);
+
+// ---------------------------------------------------------------------------
+// Crystals. They draw with WebGL, which this stub DOM doesn't have, so the
+// geometry is checked instead: every point finite, every normal unit length
+// (a bad normal is a black or blown-out face in the shader), and, projected
+// the way the shader projects it, the whole crystal inside its 400 × 400
+// drawing at every angle it turns through.
+// ---------------------------------------------------------------------------
+{
+  const box = { ...sandbox, document: { ...sandbox.document, querySelectorAll: () => [] } };
+  vm.createContext(box);
+  new vm.Script(siteScript).runInContext(box);
+  const { CRYSTALS, fit, rotation, FOCAL } = new vm.Script('({ CRYSTALS, fit, rotation, FOCAL })').runInContext(box);
+
+  for (const [kind, spec] of Object.entries(CRYSTALS)) {
+    const faces = spec.parts.flatMap((p) => p.faces);
+    assert.ok(faces.length >= (spec.metal ? 500 : 12), `${kind}: too few faces`);
+    if (!spec.metal) assert.ok(spec.parts.every((p) => p.lines.length >= 12), `${kind}: missing edges`);
+    for (const f of faces) {
+      for (const p of f.pts) assert.ok(p.every(Number.isFinite), `${kind}: non-finite point`);
+      assert.ok(Math.abs(Math.hypot(...f.n) - 1) < 1e-9, `${kind}: normal not unit length`);
+    }
+    const { mid, scale } = fit(spec);
+    for (let yaw = 0; yaw < 2 * Math.PI; yaw += 0.2) {
+      const r = rotation(yaw, spec.pitch);
+      for (const f of faces) {
+        for (const p of f.pts) {
+          const q = p.map((c, i) => c - mid[i]);
+          const [x, y, z] = r.map((row) => row[0] * q[0] + row[1] * q[1] + row[2] * q[2]);
+          const s = FOCAL / (FOCAL + z * scale);
+          assert.ok(Math.abs(x * scale * s) < 200 && Math.abs(y * scale * s) < 200, `${kind}: leaves the drawing`);
+        }
+      }
+    }
+  }
+  // A uniform both shaders declare must match in precision or the program
+  // won't link, and nothing draws. The vertex shader defaults to highp and
+  // the fragment shader here to mediump, so a shared one is marked highp.
+  const shaders = new vm.Script('({ VERT, FRAG, EDGE_VERT, EDGE_FRAG })').runInContext(box);
+  const uniforms = (src) => {
+    const found = new Map();
+    for (const [, precision, , names] of src.matchAll(/uniform\s+(highp\s+|mediump\s+|lowp\s+)?(\w+)\s+([^;]+);/g)) {
+      for (const name of names.split(',')) found.set(name.trim(), (precision || '').trim());
+    }
+    return found;
+  };
+  for (const [vert, frag] of [[shaders.VERT, shaders.FRAG], [shaders.EDGE_VERT, shaders.EDGE_FRAG]]) {
+    const v = uniforms(vert);
+    for (const [name, precision] of uniforms(frag)) {
+      if (v.has(name)) assert.equal(precision, 'highp', `uniform ${name} is shared, so the fragment shader must declare it highp`);
+    }
+  }
+}
+
+console.log('crystals ok');

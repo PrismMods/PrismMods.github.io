@@ -1,0 +1,73 @@
+site_name: Bismuth Docs
+site_url: https://prismmods.github.io/bismuth/docs/
+site_description: Documentation for Bismuth, the lite edition of Quartz for A Dance of Fire and Ice.
+
+repo_url: https://github.com/PrismMods/Bismuth
+repo_name: PrismMods/Bismuth
+edit_uri: https://github.com/PrismMods/PrismMods.github.io/edit/main/docs/bismuth/docs/
+
+theme:
+  name: material
+  font:
+    text: Geist
+    code: Geist Mono
+  icon:
+    logo: material/diamond-stone
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+
+extra_css:
+  - stylesheets/prism.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+
+extra:
+  generator: false
+  homepage: https://prismmods.github.io/bismuth/
+
+nav:
+  - Overview: index.md
+  - Getting started:
+      - Install: install.md
+      - Troubleshooting: troubleshooting.md
+  - Features:
+      - Overlay: overlay.md
+      - Key viewer: key-viewer.md
+      - Fonts: fonts.md
+      - Game UI: game-ui.md
+      - Input: input.md

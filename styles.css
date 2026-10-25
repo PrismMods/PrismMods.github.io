@@ -1,7 +1,7 @@
-/* PrismMods — landing page.
-   One idea: white light in, spectrum out. The spectrum appears exactly twice —
-   as the rule under the hero, and as one edge per mod card. Everything else is
-   graphite on paper. */
+/* PrismMods — landing page and one page per mod.
+   One idea: white light in, spectrum out. On the home page the spectrum appears
+   exactly twice — as the rule under the hero, and as one edge per mod row. Each
+   mod page takes a single colour from it. Everything else is graphite on paper. */
 
 /* ---------- tokens ---------- */
 
@@ -232,14 +232,12 @@ a {
 :root[lang="ko-KR"] .eyebrow,
 :root[lang="ko-KR"] .section-label,
 :root[lang="ko-KR"] .credit-label,
-:root[lang="ko-KR"] .meta,
 :root[lang="ko-KR"] .badge {
   font-family: var(--sans);
 }
 
 :root[lang="ko-KR"] .eyebrow,
-:root[lang="ko-KR"] .credit-label,
-:root[lang="ko-KR"] .meta {
+:root[lang="ko-KR"] .credit-label {
   font-size: 0.78rem;
 }
 
@@ -255,8 +253,7 @@ a {
    boundaries rather than mid-word the way CJK normally does. */
 :root[lang="ko-KR"] .eyebrow,
 :root[lang="ko-KR"] .section-label,
-:root[lang="ko-KR"] .credit-label,
-:root[lang="ko-KR"] .meta {
+:root[lang="ko-KR"] .credit-label {
   letter-spacing: 0.06em;
 }
 
@@ -265,9 +262,20 @@ a {
 }
 
 :root[lang="ko-KR"] .lede,
-:root[lang="ko-KR"] .blurb,
-:root[lang="ko-KR"] .foot {
+:root[lang="ko-KR"] .row-blurb,
+:root[lang="ko-KR"] .foot,
+:root[lang="ko-KR"] .intro-tag,
+:root[lang="ko-KR"] .statement,
+:root[lang="ko-KR"] .step,
+:root[lang="ko-KR"] .more-list,
+:root[lang="ko-KR"] .get-note {
   word-break: keep-all;
+}
+
+/* Display-size Hangul at the Latin headline tracking crowds its jamo. */
+:root[lang="ko-KR"] .statement p,
+:root[lang="ko-KR"] .step h2 {
+  letter-spacing: -0.012em;
 }
 
 #theme-toggle {
@@ -534,7 +542,7 @@ h1 {
   max-width: var(--measure);
   margin-inline: auto;
   background: linear-gradient(90deg,
-      #8b5cf6 0%, #3a6ff0 26%, #12b5a0 50%, #e0b33c 72%, #e4699a 100%);
+      #8b5cf6 0%, #3a6ff0 26%, #12b5a0 50%, #e0b33c 72%, #e8a3b4 100%);
   opacity: 0.9;
   transform-origin: left center;
   animation: beam 950ms var(--out) 340ms both;
@@ -571,73 +579,63 @@ h1 {
   transform: none;
 }
 
-/* Four mods, so two columns — auto-fit would leave an orphan cell at three. */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+/* One ruled row per mod. The gem edge is the device the cards used to carry:
+   a short stub at rest that runs the full height of the row on hover. */
+.modlist {
   margin: 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--line);
 }
 
-@media (min-width: 46rem) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Column layout so the link row settles on the baseline of the tallest card
-   instead of leaving a ragged gap under short blurbs. */
-.mod {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1.9rem 1.9rem;
-  background: var(--raise);
-  border: 1px solid var(--line);
-  border-radius: 2px;
-  overflow: hidden;
-  /* Reveal is staggered; hover is not, so the delays are per-property. */
+.modlist li {
+  border-bottom: 1px solid var(--line);
   transition:
     opacity 520ms var(--out) calc(var(--i, 0) * 60ms),
-    transform 520ms var(--out) calc(var(--i, 0) * 60ms),
-    border-color 180ms ease,
-    background 180ms ease;
+    transform 520ms var(--out) calc(var(--i, 0) * 60ms);
 }
 
-.mod:hover,
-.mod:focus-within {
-  border-color: color-mix(in oklab, var(--gem) 40%, var(--line));
-  background: color-mix(in oklab, var(--gem) 5%, var(--raise));
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4.25rem minmax(0, 12rem) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.35rem 2rem;
+  padding: 1.6rem 1rem 1.6rem 1.5rem;
+  text-decoration: none;
+  transition: background 180ms ease;
 }
 
-.mod::before {
+.row:focus-visible {
+  outline-offset: -2px;
+}
+
+.row::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 5px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
   background: var(--gem);
-  transition: width 0.18s ease;
+  transform: scaleY(0.3);
+  transition: transform 280ms var(--out);
 }
 
-.mod:hover::before,
-.mod:focus-within::before {
-  width: 8px;
+.row:hover,
+.row:focus-visible {
+  background: color-mix(in oklab, var(--gem) 6%, transparent);
+}
+
+.row:hover::before,
+.row:focus-visible::before {
+  transform: none;
 }
 
 /* Bismuth really is iridescent — it gets the only gradient edge. */
-.bismuth::before {
+.bismuth .row::before,
+.bismuth a::before {
   background: linear-gradient(180deg, #12b5a0, #e0b33c 55%, #c05fd1);
-}
-
-.meta {
-  margin: 0 0 0.9rem;
-  font-family: var(--mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 
 /* Chemical formulae are case-sensitive: Bi is bismuth, BI is boron iodide. */
@@ -647,68 +645,72 @@ h1 {
   letter-spacing: 0.02em;
 }
 
-.meta sub {
+.formula sub {
   font-size: 0.75em;
 }
 
-.mod h3 {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.6rem;
-  margin: 0;
-  font-size: 1.4rem;
+.row-formula {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.row-name {
+  font-size: 1.45rem;
   font-weight: 600;
+  line-height: 1.2;
   letter-spacing: -0.025em;
+}
+
+.row-name small {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.row-blurb {
+  max-width: 44ch;
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-wrap: pretty;
+}
+
+.row .badge {
+  justify-self: end;
+}
+
+/* Narrow screens: formula over the name, the stage beside it, blurb below. */
+@media (max-width: 45.99rem) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 1.35rem 0.5rem 1.35rem 1.25rem;
+  }
+
+  .row-formula,
+  .row-blurb {
+    grid-column: 1 / -1;
+  }
+
+  .row .badge {
+    grid-row: 2;
+    grid-column: 2;
+    align-self: center;
+  }
 }
 
 .badge {
   padding: 0.2rem 0.5rem;
   border: 1px solid var(--gem);
   border-radius: 999px;
-  color: var(--gem);
+  color: color-mix(in oklab, var(--gem) 70%, var(--ink));
   font-family: var(--mono);
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-}
-
-.blurb {
-  max-width: 38ch;
-  margin: 0.75rem 0 1.75rem;
-  color: var(--muted);
-  font-size: 0.95rem;
-  text-wrap: pretty;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.1rem;
-  margin: auto 0 0;
-  font-size: 0.9rem;
-}
-
-.links a {
-  text-decoration: none;
-  border-bottom: 1px solid var(--line);
-  padding-bottom: 1px;
-  transition: border-color 0.15s;
-}
-
-.links a:hover {
-  border-bottom-color: var(--gem);
-}
-
-.pending {
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.soon h3,
-.soon .blurb {
-  opacity: 0.85;
+  white-space: nowrap;
 }
 
 /* ---------- credits ---------- */
@@ -791,6 +793,1738 @@ h1 {
 
 .foot p {
   margin: 0;
+}
+
+/* ---------- mod pages ---------- */
+
+/* One page per mod: the mineral itself turning beside the name, a statement,
+   then a pinned scene that shows the mod at work. The crystal is drawn by
+   site.js. Scrubbed motion in the scene is a CSS scroll timeline behind
+   @supports at the end of this section; without one, each element rests in its
+   final state. */
+
+.intro {
+  display: grid;
+  gap: 1rem 3rem;
+  align-items: center;
+  min-height: calc(100svh - var(--bar-h));
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 0 var(--pad) clamp(3rem, 8vh, 5rem);
+}
+
+@media (min-width: 56rem) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+.intro-copy {
+  animation: rise 750ms var(--out) both;
+}
+
+.intro-formula {
+  margin: 0 0 1.25rem;
+  color: color-mix(in oklab, var(--gem) 75%, var(--ink));
+  font-size: 1rem;
+}
+
+.intro-name {
+  margin: 0;
+  font-size: clamp(3.5rem, 1.8rem + 6vw, 7.5rem);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+}
+
+.intro-tag {
+  max-width: 28ch;
+  margin: 1.5rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1.15rem, 1rem + 0.8vw, 1.55rem);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.intro-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin: 2rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* The crystal sits above the name on phones and beside it on wider screens,
+   on a pool of the mod's colour. */
+.gem {
+  order: -1;
+  width: 100%;
+  max-width: 17rem;
+  height: auto;
+  justify-self: center;
+  overflow: visible;
+  aspect-ratio: 1;
+  background: radial-gradient(closest-side, color-mix(in oklab, var(--gem) 16%, transparent), transparent);
+  animation: rise 900ms var(--out) 150ms both;
+}
+
+@media (min-width: 56rem) {
+  .gem {
+    order: 0;
+    max-width: 32rem;
+  }
+}
+
+/* ---------- statement ---------- */
+
+.statement {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(3rem, 10vh, 7rem) var(--pad) clamp(5rem, 18vh, 11rem);
+}
+
+.statement p {
+  max-width: 30ch;
+  margin: 0;
+  font-size: clamp(1.6rem, 1rem + 2.4vw, 3.1rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.032em;
+  text-wrap: pretty;
+}
+
+/* ---------- pinned scene ---------- */
+
+/* Phones: the stage sticks to the top on a paper ground and the steps scroll
+   up beneath it. Wider screens: steps on the left, stage pinned on the right. */
+.scene {
+  display: grid;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 0 var(--pad);
+}
+
+.scene-stage {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  align-items: center;
+  padding: 1rem 0 1.5rem;
+  background: var(--paper);
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72svh;
+  padding-block: 2rem;
+  transition: opacity 400ms var(--out);
+}
+
+/* Gated on .js like the reveal: without script nothing marks a step active,
+   so they all stay at full strength. */
+.js .step {
+  opacity: 0.28;
+}
+
+.js .step.on {
+  opacity: 1;
+}
+
+.step h2 {
+  max-width: 18ch;
+  margin: 0;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.step p {
+  max-width: 38ch;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  text-wrap: pretty;
+}
+
+@media (min-width: 56rem) {
+  .scene {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    column-gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  .scene-stage {
+    grid-row: 1;
+    grid-column: 2;
+    align-self: start;
+    height: 100svh;
+    padding: 0;
+    background: none;
+  }
+
+  .steps {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .step {
+    min-height: 100svh;
+  }
+}
+
+/* ---------- the screen ---------- */
+
+/* A game or editor window. Always dark, whatever the page theme, because the
+   game is. */
+.screen {
+  --scr: #0f1117;
+  --scr-2: #171a22;
+  --scr-3: #252a35;
+  --scr-ink: #e9ecf2;
+  --scr-dim: #7b8291;
+  --scr-line: #2a2f3b;
+  --fire: #ef5b45;
+  --ice: #4b8dff;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  container-type: inline-size;
+  overflow: hidden;
+  color: var(--scr-ink);
+  background: var(--scr);
+  border-radius: 12px;
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--ink) 10%, transparent),
+    0 40px 80px -48px color-mix(in oklab, var(--gem) 70%, transparent);
+}
+
+/* A faint grid is the one cue that this is the editor, not a level. */
+.editor {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 6.25% 10%;
+}
+
+/* Everything inside a pane is laid out in the 480 × 300 units of its SVG, so
+   the HTML and the drawing scale together at any width. 1u = 1/480 of the
+   screen, read from the screen as a container. */
+.pane {
+  --u: calc(100cqw / 480);
+  position: absolute;
+  inset: 0;
+  font-size: calc(11 * var(--u));
+  line-height: 1.3;
+  opacity: 0;
+  transition: opacity 500ms var(--out);
+}
+
+.pane.on {
+  opacity: 1;
+}
+
+.pane>* {
+  position: absolute;
+  left: calc(var(--x, 0) * var(--u));
+  top: calc(var(--y, 0) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: calc(var(--h) * var(--u));
+  margin: 0;
+}
+
+.pane>.track {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tracks. A tile is a run of stroke; the cuts pass gaps through it halfway
+   between tile centres, which is what makes a line read as ADOFAI tiles. */
+.tiles,
+.cuts,
+.ghost,
+.lane-tiles {
+  fill: none;
+  stroke-linejoin: round;
+}
+
+.tiles {
+  stroke: #d3d8e2;
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.cuts {
+  stroke: var(--scr);
+  stroke-width: 15;
+  stroke-dasharray: 1.5 28.5;
+  stroke-dashoffset: -14.25;
+}
+
+.ghost {
+  stroke: var(--gem);
+  stroke-width: 14;
+  stroke-linecap: round;
+  opacity: 0.5;
+}
+
+.lane-tiles {
+  stroke: #2c313d;
+  stroke-width: 14;
+  stroke-dasharray: 27 3;
+}
+
+.anchor {
+  fill: none;
+  stroke: var(--gem);
+  stroke-width: 2.5;
+}
+
+.fire {
+  fill: var(--fire);
+}
+
+.ice {
+  fill: var(--ice);
+}
+
+.orbit {
+  transform-origin: 240px 168px;
+}
+
+/* In-game windows and controls. */
+.ui-card {
+  padding: calc(9 * var(--u)) calc(10 * var(--u));
+  background: var(--scr-2);
+  border: 1px solid var(--scr-line);
+  border-radius: calc(6 * var(--u));
+  box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, 0.4);
+}
+
+.ui-card p {
+  margin: 0;
+}
+
+.ui-card .ui-title {
+  margin-bottom: calc(6 * var(--u));
+  color: var(--scr-dim);
+  font-size: calc(9 * var(--u));
+}
+
+.ui-chip {
+  padding: calc(2 * var(--u)) calc(7 * var(--u));
+  color: var(--scr-dim);
+  font-size: calc(9 * var(--u));
+  white-space: nowrap;
+  border: 1px solid var(--scr-line);
+  border-radius: 999px;
+}
+
+.ui-btn {
+  padding: calc(4 * var(--u)) calc(10 * var(--u));
+  color: #fff;
+  font-size: calc(9.5 * var(--u));
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+  background: var(--gem);
+  border-radius: calc(4 * var(--u));
+}
+
+/* Sapphire: angle pad, docking, timeline, variables and script, shapes. */
+.pad-field {
+  padding: calc(6 * var(--u)) calc(7 * var(--u));
+  font-family: var(--mono);
+  font-size: calc(11 * var(--u));
+  white-space: nowrap;
+  background: var(--scr);
+  border: 1px solid color-mix(in oklab, var(--gem) 60%, transparent);
+  border-radius: calc(4 * var(--u));
+}
+
+/* Typed by stepping its width a character at a time — the mono face makes
+   every character exactly 1ch. The right border is the caret. */
+.typed {
+  display: inline-block;
+  width: calc(var(--n) * 1ch);
+  overflow: hidden;
+  font: inherit;
+  vertical-align: bottom;
+  border-right: 1px solid var(--gem);
+}
+
+.ui-card .pad-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: calc(7 * var(--u));
+}
+
+/* Docking: a floating window is dragged onto the sidebar's tab rail and
+   becomes a tab there. The rail lights while the window hovers it. */
+.toolbar {
+  display: flex;
+  gap: calc(4 * var(--u));
+  height: calc(22 * var(--u));
+  padding: calc(4 * var(--u)) calc(8 * var(--u));
+  background: var(--scr-2);
+  border-bottom: 1px solid var(--scr-line);
+}
+
+.toolbar i {
+  width: calc(14 * var(--u));
+  background: var(--scr-3);
+  border-radius: calc(3 * var(--u));
+}
+
+.toolbar i:nth-child(4) {
+  background: color-mix(in oklab, var(--gem) 70%, transparent);
+}
+
+.side {
+  display: grid;
+  align-content: start;
+  gap: calc(10 * var(--u));
+  padding: calc(8 * var(--u));
+  background: var(--scr-2);
+  border-right: 1px solid var(--scr-line);
+}
+
+.side-tabs {
+  display: flex;
+  gap: calc(3 * var(--u));
+  margin: 0;
+  padding: calc(2 * var(--u));
+  font-size: calc(8.5 * var(--u));
+  border-radius: calc(4 * var(--u));
+}
+
+.side-tabs span {
+  padding: calc(2 * var(--u)) calc(5 * var(--u));
+  color: var(--scr-dim);
+  border-radius: calc(3 * var(--u));
+}
+
+.side-tabs .on {
+  color: var(--scr-ink);
+  background: var(--scr-3);
+}
+
+.side-tabs .new-tab {
+  color: var(--scr-ink);
+  background: color-mix(in oklab, var(--gem) 45%, transparent);
+}
+
+.float-win {
+  transform-origin: top left;
+}
+
+.float-win svg {
+  display: block;
+  width: 100%;
+}
+
+/* A pointer riding the window's title bar while it's dragged. */
+.cursor {
+  position: absolute;
+  top: calc(6 * var(--u));
+  left: calc(70 * var(--u));
+  width: calc(10 * var(--u));
+  height: calc(15 * var(--u));
+  background: #fff;
+  clip-path: polygon(0 0, 100% 66%, 58% 66%, 78% 100%, 60% 100%, 40% 70%, 0 92%);
+}
+
+.strip {
+  display: grid;
+  gap: calc(6 * var(--u));
+  padding: calc(9 * var(--u)) calc(10 * var(--u));
+  background: var(--scr-2);
+  border-top: 1px solid var(--scr-line);
+}
+
+.strip i {
+  display: block;
+  width: var(--len);
+  height: calc(6 * var(--u));
+  margin-left: var(--at);
+  background: color-mix(in oklab, var(--gem) 30%, var(--scr-3));
+  border-radius: 999px;
+}
+
+/* Quick chart's key hints card. */
+.hints p {
+  display: flex;
+  align-items: center;
+  gap: calc(5 * var(--u));
+  margin-bottom: calc(4 * var(--u));
+  color: var(--scr-dim);
+  font-size: calc(9 * var(--u));
+}
+
+.pane kbd {
+  min-width: calc(14 * var(--u));
+  padding: calc(1 * var(--u)) calc(4 * var(--u));
+  color: var(--scr-ink);
+  font-family: var(--mono);
+  font-size: calc(8.5 * var(--u));
+  text-align: center;
+  background: var(--scr-3);
+  border-radius: calc(3 * var(--u));
+}
+
+/* Event timeline in Cam mode: a value graph over three property lanes. */
+.modes {
+  display: flex;
+  gap: calc(3 * var(--u));
+  font-size: calc(9 * var(--u));
+}
+
+.modes span {
+  padding: calc(2 * var(--u)) calc(7 * var(--u));
+  color: var(--scr-dim);
+  border: 1px solid var(--scr-line);
+  border-radius: 999px;
+}
+
+.modes .on {
+  color: var(--scr-ink);
+  background: color-mix(in oklab, var(--gem) 22%, transparent);
+  border-color: color-mix(in oklab, var(--gem) 60%, transparent);
+}
+
+.graph-grid,
+.lane {
+  stroke: var(--scr-line);
+}
+
+.curve {
+  fill: none;
+  stroke: var(--gem);
+  stroke-width: 2.2;
+}
+
+.kf {
+  fill: #fff;
+}
+
+.tween {
+  fill: color-mix(in oklab, var(--gem) 38%, transparent);
+}
+
+.lane-labels {
+  display: grid;
+  color: var(--scr-dim);
+  font-size: calc(8.5 * var(--u));
+  line-height: calc(30 * var(--u));
+}
+
+.playhead {
+  stroke: #fff;
+  stroke-width: 1.5;
+}
+
+/* Variables and Script. */
+.code {
+  margin: 0;
+  color: var(--scr-ink);
+  font-family: var(--mono);
+  font-size: calc(9.5 * var(--u));
+  line-height: 1.55;
+  white-space: pre;
+}
+
+.code b {
+  color: color-mix(in oklab, var(--gem) 75%, #fff);
+  font-weight: 400;
+}
+
+.code em {
+  color: #f2c14e;
+  font-style: normal;
+}
+
+.code-lines {
+  height: calc(var(--lines) * 1.55em);
+  overflow: hidden;
+}
+
+.formula-field {
+  display: flex;
+  justify-content: space-between;
+  color: color-mix(in oklab, var(--gem) 75%, #fff);
+}
+
+.peek {
+  color: var(--scr-dim);
+}
+
+/* Shape library. */
+.shape-body {
+  display: grid;
+  grid-template-columns: calc(92 * var(--u)) 1fr;
+  gap: calc(10 * var(--u));
+}
+
+.shape-body .menu-side {
+  border-right: 0;
+  border-radius: calc(4 * var(--u));
+}
+
+.shape-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: calc(8 * var(--u));
+}
+
+.shape-card {
+  margin: 0;
+  padding: calc(4 * var(--u));
+  color: var(--scr-dim);
+  font-size: calc(9 * var(--u));
+  text-align: center;
+  background: var(--scr);
+  border: 1px solid var(--scr-line);
+  border-radius: calc(5 * var(--u));
+}
+
+.shape-card svg {
+  display: block;
+  width: 100%;
+  height: calc(62 * var(--u));
+}
+
+.shape-card.picked {
+  border-color: var(--gem);
+}
+
+.mini {
+  fill: none;
+  stroke: #d3d8e2;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Bismuth: HUD, key viewer, game UI editor. Defaults are Bismuth's own:
+   " | " separators, grey-to-blue progress that turns gold at 100%. */
+.hud-stats p {
+  display: flex;
+  gap: 0.35em;
+  margin: 0;
+  font-size: calc(12 * var(--u));
+  line-height: 1.4;
+  text-shadow: 0 calc(1.5 * var(--u)) 0 rgba(0, 0, 0, 0.5);
+}
+
+.hud-stats.right p {
+  justify-content: flex-end;
+}
+
+.hud-stats span::after {
+  content: " |";
+  color: var(--scr-dim);
+}
+
+.hud-stats b,
+.combo b {
+  font-weight: 600;
+}
+
+.acc {
+  color: #7fb2ff;
+}
+
+/* Counters are CSS counters fed by registered integers, so a scroll timeline
+   can count them up. The resting value is the last frame. */
+@property --progress {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --combo {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --total {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --held {
+  syntax: "<integer>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --on {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+.progress {
+  --progress: 100;
+  counter-reset: progress var(--progress);
+  color: #f2c14e;
+}
+
+.progress::after {
+  content: counter(progress) "%";
+}
+
+.combo {
+  line-height: 1;
+  text-align: center;
+}
+
+.combo span {
+  display: block;
+  margin-bottom: calc(4 * var(--u));
+  font-size: calc(10 * var(--u));
+}
+
+.combo-n {
+  --combo: 512;
+  counter-reset: combo var(--combo);
+  color: #a9c8ff;
+  font-size: calc(36 * var(--u));
+}
+
+.combo-n::after {
+  content: counter(combo);
+}
+
+.judgements {
+  display: flex;
+  justify-content: center;
+  gap: calc(12 * var(--u));
+  font-weight: 600;
+}
+
+.judgements span:nth-child(1),
+.judgements span:nth-child(7) {
+  color: #ff6257;
+}
+
+.judgements span:nth-child(2),
+.judgements span:nth-child(6) {
+  color: #ffa24c;
+}
+
+.judgements span:nth-child(3),
+.judgements span:nth-child(5) {
+  color: #cbe35a;
+}
+
+.judgements span:nth-child(4) {
+  color: #5ee08a;
+}
+
+.kv {
+  display: grid;
+  grid-template-columns: repeat(4, calc(40 * var(--u))) repeat(2, calc(48 * var(--u)));
+  gap: calc(4 * var(--u));
+  align-items: end;
+}
+
+/* Rain rises out of the key. Notes start below the track's bottom edge, out
+   of sight, and the tape carrying them slides up through it. */
+.rain {
+  position: relative;
+  height: calc(120 * var(--u));
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(transparent, #000 45%);
+  mask-image: linear-gradient(transparent, #000 45%);
+}
+
+.tape {
+  position: absolute;
+  top: 100%;
+  left: calc(4 * var(--u));
+  right: calc(4 * var(--u));
+}
+
+.tape i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--a) * var(--u));
+  height: calc(var(--h) * var(--u));
+  background: #fff;
+}
+
+.key,
+.kv-stat {
+  display: grid;
+  place-items: center;
+  height: calc(40 * var(--u));
+  border-radius: calc(7 * var(--u));
+}
+
+.key {
+  color: color-mix(in srgb, #000 calc(var(--held) * 100%), #fff);
+  font-size: calc(14 * var(--u));
+  font-weight: 600;
+  background: color-mix(in srgb, #fff calc(var(--held) * 100%), #1d212b);
+}
+
+.kv-stat {
+  align-content: center;
+  gap: calc(2 * var(--u));
+  font-size: calc(13 * var(--u));
+  font-weight: 600;
+  line-height: 1;
+  background: #1d212b;
+}
+
+.kv-stat small {
+  color: var(--scr-dim);
+  font-size: calc(8 * var(--u));
+  font-weight: 400;
+}
+
+.total {
+  --total: 16;
+  counter-reset: total var(--total);
+}
+
+.total::after {
+  content: counter(total);
+}
+
+/* Handles for things being moved: dashed bounds with two corner grips. */
+.handle,
+.drag {
+  display: grid;
+  place-items: center;
+  padding: calc(5 * var(--u));
+  line-height: 1;
+  border: 1px dashed color-mix(in oklab, var(--gem) 75%, #fff);
+}
+
+.handle::before,
+.handle::after,
+.drag::before,
+.drag::after {
+  content: "";
+  position: absolute;
+  width: calc(5 * var(--u));
+  height: calc(5 * var(--u));
+  background: #fff;
+}
+
+.handle::before,
+.drag::before {
+  top: calc(-3 * var(--u));
+  left: calc(-3 * var(--u));
+}
+
+.handle::after,
+.drag::after {
+  right: calc(-3 * var(--u));
+  bottom: calc(-3 * var(--u));
+}
+
+.ui-chip.editing {
+  color: var(--scr-ink);
+  border-color: color-mix(in oklab, var(--gem) 60%, transparent);
+}
+
+.percent {
+  font-size: calc(40 * var(--u));
+  font-weight: 700;
+}
+
+.countdown {
+  font-size: calc(28 * var(--u));
+  font-weight: 700;
+}
+
+.autoplay {
+  color: var(--scr-dim);
+}
+
+/* Quartz: the menu, Reorganize, TUF. */
+.menu {
+  display: grid;
+  grid-template-columns: calc(96 * var(--u)) 1fr;
+  overflow: hidden;
+  background: var(--scr-2);
+  border: 1px solid var(--scr-line);
+  border-radius: calc(8 * var(--u));
+}
+
+.menu-side {
+  margin: 0;
+  padding: calc(10 * var(--u)) calc(6 * var(--u));
+  font-size: calc(10 * var(--u));
+  list-style: none;
+  background: var(--scr);
+  border-right: 1px solid var(--scr-line);
+}
+
+.menu-side li {
+  padding: calc(6 * var(--u)) calc(8 * var(--u));
+  color: var(--scr-dim);
+  border-radius: calc(4 * var(--u));
+}
+
+.menu-side li.on {
+  color: var(--scr-ink);
+  background: color-mix(in oklab, var(--gem) 24%, transparent);
+}
+
+.menu-body {
+  padding: calc(12 * var(--u)) calc(14 * var(--u));
+}
+
+.menu-title {
+  margin: 0 0 calc(6 * var(--u));
+  font-size: calc(13 * var(--u));
+  font-weight: 600;
+}
+
+.mod-row,
+.level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(10 * var(--u));
+  margin: 0;
+  padding: calc(8 * var(--u)) 0;
+  font-size: calc(10.5 * var(--u));
+  border-bottom: 1px solid var(--scr-line);
+}
+
+/* One registered number drives both the track colour and the knob. */
+.switch {
+  --on: 1;
+  position: relative;
+  width: calc(26 * var(--u));
+  height: calc(14 * var(--u));
+  background: color-mix(in srgb, var(--gem) calc(var(--on) * 100%), var(--scr-3));
+  border-radius: 999px;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: calc(2 * var(--u));
+  left: calc((2 + 12 * var(--on)) * var(--u));
+  width: calc(10 * var(--u));
+  height: calc(10 * var(--u));
+  background: #fff;
+  border-radius: 50%;
+}
+
+.meter {
+  display: block;
+  flex: none;
+  width: calc(70 * var(--u));
+  height: calc(5 * var(--u));
+  overflow: hidden;
+  background: var(--scr-3);
+  border-radius: 999px;
+}
+
+.fill {
+  display: block;
+  height: 100%;
+  background: var(--gem);
+  transform-origin: left;
+}
+
+.thumb {
+  flex: none;
+  width: calc(32 * var(--u));
+  height: calc(22 * var(--u));
+  background: linear-gradient(135deg, hsl(var(--hue) 60% 58%), hsl(calc(var(--hue) + 40) 55% 32%));
+  border-radius: calc(3 * var(--u));
+}
+
+.lines {
+  display: grid;
+  flex: 1;
+  gap: calc(5 * var(--u));
+}
+
+.lines i {
+  display: block;
+  height: calc(5 * var(--u));
+  background: var(--scr-3);
+  border-radius: 999px;
+}
+
+.lines .short {
+  width: 55%;
+}
+
+.edge-progress {
+  height: calc(4 * var(--u));
+  background: var(--scr-3);
+}
+
+.edge-progress i {
+  display: block;
+  width: 62%;
+  height: 100%;
+  background: var(--gem);
+}
+
+.drag {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.combo-box {
+  font-size: calc(22 * var(--u));
+  font-weight: 700;
+}
+
+.combo-box small {
+  margin-bottom: calc(3 * var(--u));
+  color: var(--scr-dim);
+  font-size: calc(8 * var(--u));
+  font-weight: 500;
+}
+
+.keys-box {
+  grid-auto-flow: column;
+  gap: calc(4 * var(--u));
+}
+
+.keys-box i {
+  width: calc(22 * var(--u));
+  height: calc(22 * var(--u));
+  background: #1d212b;
+  border-radius: calc(4 * var(--u));
+}
+
+/* ---------- more, get, pager ---------- */
+
+.more,
+.get {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: clamp(4rem, 13vh, 8rem) var(--pad) 0;
+}
+
+.get {
+  padding-bottom: clamp(4rem, 12vh, 7rem);
+}
+
+.more h2,
+.get h2 {
+  margin: 0 0 1.75rem;
+  font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.more-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 40rem) {
+  .more-list {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+}
+
+@media (min-width: 62rem) {
+  .more-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.more-list li {
+  border-bottom: 1px solid var(--line);
+}
+
+.more-list a {
+  display: block;
+  height: 100%;
+  padding: 1.2rem 0 1.35rem;
+  text-decoration: none;
+}
+
+.more-name {
+  display: block;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.more-line {
+  display: block;
+  max-width: 36ch;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-wrap: pretty;
+}
+
+.more-list a:hover .more-name {
+  color: color-mix(in oklab, var(--gem) 75%, var(--ink));
+}
+
+.get-note {
+  max-width: 52ch;
+  margin: -0.75rem 0 1.75rem;
+  color: var(--muted);
+}
+
+.get-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--muted);
+}
+
+/* Darkened so white text clears contrast on every gem, teal included. */
+.btn-gem {
+  --deep: color-mix(in oklab, var(--gem) 72%, #000);
+  color: #fff;
+  background: var(--deep);
+  border-color: var(--deep);
+}
+
+.btn-gem:hover {
+  --deep: color-mix(in oklab, var(--gem) 60%, #000);
+  border-color: var(--deep);
+}
+
+/* The mod list again, as a switcher: all four, the current one lit. */
+.pager {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 0 var(--pad) clamp(2.5rem, 7vh, 4rem);
+}
+
+.pager ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 46rem) {
+  .pager ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.pager li {
+  position: relative;
+}
+
+.pager a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 1.1rem 1rem 1.2rem 0;
+  color: var(--muted);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.pager a::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 1rem;
+  height: 2px;
+  background: var(--gem);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms var(--out);
+}
+
+.pager a:hover,
+.pager a[aria-current] {
+  color: var(--ink);
+}
+
+.pager a:hover::before,
+.pager a[aria-current]::before {
+  transform: none;
+}
+
+.pager .formula {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+}
+
+/* ---------- scroll-driven motion ---------- */
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+
+    /* Each pane scrubs against its own step's passage through the viewport.
+       The steps and the stage are siblings, hence the shared scope. */
+    .scene {
+      timeline-scope: --s0, --s1, --s2, --s3, --s4;
+    }
+
+    .step[data-step="0"] {
+      view-timeline: --s0 block;
+    }
+
+    .step[data-step="1"] {
+      view-timeline: --s1 block;
+    }
+
+    .step[data-step="2"] {
+      view-timeline: --s2 block;
+    }
+
+    .step[data-step="3"] {
+      view-timeline: --s3 block;
+    }
+
+    .step[data-step="4"] {
+      view-timeline: --s4 block;
+    }
+
+    .pane[data-step="0"] {
+      --tl: --s0;
+    }
+
+    .pane[data-step="1"] {
+      --tl: --s1;
+    }
+
+    .pane[data-step="2"] {
+      --tl: --s2;
+    }
+
+    .pane[data-step="3"] {
+      --tl: --s3;
+    }
+
+    .pane[data-step="4"] {
+      --tl: --s4;
+    }
+
+    .scrub {
+      animation-duration: 1ms;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: var(--tl);
+      animation-range: var(--r, cover 30% cover 66%);
+    }
+
+    .draw,
+    .run {
+      stroke-dasharray: 1;
+    }
+
+    .draw {
+      animation-name: draw;
+    }
+
+    .run {
+      animation-name: run;
+    }
+
+    .typed {
+      animation-name: type;
+      animation-timing-function: steps(var(--n), end);
+    }
+
+    .placed {
+      animation-name: placed;
+    }
+
+    .press {
+      animation-name: press;
+    }
+
+    .playhead {
+      animation-name: scan;
+    }
+
+    .float-win {
+      animation-name: dock;
+    }
+
+    .new-tab {
+      animation-name: tab-in;
+    }
+
+    .side-tabs {
+      animation-name: rail-glow;
+    }
+
+    .code-lines {
+      animation-name: lines-in;
+      animation-timing-function: steps(var(--lines), end);
+    }
+
+    .appear {
+      animation-name: appear;
+    }
+
+    .picked {
+      animation-name: pick;
+    }
+
+    .orbit {
+      animation-name: orbit;
+    }
+
+    .progress {
+      animation-name: progress;
+    }
+
+    .combo-n {
+      animation-name: combo;
+    }
+
+    .tape {
+      animation-name: rain;
+    }
+
+    .kv-col[data-key="d"] .key {
+      animation-name: kv-d;
+    }
+
+    .kv-col[data-key="f"] .key {
+      animation-name: kv-f;
+    }
+
+    .kv-col[data-key="j"] .key {
+      animation-name: kv-j;
+    }
+
+    .kv-col[data-key="k"] .key {
+      animation-name: kv-k;
+    }
+
+    .total {
+      animation-name: kv-total;
+    }
+
+    .percent {
+      animation-name: move-percent;
+    }
+
+    .countdown {
+      animation-name: grow;
+    }
+
+    .autoplay {
+      animation-name: hide;
+    }
+
+    .switch {
+      animation-name: switch-on;
+    }
+
+    .fill {
+      animation-name: fill-up;
+    }
+
+    .combo-box {
+      animation-name: drag-combo;
+    }
+
+    .keys-box {
+      animation-name: drag-keys;
+    }
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* The angle pad's ghost draws while the expression types, then gives way to
+   the placed tiles. */
+@keyframes run {
+  from {
+    stroke-dashoffset: 1;
+  }
+
+  60% {
+    stroke-dashoffset: 0;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  92%,
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes type {
+  from {
+    width: 0;
+  }
+
+  60%,
+  to {
+    width: calc(var(--n) * 1ch);
+  }
+}
+
+@keyframes placed {
+
+  from,
+  80% {
+    opacity: 0;
+  }
+
+  92%,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes press {
+
+  from,
+  78% {
+    transform: none;
+    filter: none;
+  }
+
+  86% {
+    transform: scale(0.9);
+    filter: brightness(1.35);
+  }
+
+  to {
+    transform: none;
+    filter: none;
+  }
+}
+
+@keyframes scan {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translateX(376px);
+  }
+}
+
+@keyframes dock {
+
+  from,
+  12% {
+    transform: none;
+    opacity: 1;
+  }
+
+  70% {
+    transform: translate(calc(-178 * var(--u)), calc(-56 * var(--u))) scale(0.45);
+    opacity: 1;
+  }
+
+  80%,
+  to {
+    transform: translate(calc(-178 * var(--u)), calc(-56 * var(--u))) scale(0.45);
+    opacity: 0;
+  }
+}
+
+@keyframes tab-in {
+
+  from,
+  72% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+
+  82%,
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rail-glow {
+
+  from,
+  40%,
+  90%,
+  to {
+    box-shadow: none;
+  }
+
+  55%,
+  78% {
+    box-shadow: 0 0 0 1px var(--gem), 0 0 calc(16 * var(--u)) color-mix(in oklab, var(--gem) 40%, transparent);
+  }
+}
+
+@keyframes lines-in {
+  from {
+    height: 0;
+  }
+
+  70%,
+  to {
+    height: calc(var(--lines) * 1.55em);
+  }
+}
+
+@keyframes appear {
+
+  from,
+  86% {
+    opacity: 0;
+  }
+
+  92%,
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes pick {
+
+  from,
+  55% {
+    border-color: var(--scr-line);
+  }
+
+  62%,
+  to {
+    border-color: var(--gem);
+  }
+}
+
+@keyframes orbit {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: rotate(-540deg);
+  }
+}
+
+@keyframes progress {
+  from {
+    --progress: 0;
+    color: #8f97a6;
+  }
+
+  99% {
+    --progress: 99;
+    color: #7fb2ff;
+  }
+
+  to {
+    --progress: 100;
+    color: #f2c14e;
+  }
+}
+
+@keyframes combo {
+  from {
+    --combo: 0;
+    color: #fff;
+  }
+}
+
+/* The tape travels its full length (the deepest note plus the visible track),
+   and the keyframes below light each key while one of its notes crosses the
+   key's top edge. Offsets are note depth ÷ 634, generated from the note
+   positions in bismuth/index.html; move a note and regenerate these. */
+@keyframes rain {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translateY(calc(-634 * var(--u)));
+  }
+}
+
+@keyframes kv-d {
+  0%, 3.15% { --held: 0; }
+  3.16%, 5.36% { --held: 1; }
+  5.37%, 20.5% { --held: 0; }
+  20.51%, 22.71% { --held: 1; }
+  22.72%, 39.43% { --held: 0; }
+  39.44%, 47.32% { --held: 1; }
+  47.33%, 61.51% { --held: 0; }
+  61.52%, 63.72% { --held: 1; }
+  63.73%, 100% { --held: 0; }
+}
+
+@keyframes kv-f {
+  0%, 9.46% { --held: 0; }
+  9.47%, 11.67% { --held: 1; }
+  11.68%, 26.81% { --held: 0; }
+  26.82%, 29.02% { --held: 1; }
+  29.03%, 50.47% { --held: 0; }
+  50.48%, 52.68% { --held: 1; }
+  52.69%, 67.82% { --held: 0; }
+  67.83%, 70.03% { --held: 1; }
+  70.04%, 100% { --held: 0; }
+}
+
+@keyframes kv-j {
+  0%, 14.98% { --held: 0; }
+  14.99%, 17.19% { --held: 1; }
+  17.2%, 33.12% { --held: 0; }
+  33.13%, 35.33% { --held: 1; }
+  35.34%, 39.43% { --held: 0; }
+  39.44%, 47.32% { --held: 1; }
+  47.33%, 72.56% { --held: 0; }
+  72.57%, 74.76% { --held: 1; }
+  74.77%, 100% { --held: 0; }
+}
+
+@keyframes kv-k {
+  0%, 6.31% { --held: 0; }
+  6.32%, 8.52% { --held: 1; }
+  8.53%, 23.66% { --held: 0; }
+  23.67%, 33.12% { --held: 1; }
+  33.13%, 55.99% { --held: 0; }
+  56%, 58.2% { --held: 1; }
+  58.21%, 78.86% { --held: 0; }
+  78.87%, 81.07% { --held: 1; }
+  81.08%, 100% { --held: 0; }
+}
+
+/* One step per note start; the chord at 39.44% adds two. */
+@keyframes kv-total {
+  0%, 3.15% { --total: 0; }
+  3.16%, 6.31% { --total: 1; }
+  6.32%, 9.46% { --total: 2; }
+  9.47%, 14.98% { --total: 3; }
+  14.99%, 20.5% { --total: 4; }
+  20.51%, 23.66% { --total: 5; }
+  23.67%, 26.81% { --total: 6; }
+  26.82%, 33.12% { --total: 7; }
+  33.13%, 39.43% { --total: 8; }
+  39.44%, 50.47% { --total: 10; }
+  50.48%, 55.99% { --total: 11; }
+  56%, 61.51% { --total: 12; }
+  61.52%, 67.82% { --total: 13; }
+  67.83%, 72.56% { --total: 14; }
+  72.57%, 78.86% { --total: 15; }
+  78.87%, 100% { --total: 16; }
+}
+
+@keyframes move-percent {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: translate(calc(-150 * var(--u)), calc(150 * var(--u))) scale(0.5);
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: none;
+  }
+
+  to {
+    transform: scale(1.6);
+  }
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.25;
+  }
+}
+
+@keyframes switch-on {
+  from {
+    --on: 0;
+  }
+
+  to {
+    --on: 1;
+  }
+}
+
+@keyframes fill-up {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes drag-combo {
+  from {
+    transform: translate(calc(120 * var(--u)), calc(90 * var(--u)));
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+@keyframes drag-keys {
+  from {
+    transform: translate(calc(170 * var(--u)), calc(-100 * var(--u)));
+  }
+
+  to {
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

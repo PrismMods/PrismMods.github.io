@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PrismMods — Mods for A Dance of Fire and Ice</title>
-  <meta name="description"
+  <title data-i18n="PAGE_TITLE">PrismMods — Mods for A Dance of Fire and Ice</title>
+  <meta name="description" data-i18n="PAGE_DESC"
     content="Quartz, Sapphire, Bismuth and Amethyst: free, open-source mods for A Dance of Fire and Ice.">
   <meta name="color-scheme" content="light dark">
 
@@ -67,10 +67,7 @@
       <div class="hero-copy">
         <p class="eyebrow" data-i18n="GAME_TITLE">A Dance of Fire and Ice</p>
         <h1 class="split">Prism&nbsp;Mods</h1>
-        <p class="lede" data-i18n="LEDE">
-          Gameplay, level editing, and online play — one mod each, all free and
-          open source.
-        </p>
+        <p class="lede" data-i18n="LEDE">Gameplay, level editing, and online play — one mod each, all free and open source.</p>
       </div>
 
       <svg class="stage" viewBox="0 0 640 420" aria-hidden="true" focusable="false">
@@ -182,48 +179,42 @@
 
     <section id="mods" class="mods" aria-labelledby="mods-heading">
       <h2 id="mods-heading" class="section-label reveal" data-i18n="MODS_HEADING">The mod collection</h2>
-      <ul class="grid">
+      <ul class="modlist">
 
-        <li class="mod reveal" style="--gem:#e4699a">
-          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · <span data-i18n="CAT_GAMEPLAY">Gameplay</span>
-          </p>
-          <h3>Quartz <span class="badge" data-i18n="STAGE_BETA">Beta</span></h3>
-          <p class="blurb" data-i18n="QUARTZ_BLURB">The all-in-one mod, and the place to start.</p>
-          <p class="links">
-            <a href="https://quartzz.xyz/" data-i18n="LINK_SITE">Website</a>
-            <a href="https://quartzz.xyz/docs/" data-i18n="LINK_DOCS">Docs</a>
-            <a href="https://github.com/PrismMods/Quartz" data-i18n="LINK_SOURCE">Source</a>
-          </p>
+        <li class="reveal" style="--gem:#e8a3b4">
+          <a class="row" href="quartz/">
+            <span class="row-formula formula">SiO<sub>2</sub></span>
+            <span class="row-name">Quartz <small data-i18n="CAT_GAMEPLAY">Gameplay</small></span>
+            <span class="row-blurb" data-i18n="QUARTZ_BLURB">The all-in-one mod, and the place to start.</span>
+            <span class="badge" data-i18n="STAGE_STABLE">Stable</span>
+          </a>
         </li>
 
-        <li class="mod reveal" style="--gem:#3a6ff0">
-          <p class="meta"><span class="formula">Al<sub>2</sub>O<sub>3</sub></span> · <span
-              data-i18n="CAT_EDITOR">Editor</span></p>
-          <h3>Sapphire <span class="badge" data-i18n="STAGE_ALPHA">Alpha</span></h3>
-          <p class="blurb" data-i18n="SAPPHIRE_BLURB">A suite of tools for the level editor, for charters and VFXers.
-          </p>
-          <p class="links">
-            <a href="https://github.com/PrismMods/Sapphire" data-i18n="LINK_SOURCE">Source</a>
-          </p>
+        <li class="reveal" style="--gem:#3a6ff0">
+          <a class="row" href="sapphire/">
+            <span class="row-formula formula">Al<sub>2</sub>O<sub>3</sub></span>
+            <span class="row-name">Sapphire <small data-i18n="CAT_EDITOR">Editor</small></span>
+            <span class="row-blurb" data-i18n="SAPPHIRE_BLURB">A suite of tools for the level editor, for charters and VFXers.</span>
+            <span class="badge" data-i18n="STAGE_ALPHA">Alpha</span>
+          </a>
         </li>
 
-        <li class="mod reveal bismuth" style="--gem:#12b5a0">
-          <p class="meta"><span class="formula">Bi</span> · <span data-i18n="CAT_GAMEPLAY_LITE">Gameplay, lite</span>
-          </p>
-          <h3>Bismuth <span class="badge" data-i18n="STAGE_STABLE">Stable</span></h3>
-          <p class="blurb" data-i18n="BISMUTH_BLURB">Quartz stripped down, for those who only want the overlays and
-            basics.</p>
-          <p class="links">
-            <a href="https://github.com/PrismMods/Bismuth" data-i18n="LINK_SOURCE">Source</a>
-          </p>
+        <li class="reveal bismuth" style="--gem:#12b5a0">
+          <a class="row" href="bismuth/">
+            <span class="row-formula formula">Bi</span>
+            <span class="row-name">Bismuth <small data-i18n="CAT_GAMEPLAY_LITE">Gameplay, lite</small></span>
+            <span class="row-blurb" data-i18n="BISMUTH_BLURB">Quartz stripped down, for those who only want the overlays and basics.</span>
+            <span class="badge" data-i18n="STAGE_STABLE">Stable</span>
+          </a>
         </li>
 
-        <li class="mod reveal soon" style="--gem:#8b5cf6">
-          <p class="meta"><span class="formula">SiO<sub>2</sub></span> · <span
-              data-i18n="CAT_MULTIPLAYER">Multiplayer</span></p>
-          <h3>Amethyst <span class="badge" data-i18n="STAGE_DEV">In development</span></h3>
-          <p class="blurb" data-i18n="AMETHYST_BLURB">Online multiplayer, currently in development.</p>
-          <p class="links"><span class="pending" data-i18n="NO_REPO">No public repo yet</span></p>
+        <li class="reveal" style="--gem:#8b5cf6">
+          <a class="row" href="amethyst/">
+            <span class="row-formula formula">SiO<sub>2</sub></span>
+            <span class="row-name">Amethyst <small data-i18n="CAT_MULTIPLAYER">Multiplayer</small></span>
+            <span class="row-blurb" data-i18n="AMETHYST_BLURB">Online multiplayer, currently in development.</span>
+            <span class="badge" data-i18n="STAGE_DEV">In development</span>
+          </a>
         </li>
 
       </ul>
@@ -239,6 +230,8 @@
             <li><a href="https://github.com/kkorenn">koren</a></li>
             <li><a href="https://github.com/sbrothers7">sbrothers7</a></li>
             <li><a href="https://github.com/reverie97">reverie</a></li>
+            <li><a href="https://github.com/Kkitut">kkitut</a></li>
+            <li><a href="https://github.com/square3ang">square3ang</a></li>
           </ul>
         </div>
 
@@ -261,135 +254,11 @@
     <p data-i18n="FOOTER_NOTE">Community mods. Not affiliated with 7th Beat Games.</p>
   </footer>
 
+  <script src="site.js"></script>
   <script>
-    const root = document.documentElement;
-    const btn = document.getElementById('theme-toggle');
-    const label = () => {
-      const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
-      const dict = STRINGS[lang];
-      btn.setAttribute('aria-label', dark ? dict.THEME_TO_LIGHT : dict.THEME_TO_DARK);
-    };
-    btn.addEventListener('click', () => {
-      const dark = getComputedStyle(root).getPropertyValue('--is-dark').trim() === '1';
-      root.dataset.theme = dark ? 'light' : 'dark';
-      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) { }
-      label();
-    });
-    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
-
-    // Locale codes and key style follow PrismMods/Quartz-i18n. Product names stay
-    // in Latin script there, so they stay in Latin here too.
-    const STRINGS = {
-      'en-US': {
-        LANG_NAME: '한국어',
-        LANG_SWITCH: 'Switch to Korean',
-        PAGE_TITLE: 'PrismMods — Mods for A Dance of Fire and Ice',
-        PAGE_DESC: 'Quartz, Sapphire, Bismuth and Amethyst: free, open-source mods for A Dance of Fire and Ice.',
-        SKIP_TO_MODS: 'Skip to the mods',
-        GAME_TITLE: 'A Dance of Fire and Ice',
-        LEDE: 'Gameplay, level editing, and online play — one mod each, all free and open source.',
-        MODS_HEADING: 'The mod collection',
-        CAT_GAMEPLAY: 'Gameplay',
-        CAT_GAMEPLAY_LITE: 'Gameplay, lite',
-        CAT_EDITOR: 'Editor',
-        CAT_MULTIPLAYER: 'Multiplayer',
-        STAGE_BETA: 'Beta',
-        STAGE_ALPHA: 'Alpha',
-        STAGE_STABLE: 'Stable',
-        STAGE_DEV: 'In development',
-        QUARTZ_BLURB: 'The all-in-one mod, and the place to start.',
-        SAPPHIRE_BLURB: 'A suite of tools for the level editor, for charters and VFXers.',
-        BISMUTH_BLURB: 'Quartz stripped down, for those who only want the overlays and basics.',
-        AMETHYST_BLURB: 'Online multiplayer, currently in development.',
-        LINK_SITE: 'Website',
-        LINK_DOCS: 'Docs',
-        LINK_SOURCE: 'Source',
-        NO_REPO: 'No public repo yet',
-        CREDITS_HEADING: 'Credits',
-        CREDITS_DEVS: 'Developers',
-        CREDITS_THANKS: 'Special thanks',
-        CREDITS_TESTERS: 'and every early supporter and alpha/beta tester',
-        FOOTER_NOTE: 'Community mods. Not affiliated with 7th Beat Games.',
-        THEME_TO_DARK: 'Switch to dark theme',
-        THEME_TO_LIGHT: 'Switch to light theme',
-      },
-      'ko-KR': {
-        LANG_NAME: 'English',
-        LANG_SWITCH: '영어로 전환',
-        PAGE_TITLE: 'PrismMods — 얼음과 불의 춤 모드',
-        PAGE_DESC: 'Quartz, Sapphire, Bismuth, Amethyst — 얼음과 불의 춤을 위한 무료 오픈 소스 모드.',
-        SKIP_TO_MODS: '모드 목록으로 건너뛰기',
-        GAME_TITLE: '불과 얼음의 춤',
-        LEDE: '게임플레이, 레벨 에디터, 온라인 플레이 — 각각 하나의 모드로, 모두 무료 오픈 소스입니다.',
-        MODS_HEADING: '모드 목록',
-        CAT_GAMEPLAY: '게임플레이',
-        CAT_GAMEPLAY_LITE: '게임플레이, 라이트',
-        CAT_EDITOR: '에디터',
-        CAT_MULTIPLAYER: '멀티플레이어',
-        STAGE_BETA: '베타',
-        STAGE_ALPHA: '알파',
-        STAGE_STABLE: '정식 버전',
-        STAGE_DEV: '개발 중',
-        QUARTZ_BLURB: '올인원 (all-in-one) 모드입니다. 이곳에서 시작하세요.',
-        SAPPHIRE_BLURB: '레벨 에디터를 위한 도구 모음입니다. 채보와 VFX 제작자를 위해 만들어졌습니다.',
-        BISMUTH_BLURB: '오버레이와 기본 기능만 필요한 분들을 위한 Quartz의 경량 버전입니다.',
-        AMETHYST_BLURB: '온라인 멀티플레이어입니다. 현재 개발 중입니다.',
-        LINK_SITE: '웹사이트',
-        LINK_DOCS: '문서',
-        LINK_SOURCE: '소스',
-        NO_REPO: '아직 공개된 저장소가 없습니다',
-        CREDITS_HEADING: '크레딧',
-        CREDITS_DEVS: '개발자',
-        CREDITS_THANKS: '특별 감사',
-        CREDITS_TESTERS: '그리고 초기 서포터와 알파·베타 테스터 여러분께 감사드립니다.',
-        FOOTER_NOTE: 'Prism Mods는 커뮤니티 프로젝트이며, 7th Beat Games에 소속 및 제휴되지 않았음을 알립니다.',
-        THEME_TO_DARK: '다크 테마로 전환',
-        THEME_TO_LIGHT: '라이트 테마로 전환',
-      },
-    };
-
-    const langBtn = document.getElementById('lang-toggle');
-    const description = document.querySelector('meta[name="description"]');
-    let lang = STRINGS[root.lang] ? root.lang : 'en-US';
-
-    // Pretendard covers Hangul; Geist stays ahead of it in the stack so Latin
-    // keeps its own face. 53KB of CSS, so it only loads once Korean is asked for.
-    let korFont = false;
-    const loadKorean = () => {
-      if (korFont) return;
-      korFont = true;
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9'
-        + '/dist/web/variable/pretendardvariable-dynamic-subset.min.css';
-      document.head.append(link);
-    };
-
-    const applyLang = (next) => {
-      lang = STRINGS[next] ? next : 'en-US';
-      const dict = STRINGS[lang];
-      root.lang = lang;
-      document.title = dict.PAGE_TITLE;
-      if (description) description.content = dict.PAGE_DESC;
-      for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = dict[el.dataset.i18n];
-      langBtn.textContent = dict.LANG_NAME;
-      langBtn.setAttribute('lang', lang === 'en-US' ? 'ko' : 'en');
-      langBtn.setAttribute('aria-label', dict.LANG_SWITCH);
-      label();
-      if (lang === 'ko-KR') loadKorean();
-    };
-
-    langBtn.addEventListener('click', () => {
-      applyLang(lang === 'ko-KR' ? 'en-US' : 'ko-KR');
-      try { localStorage.setItem('lang', lang); } catch (e) { }
-    });
-
-    applyLang(lang);
-
-
     const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Cards settle in as they arrive, once each.
+    // Rows settle in as they arrive, once each.
     const seen = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (!entry.isIntersecting) continue;
