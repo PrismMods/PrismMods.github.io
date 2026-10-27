@@ -2,7 +2,7 @@
 
 ## Turning Topaz off
 
-The toggle at the bottom of the settings panel's tab rail is the master switch. Off, Topaz stops changing the game — no overlay, key viewer, HUD layout changes or game-text restyling — while the panel, `Ctrl+B` and the update check keep working. The setting persists across restarts.
+The toggle at the bottom of the settings panel's tab rail is the master switch. Off, Topaz stops changing the game — no overlay, key viewer, HUD layout changes or game-text restyling — while the panel, `Ctrl+T` and the update check keep working. The setting persists across restarts.
 
 To unload Topaz completely, switch it off in the UMM mods menu.
 

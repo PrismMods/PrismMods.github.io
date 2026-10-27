@@ -12,13 +12,13 @@ Topaz needs **A Dance of Fire and Ice 3.3.0** or later. It's a UnityModManager m
 2. Download the latest `Topaz.zip` from the releases page.
 3. Extract it into `…/A Dance of Fire and Ice/Mods/`.
 4. Start the game and switch **Topaz** on in the UMM mods menu.
-5. Press `Ctrl+B` to open the settings.
+5. Press `Ctrl+T` to open the settings.
 
 ## MelonLoader
 
 1. Install the UMMCompat plugin.
 2. Extract `Topaz.zip` into `…/A Dance of Fire and Ice/UMMMods/`.
-3. Start the game and press `Ctrl+B`.
+3. Start the game and press `Ctrl+T`.
 
 !!! warning "Only one copy"
     UnityModManager loads Topaz from `Mods/Topaz`, and MelonLoader from `UMMMods/Topaz`. If both exist, Topaz asks which loader you use and offers to delete the unused copy, bringing your settings, key counts and attempts across. See [Troubleshooting](troubleshooting.md#two-copies-installed).

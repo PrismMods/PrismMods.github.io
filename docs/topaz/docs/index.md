@@ -6,7 +6,7 @@ Topaz is an overlay and quality-of-life mod for **A Dance of Fire and Ice**, and
 
 ## Opening the settings
 
-Press `Ctrl+B` in-game to open the settings panel. The toggle at the bottom of its tab rail is the master switch: off, Topaz stops changing the game but the panel stays available.
+Press `Ctrl+T` in-game to open the settings panel. The toggle at the bottom of its tab rail is the master switch: off, Topaz stops changing the game but the panel stays available.
 
 ## Features
 
