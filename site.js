@@ -37,6 +37,8 @@ const STRINGS = {
     STAGE_ALPHA: 'Alpha',
     STAGE_STABLE: 'Stable',
     STAGE_DEV: 'In development',
+    STAGE_BETA: 'Beta',
+    STAGE_PRE: 'Pre-release',
     BTN_DOWNLOAD: 'Download',
     BTN_DOCS: 'Docs',
     BTN_SOURCE: 'Source',
@@ -63,25 +65,31 @@ const STRINGS = {
     QUARTZ_TITLE: 'Quartz — PrismMods',
     QUARTZ_DESC: 'Quartz is the all-in-one mod for A Dance of Fire and Ice: overlays, input tools, calibration and community levels in one in-game menu.',
     QUARTZ_TAG: 'An all-in-one mod for A Dance of Fire and Ice.',
-    QUARTZ_STATEMENT: 'Quartz adds overlays, input tools, calibration, a TUF level browser and Discord to the game. Each feature is a separate module that can be installed or removed.',
-    QUARTZ_S1_TITLE: 'Modules',
-    QUARTZ_S1_BODY: 'Features are installed, updated, turned off or removed from the Modules tab in-game.',
+    QUARTZ_STATEMENT: 'Quartz adds overlays, input tools, calibration, visual tweaks and a TUF level browser to the game. Every feature is built in and turned on or off from one tab.',
+    QUARTZ_S1_TITLE: 'Features',
+    QUARTZ_S1_BODY: 'Every feature ships inside Quartz. The Features tab turns each one on or off, and turning one on also turns on what it needs.',
     QUARTZ_S2_TITLE: 'Overlays',
-    QUARTZ_S2_BODY: 'Key viewer, combo, judgements, progress bar and custom stat panels. Reorganize mode moves them by dragging.',
+    QUARTZ_S2_BODY: 'Key viewer, combo, judgements, progress bar, song title and custom stat panels. The menu key opens the reorganize hub, where they are dragged, resized, rotated and anchored.',
     QUARTZ_S3_TITLE: 'TUF levels',
     QUARTZ_S3_BODY: 'Browse, download and play TUF levels and packs inside the game.',
     QUARTZ_F_CALIBRATION: 'Calibration',
     QUARTZ_F_CALIBRATION_LINE: 'Sets the input offset from play, with timing history per map.',
-    QUARTZ_F_ACCURACY: 'Too Much Accuracy',
-    QUARTZ_F_ACCURACY_LINE: 'Per-hit accuracy with a custom curve, death markers and an exportable run log.',
+    QUARTZ_F_ANTICHATTER: 'AntiChatter',
+    QUARTZ_F_ANTICHATTER_LINE: 'Drops double inputs from a chattering key and keeps a bouncing hold from breaking.',
+    QUARTZ_F_INPUT: 'Key limiter',
+    QUARTZ_F_INPUT_LINE: 'Limits gameplay input to chosen keys.',
     QUARTZ_F_PRACTICE: 'Practice difficulty',
     QUARTZ_F_PRACTICE_LINE: 'Keys that switch difficulty and pitch mid-level.',
-    QUARTZ_F_INPUT: 'Key limiter',
-    QUARTZ_F_INPUT_LINE: 'Limits input to chosen keys and filters key chatter.',
+    QUARTZ_F_RESTRICTION: 'Judgement restriction',
+    QUARTZ_F_RESTRICTION_LINE: 'Fails a run early on a judgement rule or a miss cap.',
+    QUARTZ_F_TILEARC: 'Tile Arc',
+    QUARTZ_F_TILEARC_LINE: 'Rounds the corner of every tile turn, as far as you choose.',
+    QUARTZ_F_PLANETS: 'Planet colours',
+    QUARTZ_F_PLANETS_LINE: 'Custom planet and tail colours.',
+    QUARTZ_F_EDITOR: 'Editor tools',
+    QUARTZ_F_EDITOR_LINE: 'Editor readouts, a BGA mod, and tile flip and rotate.',
     QUARTZ_F_PROFILES: 'Profiles',
     QUARTZ_F_PROFILES_LINE: 'Separate settings profiles, shareable as files.',
-    QUARTZ_F_DISCORD: 'Discord',
-    QUARTZ_F_DISCORD_LINE: 'Messages and voice chat in-game.',
     QUARTZ_F_EFFECTS: 'Effect remover',
     QUARTZ_F_EFFECTS_LINE: 'Removes level effects, in Simple or Enhanced mode.',
     QUARTZ_F_ADDONS: 'Addons',
@@ -175,6 +183,8 @@ const STRINGS = {
     STAGE_ALPHA: '알파',
     STAGE_STABLE: '정식 버전',
     STAGE_DEV: '개발 중',
+    STAGE_BETA: '베타',
+    STAGE_PRE: '프리릴리스',
     BTN_DOWNLOAD: '다운로드',
     BTN_DOCS: '문서',
     BTN_SOURCE: '소스',
@@ -201,25 +211,31 @@ const STRINGS = {
     QUARTZ_TITLE: 'Quartz — PrismMods',
     QUARTZ_DESC: 'Quartz는 얼음과 불의 춤을 위한 올인원 모드입니다. 오버레이, 입력 도구, 보정, 커뮤니티 레벨을 게임 안의 메뉴 하나에 담았습니다.',
     QUARTZ_TAG: '얼음과 불의 춤을 위한 올인원 모드.',
-    QUARTZ_STATEMENT: 'Quartz는 오버레이, 입력 도구, 보정, TUF 레벨 브라우저, 디스코드 기능을 게임에 추가합니다. 각 기능은 따로 설치하거나 제거할 수 있는 모듈입니다.',
-    QUARTZ_S1_TITLE: '모듈',
-    QUARTZ_S1_BODY: '게임 안의 모듈 탭에서 기능을 설치, 업데이트, 비활성화, 제거합니다.',
+    QUARTZ_STATEMENT: 'Quartz는 오버레이, 입력 도구, 보정, 비주얼 트윅, TUF 레벨 브라우저를 게임에 추가합니다. 모든 기능이 내장되어 있고, 탭 하나에서 켜고 끕니다.',
+    QUARTZ_S1_TITLE: '기능',
+    QUARTZ_S1_BODY: '모든 기능이 Quartz 안에 들어 있습니다. 기능 탭에서 하나씩 켜고 끄며, 기능을 켜면 그 기능에 필요한 기능도 함께 켜집니다.',
     QUARTZ_S2_TITLE: '오버레이',
-    QUARTZ_S2_BODY: '키 뷰어, 콤보, 판정, 진행 바, 사용자 통계 패널. 재배치 모드에서 끌어서 위치를 옮깁니다.',
+    QUARTZ_S2_BODY: '키 뷰어, 콤보, 판정, 진행 바, 곡 제목, 사용자 통계 패널. 메뉴 키로 여는 재배치 허브에서 끌어서 옮기고, 크기와 각도를 바꾸고, 앵커를 정합니다.',
     QUARTZ_S3_TITLE: 'TUF 레벨',
     QUARTZ_S3_BODY: '게임 안에서 TUF 레벨과 레벨 팩을 찾아보고, 다운로드하고, 플레이합니다.',
     QUARTZ_F_CALIBRATION: '보정',
     QUARTZ_F_CALIBRATION_LINE: '플레이 기록으로 입력 오프셋을 맞추고, 맵별 타이밍 기록을 남깁니다.',
-    QUARTZ_F_ACCURACY: 'Too Much Accuracy',
-    QUARTZ_F_ACCURACY_LINE: '조정 가능한 곡선의 타일별 정확도, 사망 지점 표시, 내보낼 수 있는 플레이 기록.',
+    QUARTZ_F_ANTICHATTER: 'AntiChatter',
+    QUARTZ_F_ANTICHATTER_LINE: '채터링으로 두 번 들어간 입력을 걸러내고, 누르고 있는 키가 튀어도 홀드가 끊기지 않게 합니다.',
+    QUARTZ_F_INPUT: '키 리미터',
+    QUARTZ_F_INPUT_LINE: '게임 입력을 정한 키로 제한합니다.',
     QUARTZ_F_PRACTICE: '연습 난이도',
     QUARTZ_F_PRACTICE_LINE: '레벨 중에 난이도와 피치를 바꾸는 키.',
-    QUARTZ_F_INPUT: '키 리미터',
-    QUARTZ_F_INPUT_LINE: '입력을 정한 키로 제한하고 채터링을 걸러냅니다.',
+    QUARTZ_F_RESTRICTION: '판정 제한',
+    QUARTZ_F_RESTRICTION_LINE: '판정 규칙이나 미스 한도에 걸리면 바로 실패 처리합니다.',
+    QUARTZ_F_TILEARC: '타일 곡선',
+    QUARTZ_F_TILEARC_LINE: '모든 타일 꺾임의 바깥 모서리를 원하는 만큼 둥글게 만듭니다.',
+    QUARTZ_F_PLANETS: '행성 색상',
+    QUARTZ_F_PLANETS_LINE: '행성과 꼬리의 색을 바꿉니다.',
+    QUARTZ_F_EDITOR: '에디터 도구',
+    QUARTZ_F_EDITOR_LINE: '에디터 정보 표시, BGA 모드, 타일 반전과 회전.',
     QUARTZ_F_PROFILES: '프로필',
     QUARTZ_F_PROFILES_LINE: '설정 프로필을 나누고 파일로 공유합니다.',
-    QUARTZ_F_DISCORD: 'Discord',
-    QUARTZ_F_DISCORD_LINE: '게임 안에서 메시지와 음성 채팅.',
     QUARTZ_F_EFFECTS: '이펙트 제거',
     QUARTZ_F_EFFECTS_LINE: '레벨 이펙트를 간단 또는 고급 모드로 제거합니다.',
     QUARTZ_F_ADDONS: '애드온',
@@ -342,6 +358,55 @@ langBtn.addEventListener('click', () => {
 });
 
 applyLang(lang);
+
+// Latest releases: the newest stable and, when it is newer still, the newest
+// alpha or beta, read from GitHub. Unauthenticated calls get 60 an hour per
+// visitor, so each repo's answer is kept for an hour. Quartz also keeps rolling
+// latest-* releases; only version tags count.
+const VERSION_TAG = /^v?\d/;
+const preKey = (tag) =>
+  /beta|-b\d/i.test(tag) ? 'STAGE_BETA' : /alpha|-a\d/i.test(tag) ? 'STAGE_ALPHA' : 'STAGE_PRE';
+
+const releases = async (repo) => {
+  const key = 'releases:' + repo;
+  try {
+    const hit = JSON.parse(localStorage.getItem(key));
+    if (hit && Date.now() - hit.t < 36e5) return hit.v;
+  } catch (e) { }
+  const api = 'https://api.github.com/repos/' + repo + '/releases';
+  // /latest is 404 when a repo has no stable release yet; anything else failing
+  // (a rate limit, say) shows nothing rather than a half answer.
+  const read = (r) => (r.ok ? r.json() : r.status === 404 ? null : Promise.reject(r.status));
+  const [latest, recent] = await Promise.all([
+    fetch(api + '/latest').then(read),
+    fetch(api + '?per_page=5').then(read),
+  ]);
+  const stable = latest && VERSION_TAG.test(latest.tag_name) ? latest : null;
+  const pre = (recent || []).find((r) => r.prerelease && !r.draft && VERSION_TAG.test(r.tag_name)
+    && (!stable || r.published_at > stable.published_at));
+  const slim = (r) => r && { tag: r.tag_name, url: r.html_url };
+  const v = { stable: slim(stable), pre: slim(pre) };
+  try { localStorage.setItem(key, JSON.stringify({ t: Date.now(), v })); } catch (e) { }
+  return v;
+};
+
+for (const el of document.querySelectorAll('[data-repo]')) {
+  releases(el.dataset.repo).then(({ stable, pre }) => {
+    // Home rows are links already, so their versions are plain text.
+    const tag = el.closest('a') ? 'span' : 'a';
+    el.replaceChildren(...[[stable, 'STAGE_STABLE'], [pre, pre && preKey(pre.tag)]]
+      .filter(([r]) => r)
+      .map(([r, k]) => {
+        const item = document.createElement(tag);
+        if (tag === 'a') item.href = r.url;
+        const stage = document.createElement('span');
+        stage.dataset.i18n = k;
+        stage.textContent = STRINGS[lang][k];
+        item.append(stage, ' ' + r.tag);
+        return item;
+      }));
+  }, () => { });
+}
 
 // Pinned scenes: whichever step crosses the reading line owns the stage. The
 // scrubbed motion inside each pane is CSS; only the swap between panes needs

@@ -68,52 +68,52 @@
         <h1 id="mod-name" class="intro-name">Quartz</h1>
         <p class="intro-tag" data-i18n="QUARTZ_TAG">An all-in-one mod for A Dance of Fire and Ice.</p>
         <p class="intro-meta">
-          <span class="badge" data-i18n="STAGE_STABLE">Stable</span>
-          <span data-i18n="CAT_GAMEPLAY">Gameplay</span>
+          <span class="badge gameplay" data-i18n="CAT_GAMEPLAY">Gameplay</span>
         </p>
+        <p class="releases" data-repo="PrismMods/Quartz"></p>
       </div>
       <canvas class="gem" data-crystal="quartz" aria-hidden="true"></canvas>
     </section>
 
     <section class="statement">
-      <p><span data-i18n="QUARTZ_STATEMENT">Quartz adds overlays, input tools, calibration, a TUF level browser and Discord to the game. Each feature is a separate module that can be installed or removed.</span></p>
+      <p><span data-i18n="QUARTZ_STATEMENT">Quartz adds overlays, input tools, calibration, visual tweaks and a TUF level browser to the game. Every feature is built in and turned on or off from one tab.</span></p>
     </section>
 
     <section class="scene">
       <div class="scene-stage" aria-hidden="true">
         <div class="screen game">
 
-          <!-- Modules tab: features switch on one by one, the last still
-               installing. -->
+          <!-- Features tab: everything is built in. Overlay Core switches on
+               first, then the features that need it. -->
           <div class="pane on" data-step="0">
             <div class="menu" style="--x:36;--y:26;--w:408;--h:248">
               <ul class="menu-side">
-                <li class="on">Modules</li>
+                <li class="on">Features</li>
                 <li>Overlay</li>
                 <li>Gameplay</li>
-                <li>Editor</li>
+                <li>Visuals</li>
+                <li>Tweaks</li>
                 <li>TUF</li>
-                <li>Discord</li>
               </ul>
               <div class="menu-body">
-                <p class="menu-title">Modules</p>
-                <p class="mod-row"><span>Key Viewer</span><i class="switch scrub"
+                <p class="menu-title">Features</p>
+                <p class="mod-row"><span>Overlay Core</span><i class="switch scrub"
                     style="--r:cover 26% cover 30%"></i></p>
-                <p class="mod-row"><span>Combo</span><i class="switch scrub" style="--r:cover 32% cover 36%"></i></p>
-                <p class="mod-row"><span>Progress Bar</span><i class="switch scrub"
-                    style="--r:cover 38% cover 42%"></i></p>
-                <p class="mod-row"><span>Calibration</span><i class="switch scrub"
+                <p class="mod-row"><span>Key Viewer</span><i class="switch scrub"
+                    style="--r:cover 32% cover 36%"></i></p>
+                <p class="mod-row"><span>Combo</span><i class="switch scrub" style="--r:cover 38% cover 42%"></i></p>
+                <p class="mod-row"><span>AntiChatter</span><i class="switch scrub"
                     style="--r:cover 44% cover 48%"></i></p>
-                <p class="mod-row"><span>TUF</span><span class="meter"><i class="fill scrub"
-                      style="--r:cover 48% cover 66%"></i></span></p>
+                <p class="mod-row"><span>Tile Arc</span><i class="switch scrub"
+                    style="--r:cover 50% cover 54%"></i></p>
               </div>
             </div>
           </div>
 
-          <!-- Reorganize: the settings window is gone and every overlay is a
-               draggable box until Exit Reorganize. -->
+          <!-- Reorganize hub: the menu key dims the game, every overlay
+               becomes a draggable box, and Settings / Close sit mid-screen. -->
           <div class="pane" data-step="1">
-            <svg class="track" viewBox="0 0 480 300">
+            <svg class="track" viewBox="0 0 480 300" style="opacity:.45">
               <path class="lane-tiles" d="M96,168 L384,168" />
               <circle class="planet fire" cx="240" cy="168" r="9" />
               <circle class="planet ice" cx="270" cy="168" r="9" />
@@ -121,32 +121,33 @@
             <span class="edge-progress" style="--x:0;--y:0;--w:480"><i></i></span>
             <span class="drag combo-box scrub" style="--x:190;--y:28;--w:100"><small>Combo</small>128</span>
             <span class="drag keys-box scrub" style="--x:20;--y:232;--w:120"><i></i><i></i><i></i><i></i></span>
-            <span class="ui-btn exit" style="--x:350;--y:264;--w:114">Exit Reorganize</span>
+            <span class="ui-btn" style="--x:172;--y:200;--w:64">Settings</span>
+            <span class="ui-btn" style="--x:244;--y:200;--w:64">Close</span>
           </div>
 
           <!-- TUF browser: downloads fill in, one row at a time. -->
           <div class="pane" data-step="2">
             <div class="menu" style="--x:36;--y:26;--w:408;--h:248">
               <ul class="menu-side">
-                <li>Modules</li>
+                <li>Features</li>
                 <li>Overlay</li>
                 <li>Gameplay</li>
-                <li>Editor</li>
+                <li>Visuals</li>
+                <li>Tweaks</li>
                 <li class="on">TUF</li>
-                <li>Discord</li>
               </ul>
               <div class="menu-body">
                 <p class="menu-title">TUF</p>
-                <p class="level-row"><span class="thumb" style="--hue:330"></span><span class="lines"><i></i><i
+                <p class="level-row"><span class="diff" style="--d:#1fa5f2"><small>P</small>4</span><span class="lines"><i></i><i
                       class="short"></i></span><span class="meter"><i class="fill scrub"
                       style="--r:cover 26% cover 40%"></i></span></p>
-                <p class="level-row"><span class="thumb" style="--hue:210"></span><span class="lines"><i></i><i
+                <p class="level-row"><span class="diff" style="--d:#6b4c8c"><small>U</small>8</span><span class="lines"><i></i><i
                       class="short"></i></span><span class="meter"><i class="fill scrub"
                       style="--r:cover 36% cover 52%"></i></span></p>
-                <p class="level-row"><span class="thumb" style="--hue:160"></span><span class="lines"><i></i><i
+                <p class="level-row"><span class="diff" style="--d:#44d433"><small>P</small>19</span><span class="lines"><i></i><i
                       class="short"></i></span><span class="meter"><i class="fill scrub"
                       style="--r:cover 46% cover 64%"></i></span></p>
-                <p class="level-row"><span class="thumb" style="--hue:40"></span><span class="lines"><i></i><i
+                <p class="level-row"><span class="diff" style="--d:#dc4450"><small>G</small>12</span><span class="lines"><i></i><i
                       class="short"></i></span><span class="meter"><i class="fill scrub"
                       style="--r:cover 56% cover 70%"></i></span></p>
               </div>
@@ -159,14 +160,14 @@
       <div class="steps">
         <div class="step on" data-step="0">
           <div class="step-copy">
-            <h2 data-i18n="QUARTZ_S1_TITLE">Modules</h2>
-            <p data-i18n="QUARTZ_S1_BODY">Features are installed, updated, turned off or removed from the Modules tab in-game.</p>
+            <h2 data-i18n="QUARTZ_S1_TITLE">Features</h2>
+            <p data-i18n="QUARTZ_S1_BODY">Every feature ships inside Quartz. The Features tab turns each one on or off, and turning one on also turns on what it needs.</p>
           </div>
         </div>
         <div class="step" data-step="1">
           <div class="step-copy">
             <h2 data-i18n="QUARTZ_S2_TITLE">Overlays</h2>
-            <p data-i18n="QUARTZ_S2_BODY">Key viewer, combo, judgements, progress bar and custom stat panels. Reorganize mode moves them by dragging.</p>
+            <p data-i18n="QUARTZ_S2_BODY">Key viewer, combo, judgements, progress bar, song title and custom stat panels. The menu key opens the reorganize hub, where they are dragged, resized, rotated and anchored.</p>
           </div>
         </div>
         <div class="step" data-step="2">
@@ -184,24 +185,33 @@
         <li><a href="https://quartzz.xyz/docs/features/calibration/"><span class="more-name"
               data-i18n="QUARTZ_F_CALIBRATION">Calibration</span>
             <span class="more-line" data-i18n="QUARTZ_F_CALIBRATION_LINE">Sets the input offset from play, with timing history per map.</span></a></li>
-        <li><a href="https://quartzz.xyz/docs/features/accuracy/"><span class="more-name"
-              data-i18n="QUARTZ_F_ACCURACY">Too Much Accuracy</span>
-            <span class="more-line" data-i18n="QUARTZ_F_ACCURACY_LINE">Per-hit accuracy with a custom curve, death markers and an exportable run log.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/antichatter/"><span class="more-name"
+              data-i18n="QUARTZ_F_ANTICHATTER">AntiChatter</span>
+            <span class="more-line" data-i18n="QUARTZ_F_ANTICHATTER_LINE">Drops double inputs from a chattering key and keeps a bouncing hold from breaking.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/key-limiter/"><span class="more-name"
+              data-i18n="QUARTZ_F_INPUT">Key limiter</span>
+            <span class="more-line" data-i18n="QUARTZ_F_INPUT_LINE">Limits gameplay input to chosen keys.</span></a></li>
         <li><a href="https://quartzz.xyz/docs/features/practice/"><span class="more-name"
               data-i18n="QUARTZ_F_PRACTICE">Practice difficulty</span>
             <span class="more-line" data-i18n="QUARTZ_F_PRACTICE_LINE">Keys that switch difficulty and pitch mid-level.</span></a></li>
-        <li><a href="https://quartzz.xyz/docs/features/key-limiter/"><span class="more-name"
-              data-i18n="QUARTZ_F_INPUT">Key limiter</span>
-            <span class="more-line" data-i18n="QUARTZ_F_INPUT_LINE">Limits input to chosen keys and filters key chatter.</span></a></li>
-        <li><a href="https://quartzz.xyz/docs/features/profiles/"><span class="more-name"
-              data-i18n="QUARTZ_F_PROFILES">Profiles</span>
-            <span class="more-line" data-i18n="QUARTZ_F_PROFILES_LINE">Separate settings profiles, shareable as files.</span></a></li>
-        <li><a href="https://quartzz.xyz/docs/features/discord/"><span class="more-name"
-              data-i18n="QUARTZ_F_DISCORD">Discord</span>
-            <span class="more-line" data-i18n="QUARTZ_F_DISCORD_LINE">Messages and voice chat in-game.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/restriction/"><span class="more-name"
+              data-i18n="QUARTZ_F_RESTRICTION">Judgement restriction</span>
+            <span class="more-line" data-i18n="QUARTZ_F_RESTRICTION_LINE">Fails a run early on a judgement rule or a miss cap.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/tile-arc/"><span class="more-name"
+              data-i18n="QUARTZ_F_TILEARC">Tile Arc</span>
+            <span class="more-line" data-i18n="QUARTZ_F_TILEARC_LINE">Rounds the corner of every tile turn, as far as you choose.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/planet-colors/"><span class="more-name"
+              data-i18n="QUARTZ_F_PLANETS">Planet colours</span>
+            <span class="more-line" data-i18n="QUARTZ_F_PLANETS_LINE">Custom planet and tail colours.</span></a></li>
         <li><a href="https://quartzz.xyz/docs/features/effect-remover/"><span class="more-name"
               data-i18n="QUARTZ_F_EFFECTS">Effect remover</span>
             <span class="more-line" data-i18n="QUARTZ_F_EFFECTS_LINE">Removes level effects, in Simple or Enhanced mode.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/editor/"><span class="more-name"
+              data-i18n="QUARTZ_F_EDITOR">Editor tools</span>
+            <span class="more-line" data-i18n="QUARTZ_F_EDITOR_LINE">Editor readouts, a BGA mod, and tile flip and rotate.</span></a></li>
+        <li><a href="https://quartzz.xyz/docs/features/profiles/"><span class="more-name"
+              data-i18n="QUARTZ_F_PROFILES">Profiles</span>
+            <span class="more-line" data-i18n="QUARTZ_F_PROFILES_LINE">Separate settings profiles, shareable as files.</span></a></li>
         <li><a href="https://quartzz.xyz/docs/features/addons/"><span class="more-name"
               data-i18n="QUARTZ_F_ADDONS">Addons</span>
             <span class="more-line" data-i18n="QUARTZ_F_ADDONS_LINE">Community addons with their own settings, panels and text tags.</span></a></li>

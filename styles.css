@@ -661,15 +661,6 @@ h1 {
   letter-spacing: -0.025em;
 }
 
-.row-name small {
-  display: block;
-  margin-top: 0.2rem;
-  color: var(--muted);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0;
-}
-
 .row-blurb {
   max-width: 44ch;
   color: var(--muted);
@@ -677,8 +668,18 @@ h1 {
   text-wrap: pretty;
 }
 
-.row .badge {
+.row-stage {
+  display: grid;
   justify-self: end;
+  justify-items: end;
+  gap: 0.6rem;
+}
+
+.row-stage .releases {
+  flex-direction: column;
+  align-items: end;
+  gap: 0.25rem;
+  margin: 0;
 }
 
 /* Narrow screens: formula over the name, the stage beside it, blurb below. */
@@ -693,24 +694,38 @@ h1 {
     grid-column: 1 / -1;
   }
 
-  .row .badge {
+  .row-stage {
     grid-row: 2;
     grid-column: 2;
     align-self: center;
   }
 }
 
+/* The kind of mod, colour coded by kind with hues from TUF's difficulty bar. */
 .badge {
-  padding: 0.2rem 0.5rem;
-  border: 1px solid var(--gem);
-  border-radius: 999px;
-  color: color-mix(in oklab, var(--gem) 70%, var(--ink));
+  padding: 0.25rem 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--cat) 50%, transparent);
+  border-radius: 0.3rem;
+  color: color-mix(in oklab, var(--cat) 65%, var(--ink));
+  background: color-mix(in oklab, var(--cat) 14%, transparent);
   font-family: var(--mono);
   font-size: 0.6rem;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+.badge.gameplay {
+  --cat: #00c46a;
+}
+
+.badge.editor {
+  --cat: #0099ff;
+}
+
+.badge.multiplayer {
+  --cat: #d20097;
 }
 
 /* ---------- credits ---------- */
@@ -853,6 +868,37 @@ h1 {
   margin: 2rem 0 0;
   color: var(--muted);
   font-size: 0.9rem;
+}
+
+/* Latest releases, filled in from GitHub; nothing shows until they arrive. */
+.releases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.25rem;
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.releases:empty {
+  display: none;
+}
+
+.releases a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.releases a:hover {
+  color: var(--ink);
+}
+
+.releases [data-i18n] {
+  color: color-mix(in oklab, var(--gem) 70%, var(--ink));
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* The crystal sits above the name on phones and beside it on wider screens,
@@ -1767,12 +1813,26 @@ h1 {
   transform-origin: left;
 }
 
-.thumb {
+/* TUF difficulty: the letter over the number on a disc of the level's colour. */
+.diff {
+  display: grid;
   flex: none;
-  width: calc(32 * var(--u));
-  height: calc(22 * var(--u));
-  background: linear-gradient(135deg, hsl(var(--hue) 60% 58%), hsl(calc(var(--hue) + 40) 55% 32%));
-  border-radius: calc(3 * var(--u));
+  place-content: center;
+  width: calc(24 * var(--u));
+  height: calc(24 * var(--u));
+  color: #fff;
+  font-size: calc(10.5 * var(--u));
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  background: var(--d);
+  border: calc(1.5 * var(--u)) solid rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+}
+
+.diff small {
+  font-size: calc(5 * var(--u));
+  font-weight: 600;
 }
 
 .lines {

@@ -322,7 +322,7 @@ for (const key of new Set(usedKeys)) {
 // Product names stay in Latin script, so a string that is only a name is the
 // one thing allowed to match.
 const NAMES = ['QUARTZ_TITLE', 'SAPPHIRE_TITLE', 'BISMUTH_TITLE', 'AMETHYST_TITLE',
-  'QUARTZ_F_ACCURACY', 'QUARTZ_F_DISCORD', 'BTN_FOLLOW', 'BTN_SITE'];
+  'QUARTZ_F_ANTICHATTER', 'BTN_FOLLOW', 'BTN_SITE'];
 const shared = base.filter((k) => !NAMES.includes(k) && dicts['en-US'][k] === dicts['ko-KR'][k]);
 assert.deepEqual(shared, [], `untranslated in ko-KR: ${shared.join(', ')}`);
 
