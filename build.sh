@@ -13,7 +13,7 @@ rm -rf pages
 mkdir pages
 rsync -a --exclude='.*' --exclude='/docs/' --exclude='/pages/' \
   --exclude='*.mjs' --exclude='*.sh' --exclude='README.md' ./ pages/
-for mod in sapphire bismuth; do
+for mod in sapphire topaz; do
   (cd "docs/$mod" && "$z" build -s)
   mv "docs/$mod/site" "pages/$mod/docs"
 done

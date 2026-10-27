@@ -542,7 +542,7 @@ h1 {
   max-width: var(--measure);
   margin-inline: auto;
   background: linear-gradient(90deg,
-      #8b5cf6 0%, #3a6ff0 26%, #12b5a0 50%, #e0b33c 72%, #e8a3b4 100%);
+      #8b5cf6 0%, #3a6ff0 26%, #12b5a0 50%, #f0703c 72%, #e8a3b4 100%);
   opacity: 0.9;
   transform-origin: left center;
   animation: beam 950ms var(--out) 340ms both;
@@ -632,13 +632,7 @@ h1 {
   transform: none;
 }
 
-/* Bismuth really is iridescent — it gets the only gradient edge. */
-.bismuth .row::before,
-.bismuth a::before {
-  background: linear-gradient(180deg, #12b5a0, #e0b33c 55%, #c05fd1);
-}
-
-/* Chemical formulae are case-sensitive: Bi is bismuth, BI is boron iodide. */
+/* Chemical formulae are case-sensitive: Co is cobalt, CO is carbon monoxide. */
 .formula {
   font-family: var(--mono);
   text-transform: none;
@@ -1480,7 +1474,7 @@ h1 {
   stroke-linejoin: round;
 }
 
-/* Bismuth: HUD, key viewer, game UI editor. Defaults are Bismuth's own:
+/* Topaz: HUD, key viewer, game UI editor. Defaults are Topaz's own:
    " | " separators, grey-to-blue progress that turns gold at 100%. */
 .hud-stats p {
   display: flex;
@@ -2461,7 +2455,7 @@ h1 {
 /* The tape travels its full length (the deepest note plus the visible track),
    and the keyframes below light each key while one of its notes crosses the
    key's top edge. Offsets are note depth ÷ 634, generated from the note
-   positions in bismuth/index.html; move a note and regenerate these. */
+   positions in topaz/index.html; move a note and regenerate these. */
 @keyframes rain {
   from {
     transform: none;

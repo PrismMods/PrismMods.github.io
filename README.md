@@ -2,19 +2,19 @@
 
 Home page for [PrismMods](https://github.com/PrismMods) — mods for
 *A Dance of Fire and Ice* — with a page per mod and docs for Sapphire and
-Bismuth. Quartz's docs live at [quartzz.xyz](https://quartzz.xyz/docs/).
+Topaz. Quartz's docs live at [quartzz.xyz](https://quartzz.xyz/docs/).
 
 ## Layout
 
 - `index.html` — home page: the prism hero and the mod list.
-- `quartz/`, `sapphire/`, `bismuth/`, `amethyst/` — one page per mod. Each sets
+- `quartz/`, `topaz/`, `sapphire/`, `amethyst/` — one page per mod. Each sets
   its own `--gem` colour on `<body>`.
 - `styles.css` — every page's styles, including the scroll-driven motion.
 - `site.js` — theme and language toggles, every page's English and Korean
   strings, the step switch for the pinned scenes, and the WebGL crystals in
   each mod page's hero.
-- `docs/sapphire/`, `docs/bismuth/` — Zensical docs, the same setup as
-  Quartz's. They build into `/sapphire/docs/` and `/bismuth/docs/`.
+- `docs/sapphire/`, `docs/topaz/` — Zensical docs, the same setup as
+  Quartz's. They build into `/sapphire/docs/` and `/topaz/docs/`.
 
 ## Checks
 

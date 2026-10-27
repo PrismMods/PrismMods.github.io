@@ -1,6 +1,6 @@
 # Overlay
 
-The overlay is Bismuth's in-game stat display: a column of stat rows on each side of the screen, the combo counter, timing scale, judgement counts, attempts and FPS.
+The overlay is Topaz's in-game stat display: a column of stat rows on each side of the screen, the combo counter, timing scale, judgement counts, attempts and FPS.
 
 ## Stat rows
 
@@ -58,7 +58,7 @@ Any judgement other than Perfect breaks the combo.
 
 **Attempts** counts your tries on each level, and the count is saved between sessions. **Full attempts** counts only the runs started from 0%, leaving checkpoint restarts out; it shows as a second row under Attempts.
 
-Both are off by default. You can move the attempts display anywhere on screen. Counts live in `BismuthAttempts.txt` in the mod folder.
+Both are off by default. You can move the attempts display anywhere on screen. Counts live in `TopazAttempts.txt` in the mod folder.
 
 ## FPS
 
@@ -66,4 +66,4 @@ A frame-rate counter in the bottom-right corner.
 
 ## Song title
 
-The song title isn't an overlay row, but Bismuth can restyle it: set its size and vertical offset, and draw it in the overlay font. See [Game UI](game-ui.md#song-title).
+The song title isn't an overlay row, but Topaz can restyle it: set its size and vertical offset, and draw it in the overlay font. See [Game UI](game-ui.md#song-title).

@@ -1,6 +1,6 @@
 # Game UI
 
-Bismuth can move, scale, hide and re-weight the game's own HUD, and hide parts of the interface outright.
+Topaz can move, scale, hide and re-weight the game's own HUD, and hide parts of the interface outright.
 
 ## Editing on screen
 
@@ -14,11 +14,11 @@ Each element also has a visibility setting, and text elements such as the autopl
 
 The editor works on the death percentage, the congratulations and strict-clear text, the results screen, the press-to-start prompt, the countdown, the difficulty and modifier displays, the autoplay label, and the hit error meter. While it's open, elements that are normally hidden are shown with sample text so you can place them.
 
-Two buttons reset everything: **Reset layout to Bismuth defaults** and **Reset layout to game defaults**. Fresh installs start from Bismuth's curated layout.
+Two buttons reset everything: **Reset layout to Topaz defaults** and **Reset layout to game defaults**. Fresh installs start from Topaz's curated layout.
 
 ## Element weights
 
-**Element weights** sets the font weight for each text element — the ones above, the judgement popups, and the song title. Leave one on **Auto** to keep Bismuth's choice. It applies when a [game font](fonts.md#game-text) is set.
+**Element weights** sets the font weight for each text element — the ones above, the judgement popups, and the song title. Leave one on **Auto** to keep Topaz's choice. It applies when a [game font](fonts.md#game-text) is set.
 
 ## Song title
 

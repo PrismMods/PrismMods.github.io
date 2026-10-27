@@ -2,7 +2,7 @@
    mod's own colour as the only accent. Sapphire's copy differs in --gem only. */
 
 :root {
-  --gem: #12b5a0;
+  --gem: #f0703c;
   --md-primary-fg-color: var(--gem);
   --md-primary-fg-color--light: color-mix(in oklab, var(--gem) 70%, #fff);
   --md-primary-fg-color--dark: color-mix(in oklab, var(--gem) 75%, #000);

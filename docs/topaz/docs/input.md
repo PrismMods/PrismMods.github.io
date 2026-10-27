@@ -13,4 +13,4 @@ A worn or bouncy switch can send two presses for one. The chatter blocker drops 
 
 ## Input while the menu is open
 
-**Block inputs while menu open** (on by default) stops the game from seeing any keyboard input while the Bismuth menu is open, so typing in a field or pressing a key to rebind doesn't also play the level or navigate the game's menus. The key viewer keeps showing presses either way.
+**Block inputs while menu open** (on by default) stops the game from seeing any keyboard input while the Topaz menu is open, so typing in a field or pressing a key to rebind doesn't also play the level or navigate the game's menus. The key viewer keeps showing presses either way.

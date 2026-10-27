@@ -1,6 +1,6 @@
 # Key viewer
 
-Bismuth shows your key presses on screen as a grid of key cells, with optional rain rising from each key, a keys-per-second counter and press totals.
+Topaz shows your key presses on screen as a grid of key cells, with optional rain rising from each key, a keys-per-second counter and press totals.
 
 There are two panels, **hand** and **foot**, each with its own list of presets. The **Key Viewer** switch at the top turns both off at once.
 
@@ -41,10 +41,10 @@ Counts persist across restarts when a preset has **Persist counts** on (the defa
 
 ## DM Note presets
 
-Bismuth reads and writes [DM Note](https://github.com/DmNote-App/DmNote) `preset.json` files.
+Topaz reads and writes [DM Note](https://github.com/DmNote-App/DmNote) `preset.json` files.
 
-- **Import** — put the file in the `DmNote` folder inside the Bismuth mod folder. The **DM Note presets** row on the Key Viewer page lists the files there; import one as a new hand or foot preset, and it becomes the active one.
+- **Import** — put the file in the `DmNote` folder inside the Topaz mod folder. The **DM Note presets** row on the Key Viewer page lists the files there; import one as a new hand or foot preset, and it becomes the active one.
 - **Export** — every preset editor has **Export to DM Note**.
 
 !!! note "What carries over"
-    DM Note places keys freely and styles each one; Bismuth uses rows and one style per preset. On import, keys are grouped into rows by height, and the first key's colours, border and sizes become the preset's. KPS and Total positions come across; KPS average and maximum don't.
+    DM Note places keys freely and styles each one; Topaz uses rows and one style per preset. On import, keys are grouped into rows by height, and the first key's colours, border and sizes become the preset's. KPS and Total positions come across; KPS average and maximum don't.

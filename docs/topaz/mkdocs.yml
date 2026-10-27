@@ -1,10 +1,10 @@
-site_name: Bismuth Docs
-site_url: https://prismmods.github.io/bismuth/docs/
-site_description: Documentation for Bismuth, the lite edition of Quartz for A Dance of Fire and Ice.
+site_name: Topaz Docs
+site_url: https://prismmods.github.io/topaz/docs/
+site_description: Documentation for Topaz, the lite edition of Quartz for A Dance of Fire and Ice.
 
-repo_url: https://github.com/PrismMods/Bismuth
-repo_name: PrismMods/Bismuth
-edit_uri: https://github.com/PrismMods/PrismMods.github.io/edit/main/docs/bismuth/docs/
+repo_url: https://github.com/PrismMods/Topaz
+repo_name: PrismMods/Topaz
+edit_uri: https://github.com/PrismMods/PrismMods.github.io/edit/main/docs/topaz/docs/
 
 theme:
   name: material
@@ -58,7 +58,7 @@ markdown_extensions:
 
 extra:
   generator: false
-  homepage: https://prismmods.github.io/bismuth/
+  homepage: https://prismmods.github.io/topaz/
 
 nav:
   - Overview: index.md

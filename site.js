@@ -49,13 +49,13 @@ const STRINGS = {
     MORE_HEADING: 'Other features',
 
     PAGE_TITLE: 'PrismMods — Mods for A Dance of Fire and Ice',
-    PAGE_DESC: 'Quartz, Sapphire, Bismuth and Amethyst: free, open-source mods for A Dance of Fire and Ice.',
+    PAGE_DESC: 'Quartz, Topaz, Sapphire and Amethyst: free, open-source mods for A Dance of Fire and Ice.',
     GAME_TITLE: 'A Dance of Fire and Ice',
     LEDE: 'Gameplay, level editing, and online play — one mod each, all free and open source.',
     MODS_HEADING: 'The mod collection',
     QUARTZ_BLURB: 'The all-in-one mod, and the place to start.',
     SAPPHIRE_BLURB: 'A suite of tools for the level editor, for charters and VFXers.',
-    BISMUTH_BLURB: 'Quartz stripped down, for those who only want the overlays and basics.',
+    TOPAZ_BLURB: 'Quartz stripped down, for those who only want the overlays and basics.',
     AMETHYST_BLURB: 'Online multiplayer, currently in development.',
     CREDITS_HEADING: 'Credits',
     CREDITS_DEVS: 'Developers',
@@ -132,33 +132,33 @@ const STRINGS = {
     SAPPHIRE_F_MODES_LINE: 'Switches between a charting view and a playtest view.',
     SAPPHIRE_GET_NOTE: 'Alpha. Runs on UnityModManager, or on MelonLoader with UMMCompat.',
 
-    BISMUTH_TITLE: 'Bismuth — PrismMods',
-    BISMUTH_DESC: 'Bismuth is the lite edition of Quartz for A Dance of Fire and Ice: in-game stats, a key viewer, custom fonts and a few quality-of-life fixes.',
-    BISMUTH_TAG: 'A lighter version of Quartz with overlays and basic tools.',
-    BISMUTH_STATEMENT: 'Bismuth is the lite version of Quartz: in-game stats, a key viewer, custom fonts and a few fixes. Most settings can be adjusted in detail.',
-    BISMUTH_S1_TITLE: 'Overlay',
-    BISMUTH_S1_BODY: 'Progress, accuracy, X-accuracy, BPM, timing scale, judgements, combo and attempts. Each can be turned on or off, positioned and coloured.',
-    BISMUTH_S2_TITLE: 'Key viewer',
-    BISMUTH_S2_BODY: 'Hand and foot presets, key rain, ghost keys and saved press counts. Imports and exports DM Note presets.',
-    BISMUTH_S3_TITLE: 'Game UI',
-    BISMUTH_S3_BODY: 'The game\'s own HUD elements can be moved, scaled or hidden, and its text can use a custom font.',
-    BISMUTH_F_LIMITER: 'Key limiter',
-    BISMUTH_F_LIMITER_LINE: 'Only selected keys count as input.',
-    BISMUTH_F_CHATTER: 'Chatter blocker',
-    BISMUTH_F_CHATTER_LINE: 'Ignores repeat presses that come too quickly.',
-    BISMUTH_F_FONTS: 'Custom fonts',
-    BISMUTH_F_FONTS_LINE: 'Font packs or your own .ttf and .otf files, for the overlay and game text.',
-    BISMUTH_F_HIDE: 'Hide UI',
-    BISMUTH_F_HIDE_LINE: 'Hides the HUD, hit error meter, autoplay text, judgements, song title and more.',
-    BISMUTH_F_ATTEMPTS: 'Attempts',
-    BISMUTH_F_ATTEMPTS_LINE: 'Attempt counts per level, saved between sessions.',
-    BISMUTH_F_DMNOTE: 'DM Note presets',
-    BISMUTH_F_DMNOTE_LINE: 'Imports and exports DM Note key viewer presets.',
-    BISMUTH_F_TOOLS: 'Log viewer and reload',
-    BISMUTH_F_TOOLS_LINE: 'In-game log viewer and one-click reload.',
-    BISMUTH_F_UPDATES: 'Updates',
-    BISMUTH_F_UPDATES_LINE: 'Checks for new releases and installs them.',
-    BISMUTH_GET_NOTE: 'Requires A Dance of Fire and Ice 3.3.0 or later. Runs on UnityModManager, or on MelonLoader with UMMCompat.',
+    TOPAZ_TITLE: 'Topaz — PrismMods',
+    TOPAZ_DESC: 'Topaz is the lite edition of Quartz for A Dance of Fire and Ice: in-game stats, a key viewer, custom fonts and a few quality-of-life fixes.',
+    TOPAZ_TAG: 'A lighter version of Quartz with overlays and basic tools.',
+    TOPAZ_STATEMENT: 'Topaz is the lite version of Quartz: in-game stats, a key viewer, custom fonts and a few fixes. Most settings can be adjusted in detail.',
+    TOPAZ_S1_TITLE: 'Overlay',
+    TOPAZ_S1_BODY: 'Progress, accuracy, X-accuracy, BPM, timing scale, judgements, combo and attempts. Each can be turned on or off, positioned and coloured.',
+    TOPAZ_S2_TITLE: 'Key viewer',
+    TOPAZ_S2_BODY: 'Hand and foot presets, key rain, ghost keys and saved press counts. Imports and exports DM Note presets.',
+    TOPAZ_S3_TITLE: 'Game UI',
+    TOPAZ_S3_BODY: 'The game\'s own HUD elements can be moved, scaled or hidden, and its text can use a custom font.',
+    TOPAZ_F_LIMITER: 'Key limiter',
+    TOPAZ_F_LIMITER_LINE: 'Only selected keys count as input.',
+    TOPAZ_F_CHATTER: 'Chatter blocker',
+    TOPAZ_F_CHATTER_LINE: 'Ignores repeat presses that come too quickly.',
+    TOPAZ_F_FONTS: 'Custom fonts',
+    TOPAZ_F_FONTS_LINE: 'Font packs or your own .ttf and .otf files, for the overlay and game text.',
+    TOPAZ_F_HIDE: 'Hide UI',
+    TOPAZ_F_HIDE_LINE: 'Hides the HUD, hit error meter, autoplay text, judgements, song title and more.',
+    TOPAZ_F_ATTEMPTS: 'Attempts',
+    TOPAZ_F_ATTEMPTS_LINE: 'Attempt counts per level, saved between sessions.',
+    TOPAZ_F_DMNOTE: 'DM Note presets',
+    TOPAZ_F_DMNOTE_LINE: 'Imports and exports DM Note key viewer presets.',
+    TOPAZ_F_TOOLS: 'Log viewer and reload',
+    TOPAZ_F_TOOLS_LINE: 'In-game log viewer and one-click reload.',
+    TOPAZ_F_UPDATES: 'Updates',
+    TOPAZ_F_UPDATES_LINE: 'Checks for new releases and installs them.',
+    TOPAZ_GET_NOTE: 'Requires A Dance of Fire and Ice 3.3.0 or later. Runs on UnityModManager, or on MelonLoader with UMMCompat.',
 
     AMETHYST_TITLE: 'Amethyst — PrismMods',
     AMETHYST_DESC: 'Amethyst is online multiplayer for A Dance of Fire and Ice, currently in development.',
@@ -195,13 +195,13 @@ const STRINGS = {
     MORE_HEADING: '기타 기능',
 
     PAGE_TITLE: 'PrismMods — 얼음과 불의 춤 모드',
-    PAGE_DESC: 'Quartz, Sapphire, Bismuth, Amethyst — 얼음과 불의 춤을 위한 무료 오픈 소스 모드.',
+    PAGE_DESC: 'Quartz, Topaz, Sapphire, Amethyst — 얼음과 불의 춤을 위한 무료 오픈 소스 모드.',
     GAME_TITLE: '불과 얼음의 춤',
     LEDE: '게임플레이, 레벨 에디터, 온라인 플레이 — 각각 하나의 모드로, 모두 무료 오픈 소스입니다.',
     MODS_HEADING: '모드 목록',
     QUARTZ_BLURB: '올인원 (all-in-one) 모드입니다. 이곳에서 시작하세요.',
     SAPPHIRE_BLURB: '레벨 에디터를 위한 도구 모음입니다. 채보와 VFX 제작자를 위해 만들어졌습니다.',
-    BISMUTH_BLURB: '오버레이와 기본 기능만 필요한 분들을 위한 Quartz의 경량 버전입니다.',
+    TOPAZ_BLURB: '오버레이와 기본 기능만 필요한 분들을 위한 Quartz의 경량 버전입니다.',
     AMETHYST_BLURB: '온라인 멀티플레이어입니다. 현재 개발 중입니다.',
     CREDITS_HEADING: '크레딧',
     CREDITS_DEVS: '개발자',
@@ -278,33 +278,33 @@ const STRINGS = {
     SAPPHIRE_F_MODES_LINE: '차팅 화면과 플레이테스트 화면을 전환합니다.',
     SAPPHIRE_GET_NOTE: '알파 버전입니다. UnityModManager 또는 UMMCompat을 통한 MelonLoader에서 실행됩니다.',
 
-    BISMUTH_TITLE: 'Bismuth — PrismMods',
-    BISMUTH_DESC: 'Bismuth는 얼음과 불의 춤을 위한 Quartz의 라이트 버전입니다. 인게임 통계, 키 뷰어, 커스텀 폰트, 몇 가지 편의 기능을 담았습니다.',
-    BISMUTH_TAG: '오버레이와 기본 도구만 담은 Quartz의 라이트 버전.',
-    BISMUTH_STATEMENT: 'Bismuth는 Quartz의 라이트 버전으로, 인게임 통계, 키 뷰어, 커스텀 폰트와 몇 가지 수정 사항을 담고 있습니다. 대부분의 설정을 세밀하게 조정할 수 있습니다.',
-    BISMUTH_S1_TITLE: '오버레이',
-    BISMUTH_S1_BODY: '진행도, 정확도, X-정확도, BPM, 타이밍 스케일, 판정, 콤보, 시도 횟수. 항목마다 켜고 끄고, 위치와 색을 정합니다.',
-    BISMUTH_S2_TITLE: '키 뷰어',
-    BISMUTH_S2_BODY: '손/발 프리셋, 키 레인, 고스트 키, 저장되는 입력 횟수. DM Note 프리셋을 가져오고 내보냅니다.',
-    BISMUTH_S3_TITLE: '게임 UI',
-    BISMUTH_S3_BODY: '게임 HUD 요소를 옮기거나 크기를 바꾸거나 숨기고, 게임 텍스트에 커스텀 폰트를 적용합니다.',
-    BISMUTH_F_LIMITER: '키 리미터',
-    BISMUTH_F_LIMITER_LINE: '정한 키만 입력으로 인정합니다.',
-    BISMUTH_F_CHATTER: '채터링 차단',
-    BISMUTH_F_CHATTER_LINE: '너무 빠르게 반복된 입력을 무시합니다.',
-    BISMUTH_F_FONTS: '커스텀 폰트',
-    BISMUTH_F_FONTS_LINE: '폰트 팩이나 직접 넣은 .ttf, .otf 파일을 오버레이와 게임 텍스트에 씁니다.',
-    BISMUTH_F_HIDE: 'UI 숨기기',
-    BISMUTH_F_HIDE_LINE: 'HUD, 판정선, 자동 플레이 텍스트, 판정, 곡 제목 등을 숨깁니다.',
-    BISMUTH_F_ATTEMPTS: '시도 횟수',
-    BISMUTH_F_ATTEMPTS_LINE: '레벨별 시도 횟수를 저장합니다.',
-    BISMUTH_F_DMNOTE: 'DM Note 프리셋',
-    BISMUTH_F_DMNOTE_LINE: 'DM Note 키 뷰어 프리셋을 가져오고 내보냅니다.',
-    BISMUTH_F_TOOLS: '로그 뷰어와 새로고침',
-    BISMUTH_F_TOOLS_LINE: '인게임 로그 뷰어와 원클릭 새로고침.',
-    BISMUTH_F_UPDATES: '업데이트',
-    BISMUTH_F_UPDATES_LINE: '새 릴리스를 확인하고 설치합니다.',
-    BISMUTH_GET_NOTE: '얼음과 불의 춤 3.3.0 이상이 필요합니다. UnityModManager 또는 UMMCompat을 통한 MelonLoader에서 실행됩니다.',
+    TOPAZ_TITLE: 'Topaz — PrismMods',
+    TOPAZ_DESC: 'Topaz는 얼음과 불의 춤을 위한 Quartz의 라이트 버전입니다. 인게임 통계, 키 뷰어, 커스텀 폰트, 몇 가지 편의 기능을 담았습니다.',
+    TOPAZ_TAG: '오버레이와 기본 도구만 담은 Quartz의 라이트 버전.',
+    TOPAZ_STATEMENT: 'Topaz는 Quartz의 라이트 버전으로, 인게임 통계, 키 뷰어, 커스텀 폰트와 몇 가지 수정 사항을 담고 있습니다. 대부분의 설정을 세밀하게 조정할 수 있습니다.',
+    TOPAZ_S1_TITLE: '오버레이',
+    TOPAZ_S1_BODY: '진행도, 정확도, X-정확도, BPM, 타이밍 스케일, 판정, 콤보, 시도 횟수. 항목마다 켜고 끄고, 위치와 색을 정합니다.',
+    TOPAZ_S2_TITLE: '키 뷰어',
+    TOPAZ_S2_BODY: '손/발 프리셋, 키 레인, 고스트 키, 저장되는 입력 횟수. DM Note 프리셋을 가져오고 내보냅니다.',
+    TOPAZ_S3_TITLE: '게임 UI',
+    TOPAZ_S3_BODY: '게임 HUD 요소를 옮기거나 크기를 바꾸거나 숨기고, 게임 텍스트에 커스텀 폰트를 적용합니다.',
+    TOPAZ_F_LIMITER: '키 리미터',
+    TOPAZ_F_LIMITER_LINE: '정한 키만 입력으로 인정합니다.',
+    TOPAZ_F_CHATTER: '채터링 차단',
+    TOPAZ_F_CHATTER_LINE: '너무 빠르게 반복된 입력을 무시합니다.',
+    TOPAZ_F_FONTS: '커스텀 폰트',
+    TOPAZ_F_FONTS_LINE: '폰트 팩이나 직접 넣은 .ttf, .otf 파일을 오버레이와 게임 텍스트에 씁니다.',
+    TOPAZ_F_HIDE: 'UI 숨기기',
+    TOPAZ_F_HIDE_LINE: 'HUD, 판정선, 자동 플레이 텍스트, 판정, 곡 제목 등을 숨깁니다.',
+    TOPAZ_F_ATTEMPTS: '시도 횟수',
+    TOPAZ_F_ATTEMPTS_LINE: '레벨별 시도 횟수를 저장합니다.',
+    TOPAZ_F_DMNOTE: 'DM Note 프리셋',
+    TOPAZ_F_DMNOTE_LINE: 'DM Note 키 뷰어 프리셋을 가져오고 내보냅니다.',
+    TOPAZ_F_TOOLS: '로그 뷰어와 새로고침',
+    TOPAZ_F_TOOLS_LINE: '인게임 로그 뷰어와 원클릭 새로고침.',
+    TOPAZ_F_UPDATES: '업데이트',
+    TOPAZ_F_UPDATES_LINE: '새 릴리스를 확인하고 설치합니다.',
+    TOPAZ_GET_NOTE: '얼음과 불의 춤 3.3.0 이상이 필요합니다. UnityModManager 또는 UMMCompat을 통한 MelonLoader에서 실행됩니다.',
 
     AMETHYST_TITLE: 'Amethyst — PrismMods',
     AMETHYST_DESC: 'Amethyst는 얼음과 불의 춤을 위한 온라인 멀티플레이어 모드로, 현재 개발 중입니다.',
@@ -427,10 +427,9 @@ for (const scene of document.querySelectorAll('.scene')) {
 
 // ---------------------------------------------------------------------------
 // Crystals. Each mod page turns its own mineral in the hero, drawn with WebGL
-// and turning further as the page scrolls. Glass crystals are convex parts,
-// each drawn back faces first and then front faces, farthest part first, all
-// blended. Bismuth is opaque and its blocks pass through each other, so it
-// uses the depth buffer instead.
+// and turning further as the page scrolls. Crystals are convex parts of
+// glass, each drawn back faces first and then front faces, farthest part
+// first, all blended.
 // ---------------------------------------------------------------------------
 
 const rgb = (s) => {
@@ -444,11 +443,7 @@ const dot = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 const unit = (a) => { const l = Math.hypot(...a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; };
 const cross = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 const mean = (ps) => ps.reduce((m, p) => [m[0] + p[0] / ps.length, m[1] + p[1] / ps.length, m[2] + p[2] / ps.length], [0, 0, 0]);
-const lerp = (a, b, t) => a + (b - a) * t;
 const scale = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
-
-// The same numbers on every visit, so a generated crystal keeps its shape.
-const jitter = (seed) => () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 
 const ring = (n, r, y) => Array.from({ length: n }, (_, i) => {
   const a = (i / n) * 2 * Math.PI;
@@ -463,7 +458,11 @@ const solid = ({ v, f, tint }, alpha = 1) => {
   const c = mean(v), faces = [], seen = new Map();
   for (const idx of f) {
     const pts = idx.map((i) => v[i]);
-    let n = unit(cross(sub(pts[1], pts[0]), sub(pts[2], pts[0])));
+    // Newell's normal, from every edge, so corners in a line don't matter.
+    let n = unit(pts.reduce((s, p, k) => {
+      const q = pts[(k + 1) % pts.length];
+      return add(s, [(p[1] - q[1]) * (p[2] + q[2]), (p[2] - q[2]) * (p[0] + q[0]), (p[0] - q[0]) * (p[1] + q[1])]);
+    }, [0, 0, 0]));
     if (dot(n, sub(mean(pts), c)) < 0) n = scale(n, -1);
     faces.push({ pts, n, tint: idx.map((i) => tint[i]) });
     idx.forEach((a, k) => {
@@ -473,6 +472,29 @@ const solid = ({ v, f, tint }, alpha = 1) => {
     });
   }
   return { faces, lines: [...seen.values()], alpha };
+};
+
+// Cuts a convex solid's vertices and faces by a plane, keeping the side where
+// dot(p, n) <= k, and closes the cut with a face of its own: a bevel.
+const slice = ({ v, f }, n, k) => {
+  const side = v.map((p) => dot(p, n) - k), pts = [...v], made = new Map();
+  const meet = (a, b) => {
+    const key = Math.min(a, b) + ',' + Math.max(a, b);
+    if (!made.has(key)) made.set(key, pts.push(add(v[a], scale(sub(v[b], v[a]), side[a] / (side[a] - side[b])))) - 1);
+    return made.get(key);
+  };
+  const faces = f.map((idx) => idx.flatMap((a, j) => {
+    const b = idx[(j + 1) % idx.length], keep = side[a] <= 0 ? [a] : [];
+    return (side[a] <= 0) === (side[b] <= 0) ? keep : [...keep, meet(a, b)];
+  })).filter((idx) => idx.length > 2);
+  // The new face: the cut's points in order round their centre.
+  const cut = [...made.values()], c = mean(cut.map((i) => pts[i]));
+  const u = unit(sub(pts[cut[0]], c)), w = cross(n, u);
+  const turn = (i) => Math.atan2(dot(sub(pts[i], c), w), dot(sub(pts[i], c), u));
+  faces.push(cut.sort((a, b) => turn(a) - turn(b)));
+  // Renumbered, without the vertices cut away.
+  const used = [...new Set(faces.flat())], at = new Map(used.map((i, j) => [i, j]));
+  return { v: used.map((i) => pts[i]), f: faces.map((idx) => idx.map((i) => at.get(i))) };
 };
 
 // Leans a part over its base (about z, then x) and moves it, lines and all.
@@ -522,93 +544,36 @@ const quartzPoint = ({ r, length, tip, foot = 0, step = 0.2 }, alpha = 1) => {
   return solid({ v, f, tint: v.map(([, y]) => (y - bottom) / (top - bottom)) }, alpha);
 };
 
-// Bismuth grows as hopper crystals: boxes whose faces sink in rectangular
-// terraces toward a floor that may sit off centre. Each face keeps a flat rim
-// at least as wide as any neighbouring face's pit is deep, so pits never meet
-// inside the block.
-const hopperBlock = (rnd, { half, at, yaw, tilt, hue }) => {
-  const cy = Math.cos(yaw), sy = Math.sin(yaw), ct = Math.cos(tilt), st = Math.sin(tilt);
-  const R = ([x, y, z]) => {
-    const x1 = x * cy + z * sy, z1 = z * cy - x * sy;
-    return [x1 * ct - y * st, x1 * st + y * ct, z1];
-  };
-  const m = Math.min(...half), rim = 0.24 * m, steps = 4 + Math.floor(rnd() * 3);
-  const faces = [];
-  for (let side = 0; side < 6; side++) {
-    const a = side >> 1, sign = side & 1 ? -1 : 1, u = (a + 1) % 3, v = (a + 2) % 3;
-    const hu = half[u], hv = half[v], ha = half[a];
-    const axis = (i, sg) => { const p = [0, 0, 0]; p[i] = sg; return R(p); };
-    const pt = (du, dv, depth) => {
-      const p = [0, 0, 0];
-      p[a] = sign * (ha - depth); p[u] = du; p[v] = dv;
-      return add(R(p), at);
-    };
-    const quad = (u0, u1, v0, v1, d) => [pt(u0, v0, d), pt(u1, v0, d), pt(u1, v1, d), pt(u0, v1, d)];
-    // Not every face hollows out evenly: some take one shallow step.
-    const K = rnd() < 0.15 ? 1 : steps, deep = rim * (0.7 + rnd() * 0.3);
-    // A single step is a wide, shallow recess; terraced faces narrow to a small floor.
-    const floor = () => (K === 1 ? 0.6 + rnd() * 0.25 : 0.12 + rnd() * 0.18);
-    const fu = (hu - rim) * floor(), fv = (hv - rim) * floor();
-    const ou = (rnd() - 0.5) * (hu - rim - fu) * 1.6, ov = (rnd() - 0.5) * (hv - rim - fv) * 1.6;
-    const rect = (k) => {
-      if (k === 0) return [-hu, hu, -hv, hv];
-      const t = K === 1 ? 1 : (k - 1) / (K - 1);
-      return [lerp(-hu + rim, ou - fu, t), lerp(hu - rim, ou + fu, t), lerp(-hv + rim, ov - fv, t), lerp(hv - rim, ov + fv, t)];
-    };
-    const N = axis(a, sign);
-    const put = (pts, n, k) => faces.push({ pts, n, hue, sunk: k / K });
-    for (let k = 0; k < K; k++) {
-      const [u0, u1, v0, v1] = rect(k), [U0, U1, V0, V1] = rect(k + 1);
-      const d0 = (deep * k) / K, d1 = (deep * (k + 1)) / K;
-      put(quad(u0, u1, V1, v1, d0), N, k);
-      put(quad(u0, u1, v0, V0, d0), N, k);
-      put(quad(u0, U0, V0, V1, d0), N, k);
-      put(quad(U1, u1, V0, V1, d0), N, k);
-      // Walls down to the next terrace, each facing into the pit.
-      put([pt(U1, V0, d0), pt(U1, V1, d0), pt(U1, V1, d1), pt(U1, V0, d1)], axis(u, -1), k);
-      put([pt(U0, V0, d0), pt(U0, V1, d0), pt(U0, V1, d1), pt(U0, V0, d1)], axis(u, 1), k);
-      put([pt(U0, V1, d0), pt(U1, V1, d0), pt(U1, V1, d1), pt(U0, V1, d1)], axis(v, -1), k);
-      put([pt(U0, V0, d0), pt(U1, V0, d0), pt(U1, V0, d1), pt(U0, V0, d1)], axis(v, 1), k);
-    }
-    const [f0, f1, g0, g1] = rect(K);
-    put(quad(f0, f1, g0, g1, deep), N, K);
+// Topaz grows as stout prisms, a six-sided lozenge in section, under a
+// wedge: two sloping faces meeting in a ridge that runs the lozenge's long
+// way, `roof` above the sides and tipped `tip` higher at one end. `bevel`
+// takes a corner off the low end's top and the high end's foot, and `heel` a
+// smaller one off the low end's foot, each that far in from the side. Tint
+// runs from 0 at the foot to 1 at the ridge's top.
+const topazPrism = ({ w, d, length, roof, tip = 0, bevel = 0, heel = 0 }) => {
+  // Counter-clockwise from the ridge's high end, through the low end.
+  const section = [[1, 0], [0.3, 1], [-0.3, 1], [-1, 0], [-0.3, -1], [0.3, -1]].map(([x, z]) => [x * w, z * d]);
+  const n = section.length, m = section.findIndex(([x]) => x === -w);
+  const v = [
+    ...section.map(([x, z]) => [x, 0, z]),
+    ...section.map(([x, z]) => [x, length + roof * (1 - Math.abs(z) / d) + (tip * x) / w, z]),
+  ];
+  // The two roof faces split the top ring where it crosses the ridge.
+  const top = (from, to) => Array.from({ length: to - from + 1 }, (_, i) => n + ((from + i) % n));
+  const f = [[...Array(n).keys()], top(0, m), top(m, n)];
+  for (let i = 0; i < n; i++) f.push([i, (i + 1) % n, n + ((i + 1) % n), n + i]);
+  // A bevel is the plane through two points, cutting away what lies to the
+  // left going from the first to the second (y up): one on the side, 2.5 ×
+  // the bevel along it, the other the bevel in on the ridge or the floor.
+  const across = ([x0, y0], [x1, y1]) => { const p = unit([y0 - y1, x1 - x0, 0]); return [p, dot(p, [x0, y0, 0])]; };
+  const ridge = (x) => length + roof + (tip * x) / w;
+  let shape = { v, f };
+  if (bevel) {
+    shape = slice(shape, ...across([-w, ridge(-w) - 2.5 * bevel], [-w + bevel, ridge(-w + bevel)]));
+    shape = slice(shape, ...across([w, 2.5 * bevel], [w - bevel, 0]));
   }
-  return faces;
-};
-
-// A cluster the way bismuth grows: a spine of big blocks stepping up and
-// along, each budding smaller blocks off its faces, and a staircase of small
-// blocks running down off the top. Blocks overlap freely; the depth buffer
-// sorts that out, not paint order.
-const bismuthCluster = () => {
-  const rnd = jitter(5);
-  const blocks = [], spine = [];
-  const spin = () => (rnd() - 0.5) * 0.5;
-  // Neighbours along the spine meet at their edges rather than sinking into
-  // each other: each step is most of the two blocks' sizes.
-  let at = [0, 0, 0], last = 0;
-  for (let i = 0; i < 4; i++) {
-    const s = 0.45 + rnd() * 0.25;
-    if (i) at = add(at, scale(unit([1, 0.85, rnd() * 0.6 - 0.3]), (last + s) * 0.8));
-    last = s;
-    const half = [s * (0.85 + rnd() * 0.3), s * (0.7 + rnd() * 0.35), s * (0.85 + rnd() * 0.3)];
-    const hue = i * 0.2 + rnd() * 0.06;
-    blocks.push({ half, at, yaw: spin(), tilt: spin() * 0.7, hue });
-    spine.push({ at, s });
-    for (let b = Math.floor(rnd() * 3); b >= 0; b--) {
-      const t = 0.12 + rnd() * 0.16;
-      const dir = unit([rnd() - 0.5, rnd() - 0.35, rnd() - 0.5]);
-      blocks.push({ half: [t, t * (0.7 + rnd() * 0.5), t], at: add(at, scale(dir, s * 1.05)), yaw: spin(), tilt: spin(), hue: hue + 0.05 });
-    }
-  }
-  // A staircase of small blocks steps down off the front of the third block.
-  let step = add(spine[2].at, [-0.1, 0, -(spine[2].s + 0.15)]);
-  for (let k = 0; k < 4; k++) {
-    const t = 0.2 - k * 0.035;
-    blocks.push({ half: [t, t * 0.8, t], at: step, yaw: 0.1, tilt: -0.05, hue: 0.55 + k * 0.05 });
-    step = add(step, [-0.2 + k * 0.03, -0.15, -0.06]);
-  }
-  return blocks.flatMap((b) => hopperBlock(rnd, b));
+  if (heel) shape = slice(shape, ...across([-w + heel, 0], [-w, 2.5 * heel]));
+  return solid({ ...shape, tint: shape.v.map(([, y]) => y / ridge(w)) });
 };
 
 // `pale` is how far glass leans toward clear, `milk` how cloudy it is, and
@@ -626,7 +591,7 @@ const CRYSTALS = {
   // fading out below.
   sapphire: {
     pitch: 0.22, glow: 1, fade: 0.55, parts: [
-      bouquet(quartzPoint({ r: 0.5, length: 0.5, tip: 1.25, step: 0 }), 0, 0, 0.05),
+      bouquet(quartzPoint({ r: 0.5, length: 0.6, tip: 0.85, step: 0 }), 0, 0, 0.05),
       bouquet(quartzPoint({ r: 0.38, length: 0.45, tip: 0.8, step: 0 }), 20, 0.45, 0.38),
       bouquet(quartzPoint({ r: 0.32, length: 0.3, tip: 0.65, step: 0 }), 85, 0.4, 0.32),
       bouquet(quartzPoint({ r: 0.36, length: 0.4, tip: 0.7, step: 0 }), 150, 0.45, 0.4),
@@ -635,9 +600,14 @@ const CRYSTALS = {
       bouquet(quartzPoint({ r: 0.3, length: 0.35, tip: 0.6, step: 0 }), 330, 0.45, 0.3),
     ],
   },
-  // Long and thin, so it sways rather than spins: turned end-on, the chain
-  // would stack into one block.
-  bismuth: { pitch: 0.35, metal: true, yaw: 0.3, sway: 0.6, parts: [{ faces: bismuthCluster(), lines: [], alpha: 1 }] },
+  // Imperial topaz: one stout crystal under a tipped wedge, bevelled at three
+  // corners, leaning a little and fading out below. Nearly opaque, as dim orange glass reads
+  // as brown on a dark page.
+  topaz: {
+    pitch: 0.25, milk: 0.9, fade: 0.3, parts: [
+      place(topazPrism({ w: 0.95, d: 0.62, length: 3.1, roof: 0.55, tip: 0.45, bevel: 0.3, heel: 0.12 }), -0.2, 0.08, [0, 0, 0]),
+    ],
+  },
   // Amethyst is quartz too, but grows in clusters of single points, deepest
   // purple at the tips.
   amethyst: {
@@ -656,20 +626,16 @@ const LIGHT = unit([-0.45, 0.75, -0.5]); // up, left, and toward the viewer
 const FOCAL = 900;                       // in units of a 400 × 400 drawing
 
 // Turns a crystal: a full turn every ~22 s plus a quarter turn per screen of
-// scroll, or for a swaying crystal, a rock either side of its resting angle
-// every ~14 s. Runs only while on screen, and holds still for reduced motion.
-const animate = (el, spec, draw) => {
-  const rest = spec.yaw ?? 0.6;
+// scroll. Runs only while on screen, and holds still for reduced motion.
+const animate = (el, draw) => {
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    draw(rest);
+    draw(0.6);
     return;
   }
   let raf = 0;
   const tick = (t) => {
     const scrolled = (window.scrollY || 0) / (window.innerHeight || 800);
-    draw(spec.sway
-      ? rest + Math.sin(t / 14000 * 2 * Math.PI + scrolled * 2) * spec.sway
-      : t * 0.00028 + scrolled * 1.6);
+    draw(t * 0.00028 + scrolled * 1.6);
     raf = requestAnimationFrame(tick);
   };
   new IntersectionObserver(([e]) => {
@@ -696,14 +662,11 @@ const fit = (spec) => {
   return { mid, reach, scale: (190 * FOCAL) / (reach * (FOCAL + 190)), floor: lo[1] - mid[1] };
 };
 
-// One program draws everything. Both kinds reflect a small studio, fixed to
-// the camera, so as a crystal turns its faces sweep through the lights and
-// flash. Metal: oxide colour per pixel, drifting with the block, the angle to
-// the viewer and the height, as thin-film colour does, with terrace floors in
-// shadow and reflections tinted by the oxide. Glass: tinted toward clear,
-// brighter where it catches the light, deeper toward the tips, and most
-// reflective at grazing angles, as glass is.
-// `pass` picks back faces (0), front faces (1) or metal's edges (2).
+// One program draws every face. Glass reflects a small studio, fixed to the
+// camera, so as a crystal turns its faces sweep through the lights and flash.
+// It is tinted toward clear, brighter where it catches the light, deeper
+// toward the tips, and most reflective at grazing angles, as glass is.
+// `pass` picks back faces (0) or front faces (1).
 const VERT = `
 attribute vec3 p; attribute vec3 n; attribute float h; attribute float d;
 uniform mat3 rot; uniform vec3 mid; uniform float scale, focal;
@@ -718,18 +681,7 @@ const FRAG = `
 precision mediump float;
 varying vec3 vp, vn; varying float vh, vd, vy;
 uniform vec3 light, eye, gem;
-uniform float metal, pass, pale, milk, glow, reach, fadeLo, fadeHi;
-// Bismuth's oxide film runs gold, magenta, violet, blue, teal and round again.
-vec3 oxide(float t) {
-  float k = fract(t) * 5.0;
-  vec3 gold = vec3(0.93, 0.75, 0.26), magenta = vec3(0.89, 0.36, 0.66), violet = vec3(0.56, 0.37, 0.88);
-  vec3 blue = vec3(0.26, 0.5, 0.94), teal = vec3(0.12, 0.72, 0.66);
-  if (k < 1.0) return mix(gold, magenta, k);
-  if (k < 2.0) return mix(magenta, violet, k - 1.0);
-  if (k < 3.0) return mix(violet, blue, k - 2.0);
-  if (k < 4.0) return mix(blue, teal, k - 3.0);
-  return mix(teal, gold, k - 4.0);
-}
+uniform float pass, pale, milk, glow, fadeLo, fadeHi;
 // The studio, as seen along a reflected ray in camera space: a big softbox
 // overhead and to the left, strip lights either side, a bright ceiling and a
 // faint wall all round, so most turns catch something.
@@ -752,20 +704,6 @@ void main() {
     + 0.8 * pow(max(dot(n, normalize(normalize(vec3(0.7, 0.3, 0.6)) + v)), 0.0), 90.0);
   vec3 shown = studio(reflect(-v, n));
   float grazing = pow(1.0 - abs(facing), 3.0);
-  if (pass > 1.5) {
-    float a = 0.35 * mix(1.0, 0.4, clamp(vp.z / (2.0 * reach) + 0.5, 0.0, 1.0));
-    gl_FragColor = vec4(0.0, 0.0, 0.0, a);
-    return;
-  }
-  if (metal > 0.5) {
-    float t = vh + 0.3 * facing + 0.18 * vp.y;
-    float edge = pow(1.0 - abs(facing), 3.0);
-    vec3 film = oxide(t);
-    vec3 col = film * (0.45 + 0.45 * lit) * (1.0 - 0.2 * vd) + 0.7 * shine + 0.15 * edge
-      + shown * (0.8 * film + 0.45);
-    gl_FragColor = vec4(min(col, 1.0), 1.0);
-    return;
-  }
   if ((pass < 0.5) == (facing > 0.0)) discard;
   vec3 c; float a;
   // Glowing glass is pushed toward a deep electric blue and whitens only
@@ -846,17 +784,15 @@ const drawCrystal = (canvas, spec) => {
   const faceProgram = link(gl, VERT, FRAG), edgeProgram = link(gl, EDGE_VERT, EDGE_FRAG);
 
   // Faces become triangle fans, each part's run of them remembered so glass
-  // can draw part by part. Per vertex: position, normal, then hue and terrace
-  // depth (metal) or opacity and tint (glass). Metal's edges are GL lines on
-  // its faces; glass edges become quads, six corners per edge.
+  // can draw part by part. Per vertex: position, normal, opacity and tint.
+  // Edges become quads, six corners per edge.
   const { mid, reach, scale: S, floor } = fit(spec);
-  const tris = [], lines = [], quads = [], runs = [];
+  const tris = [], quads = [], runs = [];
   for (const part of spec.parts) {
     const first = tris.length / 8;
     for (const f of part.faces) {
-      const v = (i) => [...f.pts[i], ...f.n, ...(spec.metal ? [f.hue, f.sunk] : [part.alpha, f.tint[i]])];
+      const v = (i) => [...f.pts[i], ...f.n, part.alpha, f.tint[i]];
       for (let i = 1; i < f.pts.length - 1; i++) tris.push(...v(0), ...v(i), ...v(i + 1));
-      if (spec.metal) f.pts.forEach((p, i) => lines.push(...p, ...f.n, 1, 0, ...f.pts[(i + 1) % f.pts.length], ...f.n, 1, 0));
     }
     for (const l of part.lines) {
       for (const [end, side] of [[0, -1], [0, 1], [1, 1], [0, -1], [1, 1], [1, -1]]) {
@@ -871,7 +807,7 @@ const drawCrystal = (canvas, spec) => {
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
     return { buf, stride, count: data.length / stride };
   };
-  const faceBuf = upload(tris, 8), lineBuf = upload(lines, 8), quadBuf = upload(quads, 12);
+  const faceBuf = upload(tris, 8), quadBuf = upload(quads, 12);
   const LAYOUT = {
     8: [['p', 3], ['n', 3], ['h', 1], ['d', 1]],
     12: [['a', 3], ['b', 3], ['n', 3], ['w', 1], ['end', 1], ['side', 1]],
@@ -904,19 +840,19 @@ const drawCrystal = (canvas, spec) => {
   };
   set(faceProgram, {
     ...shared, light: LIGHT, eye: [0, 0, -FOCAL / S],
-    metal: spec.metal ? 1 : 0, pale: spec.pale || 0, milk: spec.milk || 0, glow: spec.glow || 0,
+    pale: spec.pale || 0, milk: spec.milk || 0, glow: spec.glow || 0,
   });
   set(edgeProgram, shared);
   gl.enable(gl.BLEND);
   gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
   gl.enable(gl.DEPTH_TEST);
 
-  animate(canvas, spec, (yaw) => {
+  animate(canvas, (yaw) => {
     // Keep the drawing buffer at the element's real pixel size, and follow
     // the theme: edges mix toward the page's ink, or glow on a dark page.
     const dpr = window.devicePixelRatio || 1;
     const px = Math.round(canvas.clientWidth * dpr);
-    if (px && canvas.width !== px) canvas.width = canvas.height = px;
+    if (px && (canvas.width !== px || canvas.height !== px)) canvas.width = canvas.height = px;
     const style = getComputedStyle(canvas);
     const r = rotation(yaw, spec.pitch);
     const rot = [r[0][0], r[1][0], r[2][0], r[0][1], r[1][1], r[2][1], r[0][2], r[1][2], r[2][2]];
@@ -935,20 +871,7 @@ const drawCrystal = (canvas, spec) => {
 
     bind(faceProgram, faceBuf);
     const pass = (n) => gl.uniform1f(gl.getUniformLocation(faceProgram, 'pass'), n);
-    if (spec.metal) {
-      // Opaque: faces write depth, and their edges sit just in front.
-      pass(1);
-      gl.enable(gl.POLYGON_OFFSET_FILL);
-      gl.polygonOffset(1, 1);
-      gl.drawArrays(gl.TRIANGLES, 0, faceBuf.count);
-      gl.disable(gl.POLYGON_OFFSET_FILL);
-      pass(2);
-      bind(faceProgram, lineBuf);
-      gl.drawArrays(gl.LINES, 0, lineBuf.count);
-      return;
-    }
-
-    // Glass: farthest part first, back faces before front, writing no depth,
+    // Farthest part first, back faces before front, writing no depth,
     // so glass never hides glass.
     gl.depthMask(false);
     const depth = (run) => dot(r[2], sub(run.centre, mid));

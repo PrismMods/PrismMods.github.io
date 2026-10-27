@@ -213,7 +213,7 @@ const script = [...page.matchAll(/<script>([\s\S]*?)<\/script>/g)][1][1];
 // Theme, language and every page's strings live in site.js, which the page
 // loads first; the mod pages share it but carry no script of their own.
 const siteScript = readFileSync(new URL('./site.js', import.meta.url), 'utf8');
-const pages = ['index.html', 'quartz/index.html', 'sapphire/index.html', 'bismuth/index.html', 'amethyst/index.html']
+const pages = ['index.html', 'quartz/index.html', 'sapphire/index.html', 'topaz/index.html', 'amethyst/index.html']
   .map((f) => readFileSync(new URL(`./${f}`, import.meta.url), 'utf8'));
 
 class El {
@@ -321,7 +321,7 @@ for (const key of new Set(usedKeys)) {
 // Korean must actually differ, or a key was copied across untranslated.
 // Product names stay in Latin script, so a string that is only a name is the
 // one thing allowed to match.
-const NAMES = ['QUARTZ_TITLE', 'SAPPHIRE_TITLE', 'BISMUTH_TITLE', 'AMETHYST_TITLE',
+const NAMES = ['QUARTZ_TITLE', 'SAPPHIRE_TITLE', 'TOPAZ_TITLE', 'AMETHYST_TITLE',
   'QUARTZ_F_ANTICHATTER', 'BTN_FOLLOW', 'BTN_SITE'];
 const shared = base.filter((k) => !NAMES.includes(k) && dicts['en-US'][k] === dicts['ko-KR'][k]);
 assert.deepEqual(shared, [], `untranslated in ko-KR: ${shared.join(', ')}`);
@@ -348,11 +348,21 @@ console.log(`i18n ok (${locales.join(', ')}, ${base.length} keys)`);
 
   for (const [kind, spec] of Object.entries(CRYSTALS)) {
     const faces = spec.parts.flatMap((p) => p.faces);
-    assert.ok(faces.length >= (spec.metal ? 500 : 12), `${kind}: too few faces`);
-    if (!spec.metal) assert.ok(spec.parts.every((p) => p.lines.length >= 12), `${kind}: missing edges`);
+    assert.ok(faces.length >= 12, `${kind}: too few faces`);
+    assert.ok(spec.parts.every((p) => p.lines.length >= 12), `${kind}: missing edges`);
     for (const f of faces) {
       for (const p of f.pts) assert.ok(p.every(Number.isFinite), `${kind}: non-finite point`);
       assert.ok(Math.abs(Math.hypot(...f.n) - 1) < 1e-9, `${kind}: normal not unit length`);
+    }
+    // Every part is convex with flat faces, cut or not: each face's corners
+    // lie on its plane and the rest of its part sits behind it.
+    for (const part of spec.parts) {
+      const all = part.faces.flatMap((f) => f.pts);
+      for (const f of part.faces) {
+        const height = (p) => f.n.reduce((s, c, i) => s + c * (p[i] - f.pts[0][i]), 0);
+        assert.ok(f.pts.every((p) => Math.abs(height(p)) < 1e-9), `${kind}: face not flat`);
+        assert.ok(all.every((p) => height(p) < 1e-9), `${kind}: face normal points inward or part not convex`);
+      }
     }
     const { mid, scale } = fit(spec);
     for (let yaw = 0; yaw < 2 * Math.PI; yaw += 0.2) {

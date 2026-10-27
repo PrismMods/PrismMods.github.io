@@ -1,12 +1,12 @@
-# Bismuth
+# Topaz
 
-Bismuth is an overlay and quality-of-life mod for **A Dance of Fire and Ice**, and the lite version of [Quartz](https://quartzz.xyz/). It includes in-game stats, a key viewer, custom fonts and a few fixes. Most settings can be adjusted in detail.
+Topaz is an overlay and quality-of-life mod for **A Dance of Fire and Ice**, and the lite version of [Quartz](https://quartzz.xyz/). It includes in-game stats, a key viewer, custom fonts and a few fixes. Most settings can be adjusted in detail.
 
-[Install Bismuth](install.md){ .md-button .md-button--primary }
+[Install Topaz](install.md){ .md-button .md-button--primary }
 
 ## Opening the settings
 
-Press `Ctrl+B` in-game to open the settings panel. The toggle at the bottom of its tab rail is the master switch: off, Bismuth stops changing the game but the panel stays available.
+Press `Ctrl+B` in-game to open the settings panel. The toggle at the bottom of its tab rail is the master switch: off, Topaz stops changing the game but the panel stays available.
 
 ## Features
 
